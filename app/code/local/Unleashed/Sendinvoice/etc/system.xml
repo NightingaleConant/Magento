@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : system.xml
+    Created on : October 12, 2011, 2:35 PM
+    Author     : root
+    Description:
+        Purpose of the document follows.
+-->
+
+<config>
+    <tabs>
+        <mycustom_tab module="sendinvoice" translate="label">
+            <label>Unleashed</label>
+            <sort_order>100</sort_order>
+        </mycustom_tab>
+    </tabs>
+    <sections>
+        <sendinvoice module="sendinvoice" translate="label">
+            <label>Sendinvoice Configuration</label>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>mycustom_tab</tab>
+            <groups>
+                <mycustom_group translate="label">
+                    <label>Sendinvoice Configuration</label>
+                    <comment></comment>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <customer_id translate="label tooltip comment">
+                            <label>Customer ID</label>
+                            <comment>Please provide the Customer ID</comment>
+                            <tooltip>Customer ID</tooltip>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_input>text</frontend_input>
+                        </customer_id>
+                        
+                        <export translate="Export Products">
+                            <label>Export Products</label>
+                            <frontend_model>sendinvoice/export/</frontend_model>
+                            <tooltip>Export Product</tooltip>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>button</frontend_type>
+                        </export>
+                        
+                        
+
+                        
+                    </fields>
+                </mycustom_group>
+            </groups>
+        </sendinvoice>
+    </sections>
+</config>

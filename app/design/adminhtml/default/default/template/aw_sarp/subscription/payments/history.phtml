@@ -1,0 +1,118 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2008-2009 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<h3><?php echo $this->__('Completed payments');?></h3>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div>
+    <?php if (1 || $this->getPaidCollection()->count()): ?>
+
+    <div class="grid">
+        <table class="data" id="admin-subscriptions-history-table-paid" cellspacing="0">
+            <col width="100"/>
+            <col/>
+            <col width="100"/>
+
+            <col width="100"/>
+            <thead>
+            <tr class="headings">
+                <th class="no-link"><?php echo $this->__('Date') ?></th>
+                <th class="no-link"><?php echo $this->__('Order #') ?></th>
+                <th class="no-link"><?php echo $this->__('Order Status') ?></th>
+                <th class="no-link last"><?php echo $this->__('Amount') ?></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?php echo $this->formatDate($this->getSubscription()->getOrder()->getCreatedAt());?></td>
+                <td>
+                    <a href="<?php echo Mage::getUrl('adminhtml/sales_order/view', array('order_id' => $this->getSubscription()->getOrder()->getId()))?>">
+                        <?php echo $this->getSubscription()->getOrder()->getRealOrderId();?>
+                    </a>
+                </td>
+                <td><em><?php echo ucfirst($this->getSubscription()->getOrder()->getStatus()) ?></em></td>
+                <td class="a-right"><?php echo $this->getConvertedPrice($this->getSubscription()->getOrder()->getGrandTotal(), $this->getSubscription()->getOrder()->getOrderCurrencyCode());?></td>
+            </tr>
+                <?php foreach ($this->getPaidCollection() as $Item): ?>
+
+            <tr>
+                <td><?php echo $this->formatDate($Item->getDate());?></td>
+                <td>
+                    <a href="<?php echo Mage::getUrl('adminhtml/sales_order/view', array('order_id' => $Item->getOrder()->getId()))?>">
+                        <?php echo $Item->getOrder()->getRealOrderId();?>
+                    </a>
+                </td>
+                <td><em><?php echo ucfirst($Item->getOrder()->getStatus()) ?></em></td>
+                <td class="a-right"><?php echo $this->getConvertedPrice($Item->getOrder()->getGrandTotal(), $this->getSubscription()->getOrder()->getOrderCurrencyCode());?></td>
+            </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">decorateTable('admin-subscriptions-history-table-paid');</script>
+
+
+    <?php else: ?>
+    <?php echo $this->__("This customer has no completed payments yet."); ?>
+    <?php endif; ?>
+</div>
+
+<?php if ($this->getSubscription()->isActive()): ?>
+<h3><?php echo $this->__('Pending payments');?></h3>
+<div>
+    <?php if ($this->getPendingCollection()->count()): ?>
+
+    <div class="grid">
+        <table class="data" id="admin-subscriptions-history-table-pending" cellspacing="0">
+            <col/>
+            <thead>
+            <tr class="headings">
+                <th class="no-link"><?php echo $this->__('Date') ?></th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->getPendingCollection() as $Item): ?>
+
+            <tr>
+                <td>
+                    <?php echo $this->formatDate($Item->getDate());?>
+                    <?php
+                                                            $today = new Zend_Date();
+                    $itemDate = new Zend_Date($Item->getDate(), AW_Sarp_Model_Subscription::DB_DATE_FORMAT);
+                    if ($today->compare($itemDate) > 0):
+                        ?>
+                        <a href="<?php echo Mage::getModel('adminhtml/url')->getUrl('subscriptions_admin/subscriptions/pay', array('id' => $this->getSubscription()->getId(), 'seq' => $Item->getId())) ?>"><?php echo $this->__('Pay now') ?></a>
+                        |
+                        <a href="<?php echo Mage::getModel('adminhtml/url')->getUrl('subscriptions_admin/subscriptions/skip', array('id' => $this->getSubscription()->getId(), 'seq' => $Item->getId())) ?>"><?php echo $this->__('Skip Payment') ?></a>
+                        <?php endif; ?>
+                </td>
+            </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">decorateTable('admin-subscriptions-history-table-pending');</script>
+
+
+    <?php else: ?>
+    <?php echo $this->__("This subscription already has no pending payments."); ?>
+    <?php endif; ?>
+</div>
+<?php endif; ?>	

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <NGC_Reporting>
+             <version>0.1.1</version>
+        </NGC_Reporting>
+    </modules>
+    <global>
+        <models>
+            <reporting>
+                <class>NGC_Reporting_Model</class>
+                <resourceModel>reporting_resource</resourceModel>
+            </reporting>
+            <reporting_resource>
+                <class>NGC_Reporting_Model_Resource</class>
+                <entities>
+                    <custom_qb_map>
+                        <table>custom_qb_map</table>
+                    </custom_qb_map>
+                    <custom_qb_map_adjustments>
+                        <table>custom_qb_map_adjustments</table>
+                    </custom_qb_map_adjustments>
+                </entities>
+            </reporting_resource>
+        </models>
+        <resources>
+            <ngc_reporting_setup>
+                <setup>
+                    <module>NGC_Reporting</module>
+                    <class>NGC_Reporting_Model_Resource_Setup</class>
+                </setup>
+            </ngc_reporting_setup>
+        </resources>
+    </global>
+</config>

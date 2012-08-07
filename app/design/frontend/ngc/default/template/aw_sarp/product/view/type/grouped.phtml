@@ -1,0 +1,203 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Grouped product data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ * @see Mage_Catalog_Block_Product_View_Type_Grouped
+ */
+?>
+<?php $subscription = $this->getSubscription() ?>
+<?php $_product = $subscription->getProduct() ?>
+<?php $_associatedProducts = $this->getSarpAssociatedProducts() ?>
+<?php
+      $periods = explode(',', $_product->getAwSarpPeriod());
+$items = array();
+?>
+<?php if ($_product->isSaleable() && count($_associatedProducts)): ?>
+<p class="availability in-stock"><?php echo $this->__('Availability:') ?>
+    <span><?php echo $this->__('In stock') ?></span></p>
+<?php else: ?>
+<p class="availability out-of-stock"><?php echo $this->__('Availability:') ?>
+    <span><?php echo $this->__('Out of stock') ?></span></p>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+
+<?php if ($subscription->hasSubscriptionOptions() && $this->getProduct()->getAwSarpEnabled()): ?>
+<?php if (1 || Mage::getSingleton('customer/session')->getCustomer()->getId() || Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_GENERAL_ANONYMOUS_SUBSCRIPTIONS)): ?>
+    <?php echo $this->getChildHtml('subscription_selector') ?>
+    <?php //if($_product->getAwSarpHasShipping()): ?>
+    <?php if (!$_product->isVirtual()): ?>
+        <div class="subscription-start">
+            <?php echo $this->__('First delivery')?>:
+            <?php echo $subscription->getCalendarHtml();?>
+        </div>
+        <?php else: ?>
+        <input type="hidden" name="<?php echo AW_Sarp_Block_Product_View_Type_Subscription::DATE_FIELD_NAME;?>"
+               value="<?php echo $this->formatDate($subscription->getDefaultPeriod()->getNearestAvailableDay())?>"/>
+        <?php endif; ?>
+    <?php else: ?>
+    <strong>
+        <?php echo $this->__("You can also buy this product using subscription but in this case you should")?>
+        <a href="<?php echo Mage::getUrl('customer/account/create')?>"><?php echo $this->__('create an account')?></a>
+        <?php echo $this->__('or')?>
+        <a href="<?php echo Mage::getUrl('customer/account/login')?>"><?php echo $this->__('log in')?></a>.
+    </strong>
+    <?php endif; ?>
+<?php endif; ?>
+
+<table class="data-table grouped-items-table" id="super-product-table">
+    <col/>
+    <col/>
+    <col width="1"/>
+    <thead>
+    <tr>
+        <th><?php echo $this->__('Product Name') ?></th>
+        <th class="a-right"><?php echo $this->__('Price') ?></th>
+        <?php if ($_product->isSaleable()): ?>
+        <th class="a-center"><?php echo $this->__('Qty') ?></th>
+        <?php endif; ?>
+    </tr>
+    </thead>
+    <tbody>
+    <?php if (count($_associatedProducts)): ?>
+        <?php foreach ($_associatedProducts as $_item): ?>
+            <?php $_item = Mage::getModel('catalog/product')->load($_item->getId()); ?>
+            <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
+        <tr>
+            <td><?php echo $this->htmlEscape($_item->getName()) ?></td>
+            <td class="a-right">
+                <?php
+                    $items[$_item->getId()]['price'] = Mage::app()->getStore()->convertPrice($_item->getPrice());
+                $truePrice = Mage::app()->getStore()->convertPrice($_item->getAwSarpSubscriptionPrice());
+                $firstPrice = Mage::app()->getStore()->convertPrice($_item->getAwSarpFirstPeriodPrice());
+                if ($_item->getAwSarpHasShipping()) {
+                    $truePrice += Mage::app()->getStore()->convertPrice($_item->getAwSarpShippingCost());
+                    $firstPrice += Mage::app()->getStore()->convertPrice($_item->getAwSarpShippingCost());
+                }
+                $items[$_item->getId()]['first_price'] = (float)$firstPrice;
+                $items[$_item->getId()]['subscription_price'] = (float)$truePrice;
+                $items[$_item->getId()]['shipping_cost'] = (float)Mage::app()->getStore()->convertPrice($_item->getAwSarpShippingCost());
+                ?>
+                <div class="native-sarp-price">
+                    <?php echo $this->getPriceHtml($_item, true) ?>
+                    <?php echo $this->getTierPriceHtml($_item) ?>
+                </div>
+                <?php if ($_item->getAwSarpFirstPeriodPrice()): ?>
+                <div class="price-box first-subscription-box aw-sarp-first-subscription-notice" style="display:none">
+                	<span class="regular-price">	
+                    	<span class="required">*</span> <span
+                            class="price"><?php echo Mage::app()->getStore()->formatPrice($firstPrice);?></span>
+                    </span>
+                </div>
+                <?php endif;?>
+            </td>
+            <?php if ($_product->isSaleable()): ?>
+            <td class="a-center">
+                <?php if ($_item->isSaleable()) : ?>
+                <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12"
+                       value="<?php echo $_item->getQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>"
+                       class="input-text qty"/>
+                <?php else: ?>
+                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                <?php endif; ?>
+            </td>
+            <?php endif; ?>
+        </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+    <tr>
+        <td colspan="<?php if ($_product->isSaleable()): ?>4<?php else : ?>3<?php endif; ?>"><?php echo $this->__('No options of this product are available.') ?></td>
+    </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+<div class="aw-sarp-first-subscription-notice" id="aw-sarp-first-subscription-notice">
+    <p><span class="required">*</span> - <?php echo $this->__('First period price');?></p>
+</div>
+<script type="text/javascript">decorateTable('super-product-table')</script>
+
+<?php echo $this->getChildHtml('sarp_html_calendar'); ?>
+<?php echo $this->getChildHtml('sarp_html_calendar_init'); ?>
+<script type="text/javascript">
+    var SarpOptionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>)
+    var items = <?php echo json_encode($items)?>;
+    var els = document.getElementsByName('aw_sarp_subscription_type');
+    for (var i = els.length - 1; i >= 0; i--) {
+        els[i][(els[i].tagName.toLowerCase() == 'select' ? 'onchange' : 'onclick')] = function() {
+            if (this.tagName.toLowerCase() == 'input') {
+                if (this.checked) {
+                    if ($(this).getValue() == -1) {
+                        updatePrices(0);
+                    } else {
+                        updatePrices(1);
+                    }
+                }
+            } else {
+                if ($(this).getValue() == -1) {
+                    updatePrices(0);
+                } else {
+                    updatePrices(1);
+                }
+            }
+        }
+    }
+
+    function updatePrices(mode) {
+        var price = 0;
+
+        for (var key in items) {
+            $('product-price-' + key).childElements().each(function(child) {
+                if (mode > 0) {
+                    if (items[key]['first_price'] > items[key]['shipping_cost']) {
+                        $$('.first-subscription-box').each(function(el) {
+                            el.setStyle({display:'block'});
+                        });
+                        $('product-price-' + key).setStyle({textDecoration : "line-through"});
+                        $('aw-sarp-first-subscription-notice').setStyle({display : "block"});
+
+                    }
+                    price = items[key]['subscription_price'];
+                }
+                else {
+                    if (items[key]['first_price'] > items[key]['shipping_cost']) {
+                        $$('.first-subscription-box').each(function(el) {
+                            el.setStyle({display:'none'});
+                        });
+                        $('product-price-' + key).setStyle({textDecoration : "none"});
+                        $('aw-sarp-first-subscription-notice').setStyle({display : "none"});
+                    }
+                    price = items[key]['price'];
+                }
+                child.update(SarpOptionsPrice.formatPrice(price));
+            });
+
+
+        }
+    }
+    document.observe('dom:loaded', updatePrices(<?php echo reset($periods)?>));
+</script>

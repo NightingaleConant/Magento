@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <sendinvoice_adminhtml_sendinvoice_index>
+        <reference name="head">		    
+            <action method="addCss">
+                <stylesheet>sendinvoice/sendinvoicestyle.css</stylesheet>
+            </action>
+        </reference>
+        
+        <reference name="content">
+            <block type="sendinvoice/adminhtml_sendinvoice" name="sendinvoice" />
+        </reference>
+    </sendinvoice_adminhtml_sendinvoice_index>
+    
+    <sendinvoice_adminhtml_sendinvoice_support>
+        <reference name="head">		    
+            <action method="addCss">
+                <stylesheet>sendinvoice/sendinvoicestyle.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="sendinvoice/adminhtml_support" name="support" />
+        </reference>
+    </sendinvoice_adminhtml_sendinvoice_support>
+    
+</layout>
+    

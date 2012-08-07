@@ -1,0 +1,222 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $_code=$this->getMethodCode() ?>
+<?php	//authorizeCIM 2011
+$custID=0; $poall=''; $lastused=0; $profilecount=0; $showcount=0;
+if (Mage::getSingleton('customer/session')->isLoggedIn()){
+  $custID=Mage::getSingleton('customer/session')->getCustomerId();
+}
+if($custID>0) {
+	$orderTable=Mage::getSingleton('core/resource')->getTableName('sales_flat_order'); $orderPaymentTable=Mage::getSingleton('core/resource')->getTableName('sales_flat_order_payment'); $sql = "SELECT * FROM $orderPaymentTable p, $orderTable q WHERE q.customer_id=".$custID." AND q.entity_id=p.parent_id AND po_number LIKE '%-%' AND cc_type > '' ORDER BY p.entity_id desc;";
+	$results = Mage::getSingleton('core/resource')->getConnection('core_read')->fetchAll($sql);
+	$profiletoken=array();
+	$profileexpmonth=array();
+	$profileexpyear=array();
+	$profilecctype=array();
+	$profilesavecim=array();
+	$profilelast4=array();
+	$showcount = Mage::getStoreConfig('payment/authorizecimsoap/cardstoshow');
+	if($showcount==0) { $showcount=50; }
+	foreach($results as $data2) {
+		 $poall = $data2['po_number'];
+		 $poparts = preg_split('/-/',$poall);
+		 $cimcustid=$poparts[0];
+		 $cimprofid=$poparts[1];
+		 $last4 = $data2['cc_last4'];
+		 $token="tkn-$poall-$last4";
+		if(!isset($profilelast4[$last4])) {
+			$profiletoken[$cimprofid]=$token;
+				 if($data2['cc_ss_start_month']=="0") {$profilesavecim[$cimprofid]="0"; } else {$profilesavecim[$cimprofid]="1"; }
+				 $profilecctype[$cimprofid]=$data2['cc_type'];
+				 $profileexpmonth[$cimprofid]=$data2['cc_exp_month'];
+				 $profileexpyear[$cimprofid]=$data2['cc_exp_year'];
+				 if($profilesavecim[$cimprofid]!="0") { 
+					$profilelast4[$last4]=$cimprofid;
+					$profilecount=$profilecount+1;
+					if($lastused==0) { $lastused=$cimprofid;  }
+				 }
+		}
+	}
+	if($showcount<1) { $showcount=0; $profilecount=0; }
+}
+$detailblock="style='display:block;'";
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:block;">
+<input id="fullcc" value="payment[token]" type="radio" name="payment[token]" 
+<?php if ($profilecount<1): ?> checked="checked" <?php endif ?> onClick="addRequired()" /> 
+            <label for="fullcc"></label>Enter a new credit card<br/>
+<span id="detailsection" <?php print $detailblock; ?>><table><tr><td>
+<?php /*
+    <li>
+        <div class="input-box">
+            <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+            <input type="text" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" id="<?php echo $_code ?>_cc_owner" name="payment[cc_owner]" value="<?php echo $this->htmlEscape($this->getInfoData('cc_owner')) ?>" />
+        </div>
+    </li>
+*/ ?>
+    <li>
+        <label for="<?php echo $_code ?>_cc_type" class="required"><em>*</em><?php echo $this->__('Credit Card Type') ?></label></td><td>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_cc_type" name="payment[cc_type]" class="required-entry validate-cc-type-select">
+                <option value=""><?php echo $this->__('--Please Select--')?></option>
+            <?php $_ccType = $this->getInfoData('cc_type') ?>
+            <?php foreach ($this->getCcAvailableTypes() as $_typeCode => $_typeName): ?>
+                <option value="<?php echo $_typeCode ?>"<?php if($_typeCode==$_ccType): ?> selected="selected"<?php endif ?>><?php echo $_typeName ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+	</td></tr><tr><td>
+    <li>
+        <label for="<?php echo $_code ?>_cc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number') ?></label></td><td>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_number" name="payment[cc_number]" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text validate-cc-number validate-cc-type" value="" />
+        </div>
+    </li>
+	</td></tr><tr><td>
+    <li id="<?php echo $_code ?>_cc_type_exp_div">
+        <label for="<?php echo $_code ?>_expiration" class="required"><em>*</em><?php echo $this->__('Expiration Date') ?></label></td><td>
+        <div class="input-box">
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_expiration" name="payment[cc_exp_month]" class="month validate-cc-exp required-entry">
+                <?php $_ccExpMonth = $this->getInfoData('cc_exp_month') ?>
+                <?php foreach ($this->getCcMonths() as $k=>$v): ?>
+                    <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpMonth): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                <?php endforeach ?>
+                </select>
+            </div>
+            <div class="v-fix">
+                <?php $_ccExpYear = $this->getInfoData('cc_exp_year') ?>
+                <select id="<?php echo $_code ?>_expiration_yr" name="payment[cc_exp_year]" class="year required-entry">
+                <?php foreach ($this->getCcYears() as $k=>$v): ?>
+                    <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpYear): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </li>
+	</td></tr><tr><td>
+    <?php echo $this->getChildHtml() ?>
+    <?php if($this->hasVerification()): ?>
+    <li id="<?php echo $_code ?>_cc_type_cvv_div">
+        <label for="<?php echo $_code ?>_cc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?></label></td><td>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text cvv required-entry validate-cc-cvn" id="<?php echo $_code ?>_cc_cid" name="payment[cc_cid]" value="" />
+            </div>
+            <a href="#" class="cvv-what-is-this"><?php echo $this->__('What is this?') ?></a>
+        </div>
+    </li>
+    <?php endif; ?>
+	</td></tr></table>
+	<input type="checkbox" id="<?php echo $_code ?>_savecim" name="payment[cc_ss_start_month]" checked=true /> <?php echo $this->__('keep this card on file') ?>
+	</span>
+<?php if(($_code == 'authorizecimsoap') && ($profilecount>0)) : ?>
+		<span>
+		<br />
+		<?php echo $this->__('Saved Cards') ?><br />
+		<?php $showindex=0;
+		foreach($profiletoken as $profilepay => $token):
+					$llabel = "Use card on file ending ".substr($token,-4); 
+					$labelid="label".$profilepay;
+					$tokenid="token".$profilepay;
+					$cctypeid="cctype".$profilepay;
+					$expmonthid="expmonth".$profilepay;
+					$expyearid="expyear".$profilepay;
+					$savecimid="savecim".$profilepay;
+					if($profilesavecim[$profilepay]!="0"):
+						$showindex=$showindex+1;
+						if($showindex<=$showcount): 
+					?>
+							<input type="radio" name="payment[token]" id='<?php echo $labelid ?>' class="" onClick="removeRequired(this.value)" value="<?php echo "$profilepay" ?>" <?php if($lastused==$profilepay) { echo "checked='checked'"; } ?>> <?php echo $this->__($llabel) ?>
+							<input type=hidden id="<?php echo $tokenid ?>" name="<?php echo $tokenid ?>" value="<?php echo $profiletoken[$profilepay] ?>">
+							<input type=hidden id="<?php echo $cctypeid ?>" name="<?php echo $cctypeid ?>" value="<?php echo $profilecctype[$profilepay] ?>">
+							<input type=hidden id="<?php echo $expmonthid ?>" name="<?php echo $expmonthid ?>" value="<?php echo $profileexpmonth[$profilepay] ?>">
+							<input type=hidden id="<?php echo $expyearid ?>" name="<?php echo $expyearid ?>" value="<?php echo $profileexpyear[$profilepay] ?>">
+							<input type=hidden id="<?php echo $savecimid ?>" name="<?php echo $savecimid ?>" value="<?php echo $profilesavecim[$profilepay] ?>">
+							<br />
+				<?php endif;
+					endif;
+		endforeach; ?>
+		</span>		
+<?php endif; ?>
+</ul>
+<br />
+<script type="text/javascript">
+		function removeRequired(prof) {
+				var t0 = document.getElementById("token"+prof);
+					t0v=t0.value;
+				var t1 = document.getElementById("cctype"+prof);
+					t1v=t1.value;
+				var t2 = document.getElementById("expmonth"+prof);
+					t2v=t2.value;
+				var t3 = document.getElementById("expyear"+prof);
+					t3v=t3.value;
+				var t4 = document.getElementById("savecim"+prof);
+					t4v=t4.value;
+				var t = document.getElementById('authorizecimsoap'+'_cc_number');
+					t.setAttribute("class","");
+					t.value=t0v;
+				var t = document.getElementById('authorizecimsoap'+'_cc_type');
+					t.setAttribute("class","");
+					t.value=t1v;
+				var t = document.getElementById('authorizecimsoap'+'_cc_cid');
+					t.setAttribute("class","");
+					t.value='111';
+				var t = document.getElementById('authorizecimsoap'+'_expiration');
+					t.value=t2v;
+					t.setAttribute("class","");
+				var t = document.getElementById('authorizecimsoap'+'_expiration_yr');
+					t.value=t3v;
+					t.setAttribute("class","");
+				var t = document.getElementById('authorizecimsoap'+'_savecim');
+					if(t4v!='0') { t.checked=true; } else { t.checked=false; }
+					t.setAttribute("class","");
+				var t = document.getElementById('detailsection');
+					t.style.display = 'none';
+		};
+		function addRequired() {
+				var t = document.getElementById('authorizecimsoap'+'_cc_number');
+					t.setAttribute("class","input-text validate-cc-number");
+					t.value='';
+				var t = document.getElementById('authorizecimsoap'+'_cc_type');
+					t.setAttribute("class","required-entry validate-cc-type-select");
+				var t = document.getElementById('authorizecimsoap'+'_cc_cid');
+					t.setAttribute("class","required-entry input-text validate-cc-cvn");
+					t.value='';
+				var t = document.getElementById('authorizecimsoap'+'_expiration');
+					t.setAttribute("class","month validate-cc-exp required-entry");
+				var t = document.getElementById('authorizecimsoap'+'_expiration_yr');
+					t.setAttribute("class","year required-entry");
+				var t = document.getElementById('authorizecimsoap'+'_savecim');
+					t.checked=true;
+				var t = document.getElementById('detailsection');
+					t.style.display = 'block';
+		};
+		addRequired();
+		<?php if(($_code == 'authorizecimsoap') && ($profilecount>0)) { ?> removeRequired("<?php echo $lastused; ?>");<?php } ?>
+</script>

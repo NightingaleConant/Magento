@@ -1,0 +1,62 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2008-2009 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+
+?>
+
+<script type="text/javascript">
+    var SarpOptionsPrice = optionsPrice;
+</script>
+
+<?php $subscription = $this->getSubscription() ?>
+<?php $_product = $this->getProduct() ?>
+
+<?php if ($_product->isSaleable()): ?>
+<p class="availability"><?php echo $this->__('Availability: In stock.') ?></p>
+<?php else: ?>
+<p class="availability"><?php echo $this->__('Availability: Out of stock.') ?></p>
+<?php endif; ?>
+
+<?php if ($subscription->hasSubscriptionOptions() && $subscription->getProduct()->getAwSarpEnabled()): ?>
+<?php if (1 || Mage::getSingleton('customer/session')->getCustomer()->getId() || Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_GENERAL_ANONYMOUS_SUBSCRIPTIONS)): ?>
+    <?php echo $this->getChildHtml('subscription_selector') ?>
+    <?php if ($_product->getAwSarpHasShipping()): ?>
+        <div class="subscription-start">
+            <?php echo $this->__('First delivery')?>:
+            <?php echo $subscription->getCalendarHtml();?>
+        </div>
+        <?php else: ?>
+        <input type="hidden" name="<?php echo AW_Sarp_Block_Product_View_Type_Subscription::DATE_FIELD_NAME;?>"
+               value="<?php echo $this->formatDate($subscription->getDefaultPeriod()->getNearestAvailableDay())?>"/>
+        <?php endif; ?>
+    <?php else: ?>
+    <strong>
+        <?php echo $this->__("You can also buy this product using subscription but in this case you should")?>
+        <a href="<?php echo Mage::getUrl('customer/account/create')?>"><?php echo $this->__('create an account')?></a>
+        <?php echo $this->__('or')?>
+        <a href="<?php echo Mage::getUrl('customer/account/login')?>"><?php echo $this->__('log in')?></a>.
+    </strong>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php echo $this->getPriceHtml($_product); ?>
+
+<?php echo $this->getChildHtml('samples') ?>
+
+<?php echo $this->getChildHtml('sarp_html_calendar'); ?>
+<?php echo $this->getChildHtml('sarp_html_calendar_init'); ?>
+

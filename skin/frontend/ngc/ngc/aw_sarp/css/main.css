@@ -1,0 +1,32 @@
+.sarp-subscription {
+    margin: 5px 0px;
+}
+
+.sarp-subscription li {
+    line-height: 1.5;
+    padding: 2px 0;
+}
+
+.sarp-subscription input.radio {
+    float: left;
+    margin-top: 3px;
+}
+
+.sarp-subscription .label {
+    display: block;
+    margin-left: 18px;
+}
+
+.sarp-subscription label {
+    font-weight: normal;
+}
+
+.aw-sarp-first-subscription-notice {
+    display: none;
+}
+
+.aw-sarp-first-subscription-notice .required {
+    color: #EB340A
+}
+
+

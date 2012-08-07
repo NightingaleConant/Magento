@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : adminhtml.xml
+    Created on : October 12, 2011, 2:36 PM
+    Author     : root
+    Description:
+        Purpose of the document follows.
+-->
+
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <sendinvoice translate="title" module="sendinvoice">
+                                        <title>Sendinvoice Configuration</title>
+                                        <sort_order>100</sort_order>
+                                    </sendinvoice>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                 </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

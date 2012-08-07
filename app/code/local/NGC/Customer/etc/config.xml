@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <NGC_Customer>
+            <version>0.0.1</version>
+            <depends>
+                <Mage_Customer />
+            </depends>
+        </NGC_Customer>
+    </modules>
+    <global>
+        <models>
+            <customer>
+                <rewrite>
+                    <customer_api>NGC_Customer_Model_Customer_Api</customer_api>
+                    <customer_api_v2>NGC_Customer_Model_Customer_Api_v2</customer_api_v2>
+                </rewrite>
+            </customer>
+        </models>
+    </global>
+</config>

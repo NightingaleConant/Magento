@@ -1,0 +1,7 @@
+Authors.csv
+    Author_ID				entity_id
+    Name					name
+    Bio 					description
+    Image                   image
+    Meta_Description		meta description
+    Meta_Keywords			meta keywords

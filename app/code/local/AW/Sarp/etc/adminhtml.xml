@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <sarp translate="title" module="sarp">
+                    <title>Subscriptions</title>
+                    <children>
+                        <list translate="title" module="sarp">
+                            <title>Subscriptions List</title>
+                            <action>sarp_admin/subscriptions</action>
+                        </list>
+                        <periods translate="title" module="sarp">
+                            <title>Periodicity</title>
+                            <action>sarp_admin/periods</action>
+                        </periods>
+                        <alerts translate="title" module="sarp">
+                            <title>Subscriptions Alerts</title>
+                            <action>sarp_admin/alerts</action>
+                        </alerts>
+                    </children>
+                </sarp>
+            </children>
+        </catalog>
+        <customer>
+            <children>
+                <subscribers translate="title" module="sarp">
+                    <title>Subscribers List</title>
+                    <action>sarp_admin/subscribers</action>
+                </subscribers>
+            </children>
+        </customer>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <sarp>
+                                <title>Subscriptions Module</title>
+                                <sort_order>10</sort_order>
+                                <children>
+                                    <list>
+                                        <title>Subscriptions List</title>
+                                    </list>
+                                    <periods>
+                                        <title>Periodicity</title>
+                                    </periods>
+                                    <alerts>
+                                        <title>Subscriptions Alerts</title>
+                                    </alerts>
+                                </children>
+                            </sarp>
+                        </children>
+                    </catalog>
+                    <customer>
+                        <children>
+                            <subscribers>
+                                <title>Subscribers List</title>
+                            </subscribers>
+                        </children>
+                    </customer>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <sarp>
+                                        <title>aheadWorks - Subscriptions Section</title>
+                                    </sarp>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>	

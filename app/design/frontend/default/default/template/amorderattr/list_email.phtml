@@ -1,0 +1,47 @@
+<?php 
+$hasData = false;
+if ($this->getList())
+{
+    foreach ($this->getList() as $label => $value)
+    {
+        if ('' !== $value)
+        {
+            $hasData = true;
+        }
+    }
+}
+
+if ($hasData):
+?>
+    <table cellspacing="0" cellpadding="2" width="100%" border="0">
+        <thead>
+            <tr>
+                <th colspan="2" bgcolor="#EAEAEA" style="font-size:13px; padding:5px 9px 6px 9px; line-height:1em; text-align: left;">
+                    <?php echo $this->__('Additional Information:'); ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php if ($this->getList()): 
+              foreach ($this->getList() as $label => $value): ?>
+                <?php if ($value !== ''): ?>
+                <tr>
+                    <td style="padding: 5px;"><label><?php echo $label; ?></label></td>
+                    <td style="padding: 5px;">
+                        <?php echo $value; ?>
+                    </td>
+                </tr>
+                <?php endif; ?>
+              <?php endforeach; ?>
+        <?php else: ?>
+            <?php echo $this->__('No attributes for this order'); ?>
+        <?php endif; ?>
+            <tr>
+                <td colspan="2" style="border-bottom: 1px solid #EAEAEA;"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br /><br />
+<?php
+endif;
+?>

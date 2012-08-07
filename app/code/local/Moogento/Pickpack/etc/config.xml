@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Moogento_Pickpack>
+			<version>0.1.0</version>
+		</Moogento_Pickpack>
+	</modules>
+<default>
+	<pickpack_options>
+		<general>
+			<pickpack_tickbox>pickpack</pickpack_tickbox>
+			<page_size>a4</page_size>
+			<address_format>{if company}{company},|{/if company}
+{if name}{name},|{/if name}
+{if street}{street},|{/if street}
+{if city}{city},{/if city} {if region}{region}{/if region} {if postcode}{postcode}|{/if postcode}
+{if country}{country}|{/if country}</address_format>
+			<!--<override_address_format_yn>1</override_address_format_yn>-->
+			<address_countryskip></address_countryskip>
+			<capitalize_label_yn>0</capitalize_label_yn>
+			<customer_email_yn>yesdetails</customer_email_yn>
+			<customer_phone_yn>yes</customer_phone_yn>
+			<pickpack_split_supplier_options>pickpack</pickpack_split_supplier_options>
+			<pickpack_supplier_login>admin:all;</pickpack_supplier_login>
+			<background_color_subtitles>#5BA638</background_color_subtitles>
+			<font_color_subtitles>#222222</font_color_subtitles>
+			<font_family_subtitles>helvetica</font_family_subtitles>
+			<font_style_subtitles>regular</font_style_subtitles>
+			<font_size_subtitles>15</font_size_subtitles>
+			<font_color_header>darkOliveGreen</font_color_header>
+			<font_family_header>helvetica</font_family_header>
+			<font_style_header>regular</font_style_header>
+			<font_size_header>16</font_size_header>
+			<font_color_body>Black</font_color_body>
+			<font_family_body>helvetica</font_family_body>
+			<font_style_body>regular</font_style_body>
+			<font_size_body>10</font_size_body>
+			<font_size_options>8</font_size_options>
+			<background_color_product>#FFFFFF</background_color_product>
+			<font_color_message>#222222</font_color_message>
+			<font_family_message>helvetica</font_family_message>
+			<font_style_message>italic</font_style_message>
+			<font_size_message>12</font_size_message>
+			<background_color_message>#5BA638</background_color_message>
+			<font_color_gift_message>#222222</font_color_gift_message>
+			<font_family_gift_message>helvetica</font_family_gift_message>
+			<font_style_gift_message>italic</font_style_gift_message>
+			<font_size_gift_message>12</font_size_gift_message>
+			<background_color_gift_message>#5BA638</background_color_gift_message>
+			<non_standard_characters>0</non_standard_characters>
+			<sort_packing_yn>1</sort_packing_yn>
+			<sort_packing>sku</sort_packing>
+			<sort_packing_order>ascending</sort_packing_order>
+			<sort_packing_attribute></sort_packing_attribute>
+		</general>
+		<messages>
+			<pickpack_count>1</pickpack_count>
+			<pickpack_packprint>1</pickpack_packprint>
+			<pickpack_currency>USD</pickpack_currency>
+			<pickpack_namenudge_combined>250</pickpack_namenudge_combined>
+			<pickpack_configname_combined>configurable</pickpack_configname_combined>
+			<pickpack_configname_attribute_combined></pickpack_configname_attribute_combined>
+			<pickpack_shelving_yn>0</pickpack_shelving_yn>
+			<pickpack_shelving></pickpack_shelving>
+			<pickpack_shelving_nudge>200</pickpack_shelving_nudge>
+			<pickpack_extra_yn>0</pickpack_extra_yn>
+			<pickpack_extra_nudge>250</pickpack_extra_nudge>
+			<pickpack_sku_nudge>50</pickpack_sku_nudge>
+			<pickpack_options_yn>inline</pickpack_options_yn>
+			<pickpack_options_filter_yn>0</pickpack_options_filter_yn>
+			<pickpack_options_filter></pickpack_options_filter>
+			<pickpack_options_count_filter></pickpack_options_count_filter>
+		</messages>
+		<picks>
+			<pickpack_shipmethod>1</pickpack_shipmethod>
+			<separated_options_yn>0</separated_options_yn>
+			<pickpack_name_yn_separated>0</pickpack_name_yn_separated>
+			<pickpack_namenudge_separated>250</pickpack_namenudge_separated>
+			<pickpack_configname_separated>configurable</pickpack_configname_separated>
+			<pickpack_configname_attribute_separated></pickpack_configname_attribute_separated>
+		</picks>
+		<wonder>
+			<custom_message_yn>no</custom_message_yn>
+			<pickpack_title_yn>0</pickpack_title_yn>
+			<pickpack_title>Packing Sheet</pickpack_title>
+			<shipment_details_yn>1</shipment_details_yn>
+			<shipment_details_custgroup>0</shipment_details_custgroup>
+			<shipment_details_custgroup_filter>not logged in, general</shipment_details_custgroup_filter>
+			<shipment_details_customer_id>0</shipment_details_customer_id>
+			<shipment_details_weight>0</shipment_details_weight>
+			<shipment_details_carrier>1</shipment_details_carrier>
+			<shipment_details_payment>0</shipment_details_payment>
+			<shipment_details_weight_unit>lb</shipment_details_weight_unit>
+			<shipment_details_count>1</shipment_details_count>
+			<shipment_details_custom_attribute_yn>0</shipment_details_custom_attribute_yn>
+			<shipment_details_custom_attribute_2_yn>0</shipment_details_custom_attribute_2_yn>
+			<billing_details_position>0</billing_details_position>
+			<pickpack_returnfont>9</pickpack_returnfont>
+			<pickpack_shipfont>15</pickpack_shipfont>
+			<prices_yn>0</prices_yn>
+			<tax_yn>0</tax_yn>
+			<tax_col_yn>0</tax_col_yn>
+			<tax_label>VAT</tax_label>
+			<tax_line_or_subtotal>order</tax_line_or_subtotal>
+			<discount_line_or_subtotal>subtotal</discount_line_or_subtotal>
+			<shelving_real_title></shelving_real_title>
+			<shelving_title></shelving_title>
+			<shelving_2_yn>0</shelving_2_yn>
+			<shelving_2></shelving_2>
+			<shelving_2_title></shelving_2_title>
+			<pickpack_title_2_yn>0</pickpack_title_2_yn>
+			<sku_title>codes</sku_title>
+			<items_title>items</items_title>
+			<qty_title>qty</qty_title>
+			<price_title>price</price_title>
+			<tax_title>tax</tax_title>
+			<total_title>total</total_title>
+			<product_options_title>options</product_options_title>
+			<product_options_yn>yes</product_options_yn>
+			<notes_yn_pre>0</notes_yn_pre>
+			<notes_yn>yesemail</notes_yn>
+			<notes_filter_options>yesfrontend</notes_filter_options>
+			<notes_filter>captured amount</notes_filter>
+			<prices_options>0</prices_options>
+			<pricesY_productX>40</pricesY_productX>
+			<pricesY_skuX>230</pricesY_skuX>
+			<pricesY_qty_priceX>410</pricesY_qty_priceX>
+			<pricesY_item_priceX>460</pricesY_item_priceX> 
+			<pricesY_priceX>520</pricesY_priceX>
+			<pricesY_shelfX>350</pricesY_shelfX>
+			<pricesY_shelf2X>370</pricesY_shelf2X>
+			<pricesY_shelf3X>350</pricesY_shelf3X>
+			<pricesT_productX>40</pricesT_productX>
+			<pricesT_skuX>230</pricesT_skuX>
+			<pricesT_qty_priceX>350</pricesT_qty_priceX>
+			<pricesT_item_priceX>404</pricesT_item_priceX> 
+			<pricesT_item_taxX>475</pricesT_item_taxX> 
+			<pricesT_priceX>530</pricesT_priceX>
+			<pricesT_shelfX>330</pricesT_shelfX>
+			<pricesT_shelf2X>340</pricesT_shelf2X>
+			<pricesT_shelf3X>350</pricesT_shelf3X>
+			<pricesN_productX>80</pricesN_productX>
+			<pricesN_skuX>300</pricesN_skuX>
+			<pricesN_qty_priceX>40</pricesN_qty_priceX>
+			<pricesN_shelfX>434</pricesN_shelfX>
+			<pricesN_shelf2X>454</pricesN_shelf2X>
+			<pricesN_shelf3X>444</pricesN_shelf3X>
+			<pickpack_packlogo>0</pickpack_packlogo>
+		</wonder>
+		<wonder_invoice>
+			<pickpack_return_address_yn>0</pickpack_return_address_yn>
+			<pickpack_returnlogo>0</pickpack_returnlogo>
+			<pickpack_title_yn>1</pickpack_title_yn>
+			<pickpack_title>Invoice</pickpack_title>
+			<pickpack_bottom_shipping_address_yn>0</pickpack_bottom_shipping_address_yn>
+			<custom_message_yn>no</custom_message_yn>
+			<shipment_details_yn>0</shipment_details_yn>
+			<shipment_details_custgroup>0</shipment_details_custgroup>
+			<shipment_details_custgroup_filter>not logged in, general</shipment_details_custgroup_filter>
+			<shipment_details_customer_id>0</shipment_details_customer_id>
+			<shipment_details_weight>0</shipment_details_weight>
+			<shipment_details_carrier>1</shipment_details_carrier>
+			<shipment_details_payment>1</shipment_details_payment>
+			<shipment_details_weight_unit>lb</shipment_details_weight_unit>
+			<shipment_details_count>0</shipment_details_count>
+			<shipment_details_custom_attribute_yn>0</shipment_details_custom_attribute_yn>
+			<shipment_details_custom_attribute_2_yn>0</shipment_details_custom_attribute_2_yn>
+			<billing_details_position>0</billing_details_position>
+			<pickpack_returnfont>9</pickpack_returnfont>
+			<pickpack_shipfont>15</pickpack_shipfont>
+			<prices_yn>1</prices_yn>
+			<tax_yn>0</tax_yn>
+			<tax_col_yn>0</tax_col_yn>
+			<tax_label>VAT</tax_label>
+			<tax_line_or_subtotal>order</tax_line_or_subtotal>
+			<discount_line_or_subtotal>subtotal</discount_line_or_subtotal>
+			<shelving_real_title></shelving_real_title>
+			<shelving_title></shelving_title>
+			<shelving_2_yn>0</shelving_2_yn>
+			<shelving_2></shelving_2>
+			<shelving_2_title></shelving_2_title>
+			<pickpack_title_2_yn>0</pickpack_title_2_yn>
+			<sku_title>codes</sku_title>
+			<items_title>items</items_title>
+			<qty_title>qty</qty_title>
+			<price_title>price</price_title>
+			<tax_title>tax</tax_title>
+			<total_title>total</total_title>
+			<product_options_title>options</product_options_title>
+			<product_options_yn>yes</product_options_yn>
+			<notes_yn_pre>0</notes_yn_pre>
+			<notes_yn>yesemail</notes_yn>
+			<notes_filter_options>yesfrontend</notes_filter_options>
+			<notes_filter>captured amount</notes_filter>
+			<prices_options>0</prices_options>
+			<pricesY_productX>40</pricesY_productX>
+			<pricesY_skuX>230</pricesY_skuX>
+			<pricesY_qty_priceX>410</pricesY_qty_priceX>
+			<pricesY_item_priceX>460</pricesY_item_priceX> 
+			<pricesY_priceX>520</pricesY_priceX>
+			<pricesY_shelfX>350</pricesY_shelfX>
+			<pricesY_shelf2X>370</pricesY_shelf2X>
+			<pricesY_shelf3X>350</pricesY_shelf3X>
+			<pricesT_productX>40</pricesT_productX>
+			<pricesT_skuX>230</pricesT_skuX>
+			<pricesT_qty_priceX>350</pricesT_qty_priceX>
+			<pricesT_item_priceX>404</pricesT_item_priceX> 
+			<pricesT_priceX>530</pricesT_priceX>
+			<pricesT_item_taxX>475</pricesT_item_taxX> 
+			<pricesT_shelfX>330</pricesT_shelfX>
+			<pricesT_shelf2X>340</pricesT_shelf2X>
+			<pricesT_shelf3X>350</pricesT_shelf3X>
+			<pricesN_productX>80</pricesN_productX>
+			<pricesN_skuX>300</pricesN_skuX>
+			<pricesN_qty_priceX>40</pricesN_qty_priceX>
+			<pricesN_shelfX>434</pricesN_shelfX>
+			<pricesN_shelf2X>454</pricesN_shelf2X>
+			<pricesN_shelf3X>444</pricesN_shelf3X>
+		</wonder_invoice>
+		<label>
+			<label_paper_width>595</label_paper_width>
+			<label_paper_height>842</label_paper_height>
+			<label_logo_yn>0</label_logo_yn>
+			<label_nudgelogo>0,0</label_nudgelogo>
+			<label_nudgelogo_text>0,0</label_nudgelogo_text>
+		</label>
+		<csvpick>
+			<column_mapping>PickTicketNumber:%%order_id%%;
+Warehouse:[WAREHOUSE LOGISTICS NJ];
+OrderDate:%%order_date%%;
+StartDate:%%order_date%%;
+CancelDate:%%order_date_plus48h%%;
+ShipDate:[];
+PaymentTerms:[cc paid];
+Certified Funds:[];
+Department:[];
+Store:%%website%%;
+ShipVia:%%shipping_description_filtered%%;
+ShipViaService:%%ship_service_filtered%%;
+ShipViaAccountNumber:[];
+BillingOption:%%billing_option_filtered%%;
+DeclaredValuePercentage:[];
+SpecialInstructions:[];
+CustomerPONumber:%%order_id%%;
+AuthorizationNumber:[];
+OrderNumber:%%order_id%%;
+TakenBy:[];
+BillToCode:%%customer_id%%;
+BillToFirstName:%%bill-firstname%%;
+BillToLastName:%%bill-lastname%%;
+BillToCompanyName:%%bill-companyname%%;
+BillToAddress1:%%bill-street1%%;
+BillToAddress2:%%bill-street2%%;
+BillToCity:%%bill-city%%;
+BillToState:%%bill-region%%;
+BillToZip:%%bill-postcode%%;
+BillToCountry:%%bill-country%%;
+BillToNon_US_Region:%%bill-non-us%%;
+BillToPhone:%%bill-telephone%%;
+BillToEmail:%%bill-email%%;
+ShipToCode:[];
+ShipToFirstName:%%ship-firstname%%;
+ShipToLastName:%%ship-lastname%%;
+ShipToCompanyName:%%ship-companyname%%;
+ShipToAddress1:%%ship-street1%%;
+ShipToAddress2:%%ship-street2%%;
+ShipToCity:%%ship-city%%;
+ShipToState:%%ship-region%%;
+ShipToZip:%%ship-postcode%%;
+ShipToCountry:%%ship-country%%;
+ShipToNon_US_Region:%%ship-non-us%%;
+ShipToPhone:%%ship-telephone%%;
+ShipToEmail:%%ship-email%%;
+LineItemsTotalAmount:%%order_price%%;
+LineItemsTotalQuantity:%%order_qty%%;
+LineItemSeason:season;
+LineItemStyle:style;
+LineItemDescription:%%product_name%%;
+LineItemColor:color;
+LineItemSize:size;
+LineItemUPC:%%sku%%;
+LineItemUnitPrice:%%sku_price%%;
+LineItemQuantity:%%qty%%;
+Dccode:[];</column_mapping>
+		</csvpick>
+	</pickpack_options>
+</default>
+	<global>
+
+		<blocks>
+			<adminhtml>
+				<rewrite>
+					<sales_order_grid>Moogento_Pickpack_Block_Sales_Order_Grid</sales_order_grid>
+                    <sales_shipment_grid>Moogento_Pickpack_Block_Sales_Shipment_Grid</sales_shipment_grid>
+				</rewrite>                			
+			</adminhtml>
+		</blocks>
+
+		<blocks>
+		    <pickpack>
+				<class>Moogento_Pickpack_Block</class>
+			</pickpack>
+		</blocks>			
+
+		<models>
+			<pickpack>
+				<class>Moogento_Pickpack_Model</class>
+			</pickpack>
+		</models>
+		
+		<helpers>
+			<pickpack>
+				<class>Moogento_Pickpack_Helper</class>
+			</pickpack>
+		</helpers>
+		
+		 <pdf>     
+		 	<invoices>
+                <default>sales/order_pdf_items_invoices_default</default>
+                <grouped>sales/order_pdf_items_invoices_grouped</grouped>
+            </invoices>                               
+        </pdf>
+
+	</global>
+
+	<admin>
+		<routers>
+			<pickpack>
+				<use>admin</use>
+				<args>
+					<module>Moogento_Pickpack</module>
+					<frontName>pickpack</frontName>
+				</args>
+			</pickpack>
+		</routers>
+	</admin>		
+</config>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * @category   AMartinez
+ * @package    AMartinez_CustomImportExport
+ * @author     Antonio Martinez
+ * @copyright  Copyright (c) 2011 Antonio Martinez (toniyecla [at] gmail [dot] com)
+ * @license    http://opensource.org/licenses/osl-3.0 Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+
+    <modules>
+        <AMartinez_CustomImportExport>
+            <version>1.5.014</version>
+			<depends>
+				<!-- no dependencies -->
+            </depends>
+        </AMartinez_CustomImportExport>
+    </modules>
+    
+    <global>
+        <models>
+            <customimportexport>
+                <class>AMartinez_CustomImportExport_Model</class>
+            </customimportexport>
+        </models>
+        <helpers>
+            <customimportexport>
+				<class>AMartinez_CustomImportExport_Helper</class>
+			</customimportexport>
+        </helpers>
+		<resources />
+        <extraconfig />
+        <blocks />
+        <importexport module="importexport">
+            <import_entities>
+                <catalog_product translate="label">
+                    <model_token>customimportexport/import_entity_product</model_token>
+                    <label>Products</label>
+                </catalog_product>
+                <customer translate="label">
+                    <model_token>customimportexport/import_entity_customer</model_token>
+                    <label>Customers</label>
+                </customer>
+            </import_entities>
+            <import_product_types>
+                <simple>customimportexport/import_entity_product_type_simple</simple>
+                <configurable>customimportexport/import_entity_product_type_configurable</configurable>
+                <virtual>customimportexport/import_entity_product_type_simple</virtual>
+                <grouped>customimportexport/import_entity_product_type_grouped</grouped>
+            </import_product_types>
+        </importexport>
+    </global>
+    
+    <crontab>
+        <jobs>
+            <amartinez_customimportexport>
+				<schedule><cron_expr>0,30 * * * *</cron_expr></schedule>
+                <run><model>customimportexport/observer::dispatch</model></run>
+            </amartinez_customimportexport>
+        </jobs>
+    </crontab>
+    
+    <default>
+        <customimportexport>
+            <products>
+                <sourcefile>var/customimportexport/products.csv</sourcefile>
+                <outputfile>var/customimportexport/products.csv</outputfile>
+            </products>
+            <customers>
+                <sourcefile>var/customimportexport/customers.csv</sourcefile>
+                <outputfile>var/customimportexport/customers.csv</outputfile>
+            </customers>
+        </customimportexport>
+    </default>
+    
+</config>

@@ -1,0 +1,99 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<script type="text/javascript">
+    var order = new AdminOrder(<?php echo $this->getOrderDataJson() ?>);
+    order.setLoadBaseUrl('<?php echo $this->getLoadBlockUrl() ?>');
+    var payment = {};
+    payment.switchMethod = order.switchPaymentMethod.bind(order);
+</script>
+<form id="edit_form" action="<?php echo $this->getSaveUrl() ?>" method="post" enctype="multipart/form-data">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <div id="order-message">
+        <?php echo $this->getChildHtml('message') ?>
+    </div>
+    <div id="order-customer-selector" style="display:<?php echo $this->getCustomerSelectorDisplay() ?>">
+        <?php echo $this->getChildHtml('customer') ?>
+    </div>
+    <div id="order-store-selector" style="display:<?php echo $this->getStoreSelectorDisplay() ?>">
+        <?php echo $this->getChildHtml('store') ?>
+    </div>
+    <div id="order-data" style="display:<?php echo $this->getDataSelectorDisplay() ?>">
+        <?php echo $this->getChildHtml('data') ?>
+    </div>
+</form>
+<script type="text/javascript">
+    function removeRequired(prof) {
+        var t0 = document.getElementById("token"+prof);
+        t0v=t0.value;
+        var t1 = document.getElementById("cctype"+prof);
+        t1v=t1.value;
+        var t2 = document.getElementById("expmonth"+prof);
+        t2v=t2.value;
+        var t3 = document.getElementById("expyear"+prof);
+        t3v=t3.value;
+        var t4 = document.getElementById("savecim"+prof);
+        t4v=t4.value;
+        var t = document.getElementById('authorizecimsoap'+'_cc_number');
+        t.setAttribute("class","");
+        t.value=t0v;
+        var t = document.getElementById('authorizecimsoap'+'_cc_type');
+        t.setAttribute("class","");
+        t.value=t1v;
+        var t = document.getElementById('authorizecimsoap'+'_cc_cid');
+        t.setAttribute("class","");
+        t.value='111';
+        var t = document.getElementById('authorizecimsoap'+'_expiration');
+        t.value=t2v;
+        t.setAttribute("class","");
+        var t = document.getElementById('authorizecimsoap'+'_expiration_yr');
+        t.value=t3v;
+        t.setAttribute("class","");
+        var t = document.getElementById('authorizecimsoap'+'_savecim');
+        if(t4v!='0') { t.checked=true; } else { t.checked=false; }
+        t.setAttribute("class","");
+        var t = document.getElementById('detailsection');
+        t.style.display = 'none';
+    };
+    function addRequired() {
+        var t = document.getElementById('authorizecimsoap'+'_cc_number');
+        t.setAttribute("class","input-text validate-cc-number");
+        t.value='';
+        var t = document.getElementById('authorizecimsoap'+'_cc_type');
+        t.setAttribute("class","required-entry validate-cc-type-select");
+        var t = document.getElementById('authorizecimsoap'+'_cc_cid');
+        t.setAttribute("class","required-entry input-text validate-cc-cvn");
+        t.value='';
+        var t = document.getElementById('authorizecimsoap'+'_expiration');
+        t.setAttribute("class","month validate-cc-exp required-entry");
+        var t = document.getElementById('authorizecimsoap'+'_expiration_yr');
+        t.setAttribute("class","year required-entry");
+        var t = document.getElementById('authorizecimsoap'+'_savecim');
+        t.checked=true;
+        var t = document.getElementById('detailsection');
+        t.style.display = 'block';
+    };
+</script>

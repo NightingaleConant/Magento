@@ -1,0 +1,165 @@
+<div class="entity-edit" id="magento-options-panel">
+    <div class="entry-edit-head">
+    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('installment')->__('Manage Installment Sequence Definitions') ?></h4>
+    </div>
+    <div class="box">
+        <div class="hor-scroll">
+            <table class="dynamic-grid" cellspacing="0"  cellpadding="0">
+                <tr id="attribute-options-table">
+                        <th><?php echo Mage::helper('installment')->__('Sequence') ?></th>
+                        <th><?php echo Mage::helper('installment')->__('Type') ?></th>
+                        <th><?php echo Mage::helper('installment')->__('Value') ?></th>
+                        <th><?php echo Mage::helper('installment')->__('Days') ?></th>
+                        <th>
+                            <?php if (!$this->getReadOnly()):?>
+                                <?php echo $this->getAddNewButtonHtml() ?>
+                            <?php endif;?>
+                        </th>
+                    </tr>
+                    <tr class="no-display template" id="row-template">
+                        <td><input name="option[{{id}}][sequence]" class="input-text required-option" type="text" value="{{sequence}}" /></td>
+                        <td><select name="option[{{id}}][type]" type="select">
+                            <?php foreach ($this->getSelectOptions() as $label => $value) : ?>
+                                '<option value="<?php echo $value ?>"><?php echo $label ?></option>'+
+                            <?php endforeach; ?>
+                            </select>
+                            <input name="option[{{id}}][type]" class="input-text required-option" type="text" value="{{type}}"/></td>
+                        <td><input name="option[{{id}}][value]" class="input-text required-option" type="text" value="{{value}}" /></td>
+                        <td><input name="option[{{id}}][days]" class="input-text required-option" type="text" value="{{days}}"/></td>
+                        <td class="a-left">
+                            <input type="hidden" class="delete-flag" name="option[{{id}}][delete]" value="" />
+                            <?php if (!$this->getReadOnly()):?>
+                                <?php echo $this->getDeleteButtonHtml() ?>
+                            <?php endif;?>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+        <input type="hidden" id="option-count-check" value="" />
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var optionDefaultInputType = 'radio';
+
+// IE removes quotes from element.innerHTML whenever it thinks they're not needed, which breaks html.
+var templateText =
+        '<tr class="option-row">'+
+            '<td><input class="input-text required-option" name="option[{{id}}][sequence]" type="text" readonly=readonly value="{{sequence}}" /></td>'+
+            '<td><select class="option-type-{{id}} required-option" name="option[{{id}}][type]">'+
+            <?php foreach ($this->getSelectOptions() as $label => $value) : ?>
+                    '<option value="<?php echo $value ?>"><?php echo $label ?></option>'+
+            <?php endforeach; ?>
+            '</select></td>' +
+            '<td><input class="input-text required-option" name="option[{{id}}][value]" type="text" value="{{value}}" /></td>'+
+            '<td><input class="input-text required-option" name="option[{{id}}][days]" type="text" value="{{days}}" /></td>'+
+            '<td class="a-left">'+
+                '<input type="hidden" class="delete-flag" name="option[{{id}}][delete]" value="" />'+
+                <?php if (!$this->getReadOnly()):?>
+                    '<?php echo $this->getDeleteButtonHtml() ?>'+
+                <?php endif;?>
+            '<\/td>'+
+        '<\/tr>';
+
+var attributeOption = {
+    table : $('attribute-options-table'),
+    templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+    templateText : templateText,
+    itemCount : 0,
+    totalItems : 0,
+    sequence : 1,
+    add : function(data) {
+        this.template = new Template(this.templateText, this.templateSyntax);
+        if(!data.id){
+            data = {};
+            data.id  = 'option_'+this.itemCount;
+            data.sequence = this.sequence;
+        }
+
+        this.option = $$('tr.option-row').last();
+
+        if (!this.option) {
+            var element = Element.insert(this.table, {after: this.template.evaluate(data)});
+        } else {
+            var element = Element.insert(this.option, {after: this.template.evaluate(data)});
+        }
+
+        var $elm = $$('select.option-type-'+ data.id);
+        for (i=0; i<$elm[0].length; i++) {
+            if ($elm[0][i].value == data.type) {
+                $elm[0][i].selected = true;
+            }
+        }
+
+        this.bindRemoveButtons();
+        this.itemCount++;
+        this.totalItems++;
+        this.sequence++;
+        this.updateItemsCountField();
+    },
+    remove : function(event){
+        var element = $(Event.findElement(event, 'tr')); // !!! Button already
+                                                               // have table parent in safari
+        // Safari workaround
+        element.ancestors().each(function(parentItem){
+           if (parentItem.hasClassName('option-row')) {
+               element = parentItem;
+               throw $break;
+           } else if (parentItem.hasClassName('box')) {
+               throw $break;
+           }
+        });
+
+
+        if(element){
+            var elementFlags = element.getElementsByClassName('delete-flag');
+            if(elementFlags[0]){
+                elementFlags[0].value=1;
+            }
+
+            element.addClassName('no-display');
+            element.addClassName('template');
+            element.hide();
+            this.totalItems--;
+            this.updateItemsCountField();
+        }
+    },
+    updateItemsCountField: function() {
+        if (this.totalItems > 0) {
+            $('option-count-check').value = '1';
+        } else {
+            $('option-count-check').value = '';
+        }
+    },
+    bindRemoveButtons : function(){
+        var buttons = $$('.delete-option');
+        for(var i=0;i<buttons.length;i++){
+            if(!$(buttons[i]).binded){
+                $(buttons[i]).binded = true;
+                Event.observe(buttons[i], 'click', this.remove.bind(this));
+            }
+        }
+    }
+
+}
+if($('row-template')){
+    $('row-template').remove();
+}
+attributeOption.bindRemoveButtons();
+
+if($('add_new_option_button')){
+    Event.observe('add_new_option_button', 'click', attributeOption.add.bind(attributeOption));
+}
+Validation.addAllThese([
+    ['required-option', '<?php echo Mage::helper('catalog')->__('Failed') ?>', function(v) {
+        return !Validation.get('IsEmpty').test(v);
+}]]);
+Validation.addAllThese([
+    ['required-options-count', '<?php echo Mage::helper('catalog')->__('Options is required') ?>', function(v) {
+        return !Validation.get('IsEmpty').test(v);
+}]]);
+<?php foreach ($this->getOptionValues() as $_value): ?>
+    attributeOption.add(<?php echo $_value->toJson() ?>);
+<?php endforeach; ?>
+//]]>
+</script>

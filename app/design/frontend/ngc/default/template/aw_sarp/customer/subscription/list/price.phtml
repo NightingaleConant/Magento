@@ -1,0 +1,144 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2009-2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<?php if ($this->helper('tax')->displayCartBothPrices() || $this->helper('tax')->displayCartPriceExclTax()): ?>
+<span class="price-excl-tax">
+        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+    <?php if (!Mage::helper('weee')->typeOfDisplay($Item, array(1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+                <div class="cart-price">
+            <?php endif; ?>
+    <span class="label"><?php echo Mage::helper('sales')->__('Excl. Tax'); ?>:</span>
+    <?php if (!Mage::helper('weee')->typeOfDisplay($Item, array(1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+                </div>
+            <?php endif; ?>
+    <?php endif; ?>
+    <?php if (Mage::helper('weee')->typeOfDisplay($Item, array(1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+            <div class="cart-tax-total"
+                 onclick="taxToggle('eunit-item-tax-details<?php echo $Item->getId(); ?>', this, 'cart-tax-total-expanded');">
+        <?php else: ?>
+            <div class="cart-price">
+        <?php endif; ?>
+
+    <?php if (Mage::helper('weee')->typeOfDisplay($Item, array(0, 1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+    <?php echo $Subscription->getLastOrder()->formatPrice($Item->getPrice() + $Item->getWeeeTaxAppliedAmount() + $Item->getWeeeTaxDisposition()); ?>
+    <?php else: ?>
+    <?php echo $Subscription->getLastOrder()->formatPrice($Item->getPrice()) ?>
+    <?php endif; ?>
+
+</div>
+
+
+    <?php if (Mage::helper('weee')->getApplied($Item)): ?>
+
+    <div class="cart-tax-info" id="eunit-item-tax-details<?php echo $Item->getId(); ?>" style="display: none;">
+        <?php if (Mage::helper('weee')->typeOfDisplay($Item, 1, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <small>
+            <?php foreach (Mage::helper('weee')->getApplied($Item) as $tax): ?>
+            <span class="nobr"><?php echo $tax['title']; ?>
+                : <?php echo $Subscription->getLastOrder()->formatPrice($tax['amount']); ?></span>
+            <?php endforeach; ?>
+        </small>
+        <?php elseif (Mage::helper('weee')->typeOfDisplay($Item, 2, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <?php foreach (Mage::helper('weee')->getApplied($Item) as $tax): ?>
+            <span class="nobr"><small><?php echo $tax['title']; ?>
+                : <?php echo $Subscription->getLastOrder()->formatPrice($tax['amount_incl_tax']); ?></small></span>
+            <?php endforeach; ?>
+        <?php  elseif (Mage::helper('weee')->typeOfDisplay($Item, 4, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <small>
+            <?php foreach (Mage::helper('weee')->getApplied($Item) as $tax): ?>
+            <span class="nobr"><?php echo $tax['title']; ?>
+                : <?php echo $Subscription->getLastOrder()->formatPrice($tax['amount_incl_tax']); ?></span>
+            <?php endforeach; ?>
+        </small>
+        <?php endif; ?>
+    </div>
+
+    <?php if (Mage::helper('weee')->typeOfDisplay($Item, 2, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <div class="cart-tax-total"
+             onclick="taxToggle('eunit-item-tax-details<?php echo $Item->getId(); ?>', this, 'cart-tax-total-expanded');">
+            <span class="nobr"><?php echo Mage::helper('weee')->__('Total'); ?>
+                :<br/> <?php echo $Subscription->getLastOrder()->formatPrice($Item->getPrice() + $Item->getWeeeTaxAppliedAmount() + $Item->getWeeeTaxDisposition()); ?></span>
+        </div>
+        <?php endif; ?>
+    <?php endif; ?>
+    </span>
+<br/>
+<?php endif; ?>
+<?php if ($this->helper('tax')->displayCartBothPrices() || $this->helper('tax')->displayCartPriceInclTax()): ?>
+<span class="price-incl-tax">
+        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+    <?php if (!Mage::helper('weee')->typeOfDisplay($Item, array(1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+                <div class="cart-price">
+            <?php endif; ?>
+    <span class="label"><?php echo Mage::helper('sales')->__('Incl. Tax'); ?>:</span>
+    <?php if (!Mage::helper('weee')->typeOfDisplay($Item, array(1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+                </div>
+            <?php endif; ?>
+    <?php endif; ?>
+    <?php $_incl = $this->helper('checkout')->getPriceInclTax($Item); ?>
+    <?php if (Mage::helper('weee')->typeOfDisplay($Item, array(1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+            <div class="cart-tax-total"
+                 onclick="taxToggle('unit-item-tax-details<?php echo $Item->getId(); ?>', this, 'cart-tax-total-expanded');">
+        <?php else: ?>
+            <div class="cart-price">
+        <?php endif; ?>
+
+    <?php if (Mage::helper('weee')->typeOfDisplay($Item, array(0, 1, 4), 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+    <?php echo $Subscription->getLastOrder()->formatPrice($_incl + $Item->getWeeeTaxAppliedAmount()); ?>
+    <?php else: ?>
+    <?php echo $Subscription->getLastOrder()->formatPrice($_incl - $Item->getWeeeTaxDisposition()) ?>
+    <?php endif; ?>
+
+</div>
+
+
+    <?php if (Mage::helper('weee')->getApplied($Item)): ?>
+
+    <div class="cart-tax-info" id="unit-item-tax-details<?php echo $Item->getId(); ?>" style="display: none;">
+        <?php if (Mage::helper('weee')->typeOfDisplay($Item, 1, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <small>
+            <?php foreach (Mage::helper('weee')->getApplied($Item) as $tax): ?>
+            <span class="nobr"><?php echo $tax['title']; ?>
+                : <?php echo $Subscription->getLastOrder()->formatPrice($tax['amount']); ?></span>
+            <?php endforeach; ?>
+        </small>
+        <?php elseif (Mage::helper('weee')->typeOfDisplay($Item, 2, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <?php foreach (Mage::helper('weee')->getApplied($Item) as $tax): ?>
+            <span class="nobr"><small><?php echo $tax['title']; ?>
+                : <?php echo $Subscription->getLastOrder()->formatPrice($tax['amount_incl_tax']); ?></small></span>
+            <?php endforeach; ?>
+        <?php  elseif (Mage::helper('weee')->typeOfDisplay($Item, 4, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <small>
+            <?php foreach (Mage::helper('weee')->getApplied($Item) as $tax): ?>
+            <span class="nobr"><?php echo $tax['title']; ?>
+                : <?php echo $Subscription->getLastOrder()->formatPrice($tax['amount_incl_tax']); ?></span>
+            <?php endforeach; ?>
+        </small>
+        <?php endif; ?>
+    </div>
+
+    <?php if (Mage::helper('weee')->typeOfDisplay($Item, 2, 'sales') && (float)$Item->getWeeeTaxAppliedAmount()): ?>
+        <div class="cart-tax-total"
+             onclick="taxToggle('unit-item-tax-details<?php echo $Item->getId(); ?>', this, 'cart-tax-total-expanded');">
+            <span class="nobr"><?php echo Mage::helper('weee')->__('Total incl. tax'); ?>
+                :<br/> <?php echo $Subscription->getLastOrder()->formatPrice($_incl + $Item->getWeeeTaxAppliedAmount()); ?></span>
+        </div>
+        <?php endif; ?>
+    <?php endif; ?>
+    </span>
+<?php endif; ?>

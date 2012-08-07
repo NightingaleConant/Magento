@@ -1,0 +1,144 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2008-2009 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="page-head button-level">
+    <h3><?php echo $this->getTitle()?></h3>
+
+</div>
+
+<div class="">
+    <div class="col-1 primary-address-list">
+        <h4><?php echo $this->__('Addresses') ?></h4>
+
+        <div class="col2-set generic-box">
+            <div class="col-1">
+                <h5><?php echo $this->__('Billing Address') ?></h5>
+                <address>
+
+                    <?php echo $this->getSubscription()->getOrder()->getBillingAddress()->format('html') ?><br/>
+                </address>
+
+                <?php if ($this->getSubscription()->isActive()): ?>
+                <strong><a
+                        href="<?php echo Mage::getUrl('*/*/change/', array('id' => $this->getSubscription()->getId(), 'section' => 'billing')); ?>">
+                    <?php echo $this->__('Change Billing Address') ?></a></strong>
+                <?php endif; ?>
+
+            </div>
+            <div class="col-2">
+                <h5><?php echo $this->__('Payment Method') ?></h5>
+                <?php echo $this->getPaymentBlock()->toHtml() ?>
+                <?php if ($this->getSubscription()->isActive() && (1 /*$this->getSubscription()->getDateStart()->compare(new Zend_Date) < 1*/)): ?>
+                <strong>
+                    <a href="<?php echo Mage::getUrl('*/*/reorder/', array('id' => $this->getSubscription()->getId())); ?>"
+                       onclick="return confirm('<?php echo $this->__('After you click the Yes button, the current subscription will be cancelled, the items will be added to cart and you will have to proceed to checkout one more time to change the payment method.')?>')">
+                        <?php echo $this->__('Change Payment Method') ?>
+                    </a>
+                </strong>
+                <?php elseif ($this->getSubscription()->isActive()): ?>
+                <?php echo $this->__("You can change payment method after first delivery") ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php if ($this->getSubscription()->getHasShipping()): ?>
+        <div class="col2-set generic-box">
+            <div class="col-1">
+                <h5><?php echo $this->__('Shipping Address') ?></h5>
+                <address>
+                    <?php echo $this->getSubscription()->getOrder()->getShippingAddress()->format('html') ?><br/>
+                </address>
+                <?php if ($this->getSubscription()->isActive()): ?>
+                <strong><a
+                        href="<?php echo Mage::getUrl('*/*/change/', array('id' => $this->getSubscription()->getId(), 'section' => 'shipping')); ?>">
+                    <?php echo $this->__('Change Shipping Address') ?></a></strong>
+                <?php endif; ?>
+            </div>
+            <div class="col-2">
+                <h5><?php echo $this->__('Shipping Method') ?></h5>
+                <?php if ($this->getOrder()->getShippingDescription()): ?>
+                <?php echo $this->getOrder()->getShippingDescription() ?>
+                <?php else: ?>
+                <?php echo $this->helper('sales')->__('No shipping information available'); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif;?>
+        <div class="col2-set generic-box">
+            <h5><?php echo $this->__('Subscription Status') ?></h5>
+
+            <p><strong><?php echo $this->__('Status')?></strong>:<?php echo $this->getSubscriptionStatusLabel() ?> </p>
+
+            <p><?php echo $this->getChild('sarp_subscription_payments_pending')->setSubscription($this->getSubscription())->toHtml()?></p>
+
+            <p>
+                <?php if ($this->getSubscription()->isActive()): ?>
+                <strong><?php echo $this->__('Next delivery')?></strong>
+                : <?php echo $this->formatDate($this->getSubscription()->getFlatNextDeliveryDate(), Mage_Core_Model_Locale::FORMAT_TYPE_LONG) ?>
+                <?php endif;?>
+            </p>
+
+            <?php if ($this->getSubscription()->getStatus() == AW_Sarp_Model_Subscription::STATUS_ENABLED || $this->getSubscription()->getStatus() == AW_Sarp_Model_Subscription::STATUS_SUSPENDED_BY_CUSTOMER): ?>
+            <ol>
+                <li>
+                    <strong>
+                        <?php if ($this->getSubscription()->getStatus() == AW_Sarp_Model_Subscription::STATUS_ENABLED): ?>
+                        <a href="<?php echo Mage::getUrl('*/*/suspend/', array('id' => $this->getSubscription()->getId())); ?>"
+                           onclick="return(confirm('<?php echo $this->__('Are you sure you want to suspend this subscription?')?>'));">
+                            <?php echo $this->__('Suspend subscription') ?>
+                        </a>
+                        <?php else: ?>
+                        <a href="<?php echo Mage::getUrl('*/*/activate/', array('id' => $this->getSubscription()->getId())); ?>"
+                           onclick="return(confirm('<?php echo $this->__('Are you sure you want to activate this subscription?')?>'));">
+                            <?php echo $this->__('Activate subscription') ?>
+                        </a>
+                        <?php endif;?>
+                    </strong>
+                </li>
+                <?php if (!$this->getSubscription()->isInfinite()): ?>
+                <li>
+                    <strong>
+                        <a href="<?php echo Mage::getUrl('*/*/prolong/', array('id' => $this->getSubscription()->getId())); ?>"
+                           onclick="return(confirm('<?php echo $this->__('Are you sure you want to prolong this subscription?')?>'));">
+                            <?php echo $this->__('Prolong subscription') ?>
+                        </a>
+                    </strong>
+                </li>
+                <?php endif;?>
+                <li>
+                    <strong>
+                        <a href="<?php echo Mage::getUrl('*/*/cancel/', array('id' => $this->getSubscription()->getId())); ?>"
+                           onclick="return(confirm('<?php echo $this->__('Are you sure you want to delete this subscription?')?>'));">
+                            <?php echo $this->__('Cancel subscription') ?>
+                        </a>
+                    </strong>
+                </li>
+
+            </ol>
+            <?php else: ?>
+            <em><?php echo $this->__('This subscription is not active. If you want activate it, please click')?> <a
+                    href="<?php echo $this->getUrl('*/*/prolong', array('id' => $this->getRequest()->getParam('id')))?>"><?php echo $this->__("here")?></a>.</em>
+            <?php endif;?>
+        </div>
+
+    </div>
+    <div class="button-set">
+        <a href="<?php echo $this->getUrl('*/*') ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>
+    </div>
+</div>
+

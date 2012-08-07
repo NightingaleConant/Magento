@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ */
+-->
+<config>
+    <modules>
+        <IDP_AuthorizeCIM>
+            <version>0.2.0</version>
+            <depends>
+                <Mage_Payment />
+            </depends>
+        </IDP_AuthorizeCIM>
+    </modules>
+    <global>
+    	<models>
+    		<authorizeCIM>
+	    		<class>IDP_AuthorizeCIM_Model</class>
+	    	</authorizeCIM>
+    	</models>
+    	<helpers>
+    		<authorizeCIM>
+    			<class>IDP_AuthorizeCIM_Helper</class>
+    		</authorizeCIM>
+    	</helpers>
+        <resources>
+            <authorizeCIM_setup>
+            <setup>
+                    <module>IDP_AuthorizeCIM</module>
+                    <class>IDP_AuthorizeCIM_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </authorizeCIM_setup>
+            <authorizeCIM_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </authorizeCIM_write>
+            <authorizeCIM_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </authorizeCIM_read>
+        </resources>
+    </global>
+	<default>
+        <payment>
+            <authorizecimsoap>
+            	<active>1</active>
+            	<model>authorizeCIM/authorizecimsoap</model>
+            	<cgi_url>https://api.authorize.net/xml/v1/request.api</cgi_url>
+            	<cgi_url_test>https://apitest.authorize.net/xml/v1/request.api</cgi_url_test>
+            	<title>Credit Card (Secure)</title>
+            	<allowspecific>0</allowspecific>
+            	<debug>0</debug>
+            	<test>0</test>
+				<cardstoshow>5</cardstoshow>
+				<showall>1</showall>
+            	<cctypes>AE,VI,MC,DI</cctypes>
+            	<payment_action>authorize_capture</payment_action>
+				<username backend_model="adminhtml/system_config_backend_encrypted" />
+				<password backend_model="adminhtml/system_config_backend_encrypted" />
+				<testusername backend_model="adminhtml/system_config_backend_encrypted" />
+				<testpassword backend_model="adminhtml/system_config_backend_encrypted" />
+            </authorizecimsoap>
+        </payment>
+    </default>
+</config>

@@ -1,0 +1,80 @@
+/* 
+    Document   : sendinvoicestyle
+    Created on : Oct 17, 2011, 4:46:40 PM
+    Author     : root
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#formtoppattern, .formtoppattern {
+    background: url("images/FormBG-TopPattern.png") no-repeat scroll center top #FFFFFF;
+    margin: auto;
+    padding: 20px 0px 0px 0px;
+    width: 970px;
+}
+
+#formbot, .formbot {
+    background: url("images/FormBG-Bot.png") no-repeat scroll center bottom transparent;
+    margin: 0 0 20px;
+    min-height: 150px;
+    padding: 0 0 5px;
+}
+
+.clear {clear: both;}
+
+#formbot a.expbutton {position: relative;
+            left: 20px
+}
+
+#formbot a.bombutton {position: relative;
+            left: 20px
+}
+
+img#unleashed-logo {
+    position: relative;
+    float: right;
+    right: 10px;
+}
+
+img#support-logo {
+    position: relative;
+    float: left;
+    left: 10px;
+    top: -20px;
+}
+
+
+.links_footer {
+    margin: 120px 0px 0px 0px;
+    padding: 10px;
+    height: 50px;
+    text-align: center;
+    
+}
+
+.links_footer li{
+    display: inline;
+    text-align: center;
+    white-space: nowrap;
+    float: none;
+    
+}
+
+.links_footer li a, .links_footer li a:visited{
+    color: #CD152D;
+       
+}
+
+.link_footer a:hover {
+    text-decoration: none !important;
+}
+
+.link_footer {text-align: center;}
+
+
+a.sohbutton {margin-left: 40px;}

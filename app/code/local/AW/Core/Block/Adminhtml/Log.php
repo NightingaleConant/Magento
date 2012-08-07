@@ -1,0 +1,48 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Core
+ * @version    1.0
+ * @copyright  Copyright (c) 2009-2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+
+class AW_Core_Block_Adminhtml_Log extends Mage_Adminhtml_Block_Widget_Grid_Container
+{
+
+    public function __construct()
+    {
+        $this->_controller = 'adminhtml_log';
+        $this->_blockGroup = 'awcore';
+        $this->_headerText = Mage::helper('awcore')->__('aheadWorks Extensions Log');
+
+        parent::__construct();
+
+        $this->setTemplate('widget/grid/container.phtml');
+        $this->_removeButton('add');
+        $this->_addButton('clear', array(
+                                        'label' => Mage::helper('awcore')->__('Clear Log'),
+                                        'onclick' => 'if(confirm(\'' . Mage::helper('awcore')->__('Are you sure to clear all log entries?') . '\'))setLocation(\'' . $this->getClearUrl() . '\')',
+                                        'class' => 'delete',
+                                   ));
+    }
+
+    /**
+     * Return url for log cleanup
+     * @return string
+     */
+    public function getClearUrl()
+    {
+        return Mage::getSingleton('adminhtml/url')->getUrl('awcore_admin/viewlog/clear');
+    }
+
+}

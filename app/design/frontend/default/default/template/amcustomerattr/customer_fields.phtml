@@ -1,0 +1,49 @@
+<style>
+#amcustomerattr .required
+{
+    color: #EB340A;
+}
+</style>
+<script type="text/javascript">
+Validation.addAllThese([
+    ['validate-tendigits', 'Please use 10 digit numbers only in this field. Please avoid spaces or other characters such as dots or commas.', function(v) {
+        return Validation.get('IsEmpty').test(v) ||  /^(\d){10}$/.test(v);
+    }],
+    
+    ['validate-aaa-0000', 'Please use the value in the following format: AAA-0000', function(v) {
+        return Validation.get('IsEmpty').test(v) ||  /^([A-Za-z]){3}-(\d){4}$/.test(v);
+    }],
+    
+    ['validate-checkboxgroup-required', 'Please select an option.', function(v, elm) {
+        id = elm.id.substr(0, elm.id.search('___'));
+        checkboxGroupChecked = false;
+        $$('input[id^=' + id + ']').each(function(checkbox){
+            if (checkbox.checked)
+            {
+                checkboxGroupChecked = true;
+            }
+        });
+        return checkboxGroupChecked;
+    }],
+]);
+</script>
+<?php if ($this->isShowHeader()): ?>
+    <div class="fieldset">
+    <h2 class="legend"><?php echo $this->__('Additional Information') ?></h2>
+<?php endif; ?>
+        <div style="float: left;">
+            <ul class="form-list">
+            <?php foreach ($this->getFormElements() as $element): ?>
+            <li class="fields">
+                <div class="input-box">
+                <?php echo $element->toHtml(); ?>
+                </div>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+        <!-- CUSTOM IMAGE AT THE RIGHT: <div style="float: right;"><img src="PATH HERE" /></div>-->
+        <div style="clear: both;"></div>
+<?php if ($this->isShowHeader()): ?>
+    </div>
+<?php endif; ?>

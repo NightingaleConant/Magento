@@ -1,0 +1,625 @@
+<?xml version="1.0"?>
+<config>
+    <crontab>
+        <jobs>
+            <aw_sarp_cron>
+                <schedule>
+                    <cron_expr>* * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>sarp/cron::process</model>
+                </run>
+            </aw_sarp_cron>
+
+        </jobs>
+    </crontab>
+    <modules>
+        <AW_Sarp>
+            <version>1.6.0</version><platform>ce</platform>
+        </AW_Sarp>
+    </modules>
+    <global>
+
+        <catalog>
+            <product>
+                <type>
+                    <subscription_simple translate="label" module="sarp">
+                        <label>Subscription/recurring payment</label>
+                        <model>sarp/product_type_simple_subscription</model>
+                        <is_qty>0</is_qty>
+                        <price_model>sarp/product_type_simple_price</price_model>
+                        <index_data_retreiver>catalogIndex/data_simple</index_data_retreiver>
+                        <index_priority>60</index_priority>
+                    </subscription_simple>
+                    <subscription_downloadable translate="label" module="sarp">
+                        <label>Downloadable subscription/recurring payment</label>
+                        <model>sarp/product_type_downloadable_subscription</model>
+                        <is_qty>0</is_qty>
+                        <price_model>sarp/product_type_downloadable_price</price_model>
+                        <index_data_retreiver>downloadable/catalogIndex_data_downloadable</index_data_retreiver>
+                        <index_priority>60</index_priority>
+                    </subscription_downloadable>
+                    <subscription_configurable translate="label" module="sarp">
+                        <label>Configurable subscription/recurring payment</label>
+                        <model>sarp/product_type_configurable_subscription</model>
+                        <composite>1</composite>
+                        <allow_product_types>
+                            <simple/>
+                            <virtual/>
+                        </allow_product_types>
+                        <price_model>sarp/product_type_configurable_price</price_model>
+                        <index_data_retreiver>catalogIndex/data_configurable</index_data_retreiver>
+                        <index_priority>30</index_priority>
+                    </subscription_configurable>
+                    <subscription_grouped translate="label" module="sarp">
+                        <label>Grouped subscription/recurring payment</label>
+                        <model>sarp/product_type_grouped_subscription</model>
+                        <composite>1</composite>
+                        <allow_product_types>
+                            <subscription_simple/>
+                        </allow_product_types>
+                        <price_model>sarp/product_type_grouped_price</price_model>
+                        <index_data_retreiver>catalogIndex/data_grouped</index_data_retreiver>
+                        <index_priority>30</index_priority>
+                    </subscription_grouped>
+                </type>
+            </product>
+        </catalog>
+        <models>
+            <sarp>
+                <class>AW_Sarp_Model</class>
+                <resourceModel>sarp_mysql4</resourceModel>
+            </sarp>
+            <sarp_mysql4>
+                <class>AW_Sarp_Model_Mysql4</class>
+                <entities>
+                    <subscription>
+                        <table>aw_sarp_subscriptions</table>
+                    </subscription>
+                    <subscription_flat>
+                        <table>aw_sarp_flat_subscriptions</table>
+                    </subscription_flat>
+                    <subscription_item>
+                        <table>aw_sarp_subscription_items</table>
+                    </subscription_item>
+                    <period>
+                        <table>aw_sarp_periods</table>
+                    </period>
+                    <sequence>
+                        <table>aw_sarp_sequence</table>
+                    </sequence>
+                    <log>
+                        <table>aw_sarp_log</table>
+                    </log>
+                    <alert>
+                        <table>aw_sarp_alerts</table>
+                    </alert>
+                    <alert_event>
+                        <table>aw_sarp_alert_events</table>
+                    </alert_event>
+                    <protxDirect>
+                        <table>aw_sarp_payment_method_protx</table>
+                    </protxDirect>
+                    <notice>
+                        <table>aw_sarp_postman_notice</table>
+                    </notice>
+                </entities>
+            </sarp_mysql4>
+            <paygate>
+                <rewrite>
+                    <authorizenet>AW_Sarp_Model_Payment_Method_Core_Authorizenet</authorizenet>
+                </rewrite>
+            </paygate>
+            <argofire>
+                <rewrite>
+                    <argofire>AW_Sarp_Model_Payment_Method_Core_Argofire</argofire>
+                </rewrite>
+            </argofire>
+            <protxDirect>
+                <rewrite>
+                    <protxDirect>AW_Sarp_Model_Payment_Method_Core_ProtxDirect</protxDirect>
+                </rewrite>
+            </protxDirect>
+            <paypal>
+                <rewrite>
+                    <standard>AW_Sarp_Model_Payment_Method_Core_Paypal_Standard</standard>
+                    <direct>AW_Sarp_Model_Payment_Method_Core_Paypal_Direct</direct>
+                </rewrite>
+            </paypal>
+            <paypaluk>
+                <rewrite>
+                    <direct>AW_Sarp_Model_Payment_Method_Core_Paypaluk_Direct</direct>
+                </rewrite>
+            </paypaluk>
+            <payment>
+                <rewrite>
+                    <method_purchaseorder>AW_Sarp_Model_Payment_Method_Core_Purchaseorder</method_purchaseorder>
+                </rewrite>
+            </payment>
+            <adminhtml>
+                <rewrite>
+                    <session_quote>AW_Sarp_Model_Session_Quote</session_quote>
+                </rewrite>
+            </adminhtml>
+            <catalog>
+                <rewrite>
+                    <product>AW_Sarp_Model_Catalog_Product</product>
+                </rewrite>
+            </catalog>
+            <enterprise_giftcardaccount>
+                <rewrite>
+                    <giftcardaccount>AW_Sarp_Model_Enterprise_GiftCardAccount_Giftcardaccount</giftcardaccount>
+                </rewrite>
+            </enterprise_giftcardaccount>
+        </models>
+        <rewrite>
+            <sarp_catalog_product>
+                <from><![CDATA[#^/.*/catalog_product/new/#]]></from>
+                <to>/subscriptions_admin/adminhtml_catalog_product/new/</to>
+            </sarp_catalog_product>
+        </rewrite>
+        <pdf>
+            <invoice>
+                <subscription_simple>sarp/sales_order_pdf_items_invoice</subscription_simple>
+                <subscription_downloadable>sarp/sales_order_pdf_items_downloadable_invoice</subscription_downloadable>
+                <subscription_configurable>sarp/sales_order_pdf_items_invoice</subscription_configurable>
+            </invoice>
+            <shipment>
+                <subscription_simple>sarp/sales_order_pdf_items_shipment</subscription_simple>
+                <subscription_configurable>sarp/sales_order_pdf_items_shipment</subscription_configurable>
+            </shipment>
+            <creditmemo>
+                <subscription_simple>sarp/sales_order_pdf_items_creditmemo</subscription_simple>
+                <subscription_downloadable>sarp/sales_order_pdf_items_downloadable_creditmemo
+                </subscription_downloadable>
+                <subscription_configurable>sarp/sales_order_pdf_items_creditmemo</subscription_configurable>
+            </creditmemo>
+        </pdf>
+        <resources>
+            <sarp_setup>
+                <setup>
+                    <module>AW_Sarp</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </sarp_setup>
+            <sarp_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </sarp_write>
+            <sarp_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </sarp_read>
+        </resources>
+        <blocks>
+            <sarp>
+                <class>AW_Sarp_Block</class>
+            </sarp>
+            <catalog>
+                <rewrite>
+                    <product_price>AW_Sarp_Block_Catalog_Product_Price</product_price>
+                </rewrite>
+            </catalog>
+            <checkout>
+                <rewrite>
+                    <onepage_payment_methods>AW_Sarp_Block_Checkout_Onepage_Payment_Methods</onepage_payment_methods>
+                </rewrite>
+            </checkout>
+            <adminhtml>
+                <rewrite>
+                    <customer_group_edit_form>AW_Sarp_Block_Adminhtml_Customer_Group_Edit_Form</customer_group_edit_form>
+                    <catalog_product_edit_tab_super_group>AW_Sarp_Block_Adminhtml_Catalog_Product_Edit_Tab_Super_Group</catalog_product_edit_tab_super_group>
+                    <catalog_product_edit_tabs>AW_Sarp_Block_Adminhtml_Catalog_Product_Edit_Tabs</catalog_product_edit_tabs>
+                </rewrite>
+            </adminhtml>
+            <enterprise_customerBalance>
+                <rewrite>
+                    <checkout_onepage_payment_additional>AW_Sarp_Block_Enterprise_CustomerBalance_Checkout_Onepage_Payment_Additional</checkout_onepage_payment_additional>
+                </rewrite>
+            </enterprise_customerBalance>
+        </blocks>
+
+        <helpers>
+            <sarp>
+                <class>AW_Sarp_Helper</class>
+            </sarp>
+        </helpers>
+
+        <template>
+            <email>
+                <!--sarp_template_notification translate="label" module="sarp">
+                                        <label>Subscription Notification</label>
+                                        <file>aw_sarp/notification.html</file>
+                                        <type>html</type>
+                                </sarp_template_notification-->
+                <sarp_template_firstdelivery translate="label" module="sarp">
+                    <label>Subscriptions Alert - First Delivery</label>
+                    <file>aw_sarp/alerts/customer/firstdelivery.html</file>
+                    <type>html</type>
+                </sarp_template_firstdelivery>
+                <sarp_template_activation translate="label" module="sarp">
+                    <label>Subscriptions Alert - Activation</label>
+                    <file>aw_sarp/alerts/customer/activation.html</file>
+                    <type>html</type>
+                </sarp_template_activation>
+                <sarp_template_delivery translate="label" module="sarp">
+                    <label>Subscriptions Alert - Each Delivery</label>
+                    <file>aw_sarp/alerts/customer/eachdelivery.html</file>
+                    <type>html</type>
+                </sarp_template_delivery>
+                <sarp_template_expiredate translate="label" module="sarp">
+                    <label>Subscriptions Alert - Expiration Date</label>
+                    <file>aw_sarp/alerts/customer/expiredate.html</file>
+                    <type>html</type>
+                </sarp_template_expiredate>
+                <sarp_template_newsubscription translate="label" module="sarp">
+                    <label>Subscriptions Alert - New Subscription</label>
+                    <file>aw_sarp/alerts/customer/newsubscription.html</file>
+                    <type>html</type>
+                </sarp_template_newsubscription>
+                <sarp_template_unsubscription translate="label" module="sarp">
+                    <label>Subscriptions Alert - Unsubscription</label>
+                    <file>aw_sarp/alerts/customer/unsubscription.html</file>
+                    <type>html</type>
+                </sarp_template_unsubscription>
+                <sarp_template_suspended translate="label" module="sarp">
+                    <label>Subscriptions Alert - Suspended</label>
+                    <file>aw_sarp/alerts/customer/suspended.html</file>
+                    <type>html</type>
+                </sarp_template_suspended>
+
+                <sarp_template_firstdelivery_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - First Delivery(admin)</label>
+                    <file>aw_sarp/alerts/admin/firstdelivery.html</file>
+                    <type>html</type>
+                </sarp_template_firstdelivery_admin>
+                <sarp_template_activation_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - Activation(admin)</label>
+                    <file>aw_sarp/alerts/admin/activation.html</file>
+                    <type>html</type>
+                </sarp_template_activation_admin>
+                <sarp_template_delivery_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - Each Delivery(admin)</label>
+                    <file>aw_sarp/alerts/admin/eachdelivery.html</file>
+                    <type>html</type>
+                </sarp_template_delivery_admin>
+                <sarp_template_expiredate_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - Expiration Date(admin)</label>
+                    <file>aw_sarp/alerts/admin/expiredate.html</file>
+                    <type>html</type>
+                </sarp_template_expiredate_admin>
+                <sarp_template_newsubscription_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - New Subscription(admin)</label>
+                    <file>aw_sarp/alerts/admin/newsubscription.html</file>
+                    <type>html</type>
+                </sarp_template_newsubscription_admin>
+                <sarp_template_unsubscription_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - Unsubscription(admin)</label>
+                    <file>aw_sarp/alerts/admin/unsubscription.html</file>
+                    <type>html</type>
+                </sarp_template_unsubscription_admin>
+                <sarp_template_suspended_admin translate="label" module="sarp">
+                    <label>Subscriptions Alert - Suspended(admin)</label>
+                    <file>aw_sarp/alerts/admin/suspended.html</file>
+                    <type>html</type>
+                </sarp_template_suspended_admin>
+            </email>
+        </template>
+        <events>
+            <sales_quote_save_before>
+                <observers>
+                    <sarp_place_order2_observer>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>savePaymentInfoInSession</method>
+                    </sarp_place_order2_observer>
+                </observers>
+            </sales_quote_save_before>
+            <checkout_type_onepage_save_order_after>
+                <observers>
+                    <sarp_place_order_observer>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>assignSubscriptionToCustomer</method>
+                    </sarp_place_order_observer>
+                </observers>
+            </checkout_type_onepage_save_order_after>
+            <checkout_type_onepage_save_order>
+                <observers>
+                    <adjdeliverydate>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>addPostmanNotice</method>
+                    </adjdeliverydate>
+                </observers>
+            </checkout_type_onepage_save_order>
+
+            <checkout_controller_onepage_save_shipping_method>
+                <observers>
+                    <adjdeliverydate>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>catchPostmanNotice</method>
+                    </adjdeliverydate>
+                </observers>
+            </checkout_controller_onepage_save_shipping_method>
+
+            <payment_method_is_active>
+                <observers>
+                    <sarp_payment_available>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>paymentIsAvailable</method>
+                    </sarp_payment_available>
+                </observers>
+            </payment_method_is_active>
+
+            <sales_order_save_after>
+                <observers>
+                    <sarp_order_status_observer>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>updateSubscriptionStatus</method>
+                    </sarp_order_status_observer>
+                </observers>
+            </sales_order_save_after>
+            <sales_order_item_save_after>
+                <observers>
+                    <sarp_order_item_save_after_observer>
+                        <class>sarp/observer</class>
+                        <method>salesOrderItemSaveAfter</method>
+                    </sarp_order_item_save_after_observer>
+                </observers>
+            </sales_order_item_save_after>
+
+            <checkout_allow_guest>
+                <observers>
+                    <sarp_checkout_allow_guest_observer>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>checkGuestChecoutAvail</method>
+                    </sarp_checkout_allow_guest_observer>
+                </observers>
+            </checkout_allow_guest>
+            <sarp_subscription_suspend_before>
+                <observers>
+                    <sarp_subscription_suspend>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>sarpSubscriptionSuspend</method>
+                    </sarp_subscription_suspend>
+                </observers>
+            </sarp_subscription_suspend_before>
+
+            <sarp_subscription_reactivate_before>
+                <observers>
+                    <sarp_subscription_reactivate>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>sarpSubscriptionReactivate</method>
+                    </sarp_subscription_reactivate>
+                </observers>
+            </sarp_subscription_reactivate_before>
+            <!-- PayPal PayFlow -->
+            <sarp_paypaluk_checkout_authorize_after>
+                <observers>
+                    <sarp_ppuk_save_verification>
+                        <type>singleton</type>
+                        <class>sarp/payment_method_paypaluk_direct</class>
+                        <method>saveVerificationData</method>
+                    </sarp_ppuk_save_verification>
+                </observers>
+            </sarp_paypaluk_checkout_authorize_after>
+            <sarp_paypaluk_checkout_capture_after>
+                <observers>
+                    <sarp_ppuk_save_verification>
+                        <type>singleton</type>
+                        <class>sarp/payment_method_paypaluk_direct</class>
+                        <method>saveVerificationData</method>
+                    </sarp_ppuk_save_verification>
+                </observers>
+            </sarp_paypaluk_checkout_capture_after>
+
+            <sales_order_save_after>
+                <observers>
+                    <sarp_downloadable_observer>
+                        <class>downloadable/observer</class>
+                        <method>setLinkStatus</method>
+                    </sarp_downloadable_observer>
+                </observers>
+            </sales_order_save_after>
+
+        </events>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <aw_sarp>
+                    <file>aw_sarp.xml</file>
+                </aw_sarp>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <AW_Sarp>
+                    <files>
+                        <default>AW_Sarp.csv</default>
+                    </files>
+                </AW_Sarp>
+            </modules>
+        </translate>
+
+        <routers>
+            <sarp>
+                <use>standard</use>
+                <args>
+                    <module>AW_Sarp</module>
+                    <frontName>subscriptions</frontName>
+                </args>
+            </sarp>
+        </routers>
+    </frontend>
+    <admin>
+        <routers>
+            <sarp_admin>
+                <use>admin</use>
+                <args>
+                    <module>AW_Sarp</module>
+                    <frontName>subscriptions_admin</frontName>
+                </args>
+            </sarp_admin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <catalog>
+                <children>
+                    <sarp translate="title" module="sarp">
+                        <title>Subscriptions</title>
+                        <children>
+                            <list translate="title" module="sarp">
+                                <title>Subscriptions List</title>
+                                <action>sarp_admin/subscriptions</action>
+                            </list>
+                            <periods translate="title" module="sarp">
+                                <title>Periodicity</title>
+                                <action>sarp_admin/periods</action>
+                            </periods>
+                            <alerts translate="title" module="sarp">
+                                <title>Subscriptions Alerts</title>
+                                <action>sarp_admin/alerts</action>
+                            </alerts>
+                        </children>
+                    </sarp>
+                </children>
+            </catalog>
+            <customer>
+                <children>
+                    <subscribers translate="title" module="sarp">
+                        <title>Subscribers List</title>
+                        <action>sarp_admin/subscribers</action>
+                    </subscribers>
+                </children>
+            </customer>
+        </menu>
+
+        <translate>
+            <modules>
+                <AW_Sarp>
+                    <files>
+                        <default>AW_Sarp.csv</default>
+                    </files>
+                </AW_Sarp>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <aw_sarp>
+                    <file>aw_sarp.xml</file>
+                </aw_sarp>
+            </updates>
+        </layout>
+        <sales>
+            <order>
+                <create>
+                    <available_product_types>
+                        <subscription_simple/>
+                        <subscription_configurable/>
+                        <subscription_grouped/>
+                        <subscription_downloadable/>
+                    </available_product_types>
+                </create>
+            </order>
+        </sales>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <sarp>
+                                    <title>Subscriptions Module</title>
+                                    <sort_order>10</sort_order>
+                                    <children>
+                                        <list>
+                                            <title>Subscriptions List</title>
+                                        </list>
+                                        <periods>
+                                            <title>Periodicity</title>
+                                        </periods>
+                                        <alerts>
+                                            <title>Subscriptions Alerts</title>
+                                        </alerts>
+                                    </children>
+                                </sarp>
+                            </children>
+                        </catalog>
+                        <customer>
+                            <children>
+                                <subscribers>
+                                    <title>Subscribers List</title>
+                                </subscribers>
+                            </children>
+                        </customer>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <sarp>
+                                            <title>aheadWorks - Subscriptions Section</title>
+                                        </sarp>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <checkout_submit_all_after>
+                <observers>
+                    <sarp_place_order_observer1>
+                        <type>singleton</type>
+                        <class>sarp/observer</class>
+                        <method>assignSubscriptionToCustomer</method>
+                    </sarp_place_order_observer1>
+                </observers>
+            </checkout_submit_all_after>
+        </events>
+    </adminhtml>
+    <default>
+        <sarp>
+            <general>
+                <anonymous_subscriptions>0</anonymous_subscriptions>
+                <activate_order_status>complete</activate_order_status>
+                <alerts_sender>general</alerts_sender>
+            </general>
+            <appearance>
+                <use_radios>0</use_radios>
+                <show_next_payment>1</show_next_payment>
+                <show_next_delivery>1</show_next_delivery>
+                <show_order_amount>1</show_order_amount>
+                <show_expire_date>1</show_expire_date>
+                <show_postman_notice>1</show_postman_notice>
+            </appearance>
+            <email>
+                <notification>sarp_template_notification</notification>
+            </email>
+        </sarp>
+        <payment>
+            <authorizenet>
+                <soap_test>0</soap_test>
+            </authorizenet>
+        </payment>
+    </default>
+</config>	

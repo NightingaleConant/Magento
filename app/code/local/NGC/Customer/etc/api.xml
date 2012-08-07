@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <customer translate="title" module="catalog">
+                <title>NGC Customer API</title>
+                <model>customer/customer_api</model>
+                <methods>
+                    <create translate="title" module="customer">
+                        <title>Create customer</title>
+                        <acl>customer/create</acl>
+                    </create>
+                </methods>
+            </customer>
+        </resources>
+        <v2>
+            <resources_function_prefix>
+                <customer>customerCustomer</customer>
+            </resources_function_prefix>
+        </v2>
+    </api>
+</config>

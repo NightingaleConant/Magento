@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Unleashed
+ * @package    Unleashed_Sendinvoice
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Unleashed_Sendinvoice>
+            <version>0.1.0</version>
+        </Unleashed_Sendinvoice>
+    </modules>
+    <frontend>
+        <routers>
+            <sendinvoice>
+                <use>standard</use>
+                <args>
+                    <module>Unleashed_Sendinvoice</module>
+                    <frontName>sendinvoice</frontName>
+                </args>
+            </sendinvoice>
+
+        </routers>
+        <layout>
+            <updates>
+                <sendinvoice>
+                    <file>sendinvoice.xml</file>
+                </sendinvoice>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <sendinvoice>
+                <use>admin</use>
+                <args>
+                    <module>Unleashed_Sendinvoice</module>
+                    <frontName>sendinvoice</frontName>
+                </args>
+            </sendinvoice>
+            
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Unleashed_Sendinvoice before="Mage_Adminhtml">Unleashed_Sendinvoice</Unleashed_Sendinvoice>
+                    </modules>
+                </args>
+            </adminhtml>
+
+                        
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <Unleashed translate="title" module="sendinvoice">
+                <title>Unleashed</title>
+                <sort_order>11</sort_order>
+                <children>
+                    
+                    <export module="sendinvoice">
+                                <title>Export Products</title>
+                                <sort_order>0</sort_order>
+                                <action>sendinvoice/adminhtml_sendinvoice</action>
+                    </export>
+                    <sendinvoice module="sendinvoice">
+                        <title>Unleashed Ping Invoice</title>
+                        <sort_order>71</sort_order>               
+                        <children>
+                            <items module="sendinvoice">
+                                <title>Configuration</title>
+                                <sort_order>1</sort_order>
+                                <action>adminhtml/system_config/edit/section/sendinvoice</action>
+                            </items>
+                            
+                        </children>
+                    </sendinvoice>
+                    <support module="sendinvoice">
+                                <title>Support</title>
+                                <sort_order>72</sort_order>
+                                <action>sendinvoice/adminhtml_sendinvoice/support</action>
+                    </support>
+                </children>
+            </Unleashed>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Unleashed_Sendinvoice>
+                            <title>Sendinvoice Module</title>
+                            <sort_order>10</sort_order>
+                        </Unleashed_Sendinvoice>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <sendinvoice>
+                    <file>sendinvoice.xml</file>
+                </sendinvoice>
+            </updates>
+        </layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <sendinvoice>
+                <class>Unleashed_Sendinvoice_Model</class>
+                <resourceModel>sendinvoice_mysql4</resourceModel>
+            </sendinvoice>
+            <sendinvoice_mysql4>
+                <class>Unleashed_Sendinvoice_Model_Mysql4</class>
+                <entities>
+                    <sendinvoice>
+                        <table>sendinvoice</table>
+                    </sendinvoice>
+                </entities>
+            </sendinvoice_mysql4>
+        </models>
+        <resources>
+            <sendinvoice_setup>
+                <setup>
+                    <module>Unleashed_Sendinvoice</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </sendinvoice_setup>
+            <sendinvoice_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </sendinvoice_write>
+            <sendinvoice_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </sendinvoice_read>
+        </resources>
+        <blocks>
+            <sendinvoice>
+                <class>Unleashed_Sendinvoice_Block</class>
+            </sendinvoice>
+        </blocks>
+        <helpers>
+            <sendinvoice>
+                <class>Unleashed_Sendinvoice_Helper</class>
+            </sendinvoice>
+        </helpers>
+        
+        <!--<models>
+            <sales>
+                <rewrite>
+                    <order_invoice>Unleashed_Sendinvoice_Model_Invoice</order_invoice>
+                </rewrite>
+            </sales>
+        </models>-->
+        
+        <events>
+            <!--<sales_order_invoice_pay>
+                <observers>
+                    <sendinvoice>
+                        <type>singleton</type>
+                        <class>Unleashed_Sendinvoice_Model_Order_Observer</class>
+                        <method>ping</method>
+                    </sendinvoice>
+                </observers>
+            </sales_order_invoice_pay>-->
+            
+            <invoice_save_after>
+                <observers>
+                    <sendinvoice>
+                        <type>singleton</type>
+                        <class>Unleashed_Sendinvoice_Model_Order_Invoiceobserver</class>
+                        <method>ping</method>
+                    </sendinvoice>
+                </observers>
+            </invoice_save_after>
+        </events>
+    </global>
+</config>

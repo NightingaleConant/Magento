@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+<FilesMatch "\.(csv|CSV)">
+  ForceType application/csv
+  Header set Content-Disposition attachment
+</FilesMatch>

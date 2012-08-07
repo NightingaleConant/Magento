@@ -1,0 +1,28 @@
+<div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-attributes"><?php echo $this->__('Custom Attributes'); ?></h4>
+            <div class="tools">&nbsp;&nbsp;<a href="<?php echo $this->getEditUrl(); ?>">Edit</a></div>
+        </div>
+        <div class="fieldset">
+            <div class="hor-scroll">
+                
+                    <table cellspacing="0" class="form-list">
+                        <tbody>
+                        <?php if ($this->getList()): 
+                              foreach ($this->getList() as $label => $value): ?>
+                        <tr>
+                            <td class="label"><label><?php echo $label; ?></label></td>
+                            <td>
+                                <strong><?php if ($value) { echo $value; } else { echo $this->__('--no value--'); } ?></strong>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <?php echo $this->__('No attributes for this order'); ?>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+                
+            </div>
+        </div>
+    </div>

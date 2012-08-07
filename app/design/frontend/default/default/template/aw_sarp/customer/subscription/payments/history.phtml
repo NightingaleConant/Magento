@@ -1,0 +1,75 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2008-2009 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<div class="page-head">
+    <h3><?php echo $this->getTitle()?></h3>
+</div>
+
+<?php echo $this->getChildHtml('sarp_subscription_payments_pending') ?>
+<br/>
+<?php if (1 || $this->getCollection()->count()): ?>
+<table class="data-table box-table" id="customer-subscriptions-history-table" cellspacing="0">
+    <col width="100"/>
+    <col/>
+    <col width="100"/>
+
+    <col width="100"/>
+    <thead>
+    <tr>
+        <th><?php echo $this->__('Date') ?></th>
+        <th><?php echo $this->__('Order #') ?></th>
+        <th><?php echo $this->__('Order Status') ?></th>
+        <th class="a-right"><?php echo $this->__('Amount') ?></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><?php echo $this->formatDate($this->getSubscription()->getOrder()->getCreatedAt())?></td>
+        <td>
+            <a href="<?php echo Mage::getUrl('sales/order/view', array('order_id' => $this->getSubscription()->getOrder()->getId()))?>">
+                <?php echo $this->getSubscription()->getOrder()->getRealOrderId();?>
+            </a>
+        </td>
+        <td><em><?php echo ($this->getSubscription()->getOrder()->getStatusLabel()) ?></em></td>
+        <td class="a-right"><?php echo $this->getSubscription()->getOrder()->formatPrice($this->getSubscription()->getOrder()->getGrandTotal());?></td>
+    </tr>
+        <?php foreach ($this->getCollection() as $Item): ?>
+    <tr>
+        <td><?php echo $this->formatDate($Item->getDate());?></td>
+        <td>
+            <a href="<?php echo Mage::getUrl('sales/order/view', array('order_id' => $Item->getOrder()->getId()))?>">
+                <?php echo $Item->getOrder()->getRealOrderId();?>
+            </a>
+        </td>
+        <td><em><?php echo ($Item->getOrder()->getStatusLabel()) ?></em></td>
+        <td class="a-right"><?php echo $Item->getOrder()->formatPrice($Item->getOrder()->getGrandTotal());?></td>
+    </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('customer-subscriptions-history-table');</script>
+
+
+<?php else: ?>
+<?php echo $this->__("You have no subscription payments yet."); ?>
+<?php endif; ?>
+
+<div class="button-set">
+    <a href="<?php echo $this->getUrl('*/*') ?>" class="left">&laquo; <?php echo $this->__('Back') ?></a>
+</div>

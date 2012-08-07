@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<layout>
+    <sarp_admin_alerts_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>aw_sarp/adminhtml/alerts.js</script>
+            </action>
+        </reference>
+    </sarp_admin_alerts_edit>
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <block type="sarp/adminhtml_catalog_product_edit_tabs_subscription" name="subscription_tab"/>
+            <action method="addTab">
+                <name>Recurring payments</name>
+                <block>subscription_tab</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+    <adminhtml_catalog_product_subscription_configurable>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>configurable_items</name>
+                <block>adminhtml/catalog_product_edit_tab_super_config</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_subscription_configurable>
+    <adminhtml_catalog_product_subscription_downloadable>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>downloadable_items</name>
+                <block>downloadable/adminhtml_catalog_product_edit_tab_downloadable</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_subscription_downloadable>
+    <adminhtml_catalog_product_subscription_grouped>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>super</name>
+                <block>adminhtml/catalog_product_edit_tab_super_group</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_subscription_grouped>
+    <adminhtml_sales_order_view>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/adminhtml_sales_order_view_items_renderer_simple</block>
+                <template>sales/order/view/items/renderer/default.phtml</template>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/adminhtml_sales_order_view_items_renderer_simple</block>
+                <template>sales/order/view/items/renderer/default.phtml</template>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/adminhtml_sales_order_view_items_renderer_downloadable</block>
+                <template>downloadable/sales/order/view/items/renderer/downloadable.phtml</template>
+            </action>
+            <action method="addColumnRender">
+                <column>downloadable</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/adminhtml_sales_order_view_items_renderer_simple</block>
+                <template>sales/order/view/items/renderer/default.phtml</template>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_grouped</type>
+            </action>
+        </reference>
+        <reference name="order_tab_info">
+            <action method="setTemplate">
+                <template>aw_sarp/order/view/tab/info.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    <adminhtml_sales_order_invoice_new>
+        <reference name="order_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="order_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+
+    <adminhtml_sales_order_shipment_new>
+        <reference name="order_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_shipment_new>
+
+    <adminhtml_sales_order_shipment_view>
+        <reference name="shipment_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_shipment_view>
+
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="order_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="order_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_items">
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_simple</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_name</block>
+                <template>sales/items/column/name.phtml</template>
+                <type>subscription_configurable</type>
+            </action>
+            <action method="addColumnRender">
+                <column>name</column>
+                <block>sarp/adminhtml_sales_order_view_items_column_downloadable_name</block>
+                <template>downloadable/sales/items/column/downloadable/name.phtml</template>
+                <type>subscription_downloadable</type>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+
+    <PRODUCT_TYPE_subscription_simple>
+        <reference name="product.composite.fieldset">
+            <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_simple"
+                   name="product.composite.fieldset.subscription_simple" before="product.composite.fieldset.options"
+                   template="aw_sarp/catalog/product/composite/fieldset/type/subscription_simple.phtml">
+                <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_simple"
+                       name="product.info.sarp.subscription.selector" as="subscription_selector">
+                    <action method="applyTemplate"></action>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_subscription_simple>
+
+    <PRODUCT_TYPE_subscription_configurable>
+        <reference name="product.composite.fieldset">
+            <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_configurable"
+                   name="product.composite.fieldset.subscription_configurable"
+                   before="product.composite.fieldset.options"
+                   template="aw_sarp/catalog/product/composite/fieldset/type/subscription_configurable.phtml">
+                <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_configurable"
+                       name="product.info.sarp.subscription.selector" as="subscription_selector">
+                    <action method="applyTemplate"></action>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_subscription_configurable>
+
+    <PRODUCT_TYPE_subscription_grouped>
+        <reference name="product.composite.fieldset">
+            <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_grouped"
+                   name="product.composite.fieldset.subscription_grouped" before="product.composite.fieldset.options"
+                   template="aw_sarp/catalog/product/composite/fieldset/type/subscription_grouped.phtml">
+                <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_grouped"
+                       name="product.info.sarp.subscription.selector" as="subscription_selector">
+                    <action method="applyTemplate"></action>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_subscription_grouped>
+
+    <PRODUCT_TYPE_subscription_downloadable>
+        <reference name="product.composite.fieldset">
+            <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_downloadable"
+                   name="product.composite.fieldset.subscription_downloadable"
+                   before="product.composite.fieldset.options"
+                   template="aw_sarp/catalog/product/composite/fieldset/type/subscription_downloadable.phtml">
+                <block type="sarp/adminhtml_catalog_product_composite_fieldset_subscription_downloadable"
+                       name="product.info.sarp.subscription.selector" as="subscription_selector">
+                    <action method="applyTemplate"></action>
+                </block>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_subscription_downloadable>
+    <default>
+        <!--
+          <reference name="notifications">
+              <block type="index/adminhtml_notifications" name="sarp_notifications" template="aw_sarp/notifications/notifications.phtml"></block>
+          </reference>
+      -->
+        <reference name="root">
+            <block type="adminhtml/notification_toolbar" name="notification_toolbar" as="notification_toolbar"
+                   template="aw_sarp/notifications/notifications.phtml">
+                <block type="adminhtml/notification_toolbar" name="real_notification_toolbar"
+                       as="real_notification_toolbar" acl="system/adminnotification/show_toolbar"
+                       template="notification/toolbar.phtml"></block>
+            </block>
+        </reference>
+    </default>
+</layout>

@@ -1,0 +1,132 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2009-2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<?php $_order = $this->getOrder() ?>
+<?php
+$notice = Mage::getModel('sarp/notice')->load($_order->getId(), 'order_id');
+if ($notice->getId())
+    $_order->setPostmanNotice(nl2br($notice->getNotice()));
+?>
+<div>
+    <div id="order-messages">
+        <?php echo $this->getChildHtml('order_messages') ?>
+    </div>
+    <?php echo $this->getChildHtml('order_info') ?>
+    <input type="hidden" name="order_id" value="<?php echo $_order->getId() ?>"/>
+    <?php if ($_order->getIsVirtual()): ?>
+    <div class="box-right">
+    <?php else: ?>
+    <div class="box-left">
+    <?php endif; ?>
+    <!--Payment Method-->
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-payment-method"><?php echo Mage::helper('sales')->__('Payment Information') ?></h4>
+        </div>
+        <fieldset>
+            <?php echo $this->getPaymentHtml() ?>
+            <div><?php echo Mage::helper('sales')->__('Order was placed using %s', $_order->getOrderCurrencyCode()) ?></div>
+        </fieldset>
+    </div>
+</div>
+    <?php if (!$_order->getIsVirtual()): ?>
+    <div class="box-right">
+        <!--Shipping Method-->
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-shipping-method"><?php echo Mage::helper('sales')->__('Shipping &amp; Handling Information') ?></h4>
+            </div>
+            <fieldset>
+                <?php  if ($_order->getTracksCollection()->count()) : ?>
+                <a href="#" id="linkId"
+                   onclick="popWin('<?php echo Mage::helper('shipping')->getTrackingPopUpUrlByOrderId($_order) ?>','trackorder','width=800,height=600,resizable=yes,scrollbars=yes')"
+                   title="<?php echo $this->__('Track order') ?>"><?php echo $this->__('Track order') ?></a>
+                <br/>
+                <?php endif; ?>
+                <?php if ($_order->getShippingDescription()): ?>
+                <strong><?php echo $_order->getShippingDescription() ?></strong>
+
+                <?php if ($this->helper('tax')->displayShippingPriceIncludingTax()): ?>
+                    <?php $_excl = $this->displayShippingPriceInclTax($_order); ?>
+                    <?php else: ?>
+                    <?php $_excl = $this->displayPriceAttribute('shipping_amount', false, ' '); ?>
+                    <?php endif; ?>
+                <?php $_incl = $this->displayShippingPriceInclTax($_order); ?>
+
+                <?php echo $_excl; ?>
+                <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                    (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                    <?php endif; ?>
+                <?php else: ?>
+                <?php echo $this->helper('sales')->__('No shipping information available'); ?>
+                <?php endif; ?>
+
+                <?php if (Mage::helper('sarp')->extensionEnabled('AW_Deliverydate')): ?>
+                <?php if ($_order->getAwDeliverydateDate()): ?>
+                    <br/>
+                    <strong><?php echo Mage::helper('deliverydate')->__('Delivery Date')?></strong>:
+                    &nbsp;
+                    <?php echo $this->formatDate($_order->getAwDeliverydateDate()); ?>
+                    <?php endif; ?>
+
+                <?php if ($_order->getAwDeliverydateNotice()): ?>
+                    <br/>
+                    <strong><?php echo Mage::helper('deliverydate')->__('Delivery Notice')?></strong>:
+                    &nbsp;
+                    <?php echo $_order->getAwDeliverydateNotice(); ?>
+                    <?php endif; ?>
+                <?php else: ?>
+                <?php if ($_order->getPostmanNotice()): ?>
+                    <br/>
+                    <strong><?php echo $this->__('Postman Notice')?></strong>:
+                    &nbsp;
+                    <?php echo $_order->getPostmanNotice(); ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+            </fieldset>
+        </div>
+    </div>
+    <?php endif; ?>
+    <div class="clear"></div>
+
+    <?php echo $this->getGiftmessageHtml() ?>
+
+    <div class="clear"></div>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products"><?php echo Mage::helper('sales')->__('Items Ordered') ?></h4>
+        </div>
+    </div>
+    <?php echo $this->getItemsHtml() ?>
+    <div class="clear"></div>
+
+    <div class="box-left">
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4><?php echo Mage::helper('sales')->__('Comments History') ?></h4>
+            </div>
+            <fieldset><?php echo $this->getChildHtml('order_history') ?></fieldset>
+        </div>
+    </div>
+    <div class="box-right entry-edit">
+        <div class="entry-edit-head"><h4><?php echo Mage::helper('sales')->__('Order Totals') ?></h4></div>
+        <div class="order-totals"><?php echo $this->getChildHtml('order_totals') ?></div>
+    </div>
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,708 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <PRODUCT_TYPE_subscription_simple>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>aw_sarp/css/main.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="product.info">
+            <block type="sarp/product_view_type_simple" name="product.info.sarp" as="product_type_data"
+                   template="aw_sarp/product/view/type/simple.phtml">
+                <action method="addPriceBlockType">
+                    <type>subscription_simple</type>
+                    <block>sarp/product_price</block>
+                    <template>aw_sarp/product/price.phtml</template>
+                </action>
+                <block type="sarp/product_view_type_simple" name="product.info.sarp.subscription.selector"
+                       as="subscription_selector"></block>
+
+                <block type="core/html_calendar" name="sarp_html_calendar" as="sarp_html_calendar"
+                       template="page/js/calendar.phtml"/>
+                <block type="sarp/product_view_type_simple" name="sarp_html_calendar_init" as="sarp_html_calendar_init"
+                       template="aw_sarp/product/view/subscription/js/calendar_init.phtml"/>
+            </block>
+            <!--block type="sarp/product_view_addto" name="product.info.addtocart" as="addtocart">
+                <block type="catalog/product_view" name="product.info.addto.core" as="addto_core" template="catalog/product/view/addto.phtml"/>
+                <block type="core/template" name="product.info.sarp.addto.disabled" as="addto_disabled" template="aw_sarp/product/view/addto_disabled.phtml"/>
+            </block-->
+        </reference>
+    </PRODUCT_TYPE_subscription_simple>
+    <PRODUCT_TYPE_subscription_downloadable>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>aw_sarp/css/main.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="product.info">
+            <block type="sarp/product_view_type_downloadable" name="product.info.sarp" as="product_type_data"
+                   template="aw_sarp/product/view/type/downloadable.phtml">
+                <action method="addPriceBlockType">
+                    <type>subscription_downloadable</type>
+                    <block>sarp/product_price</block>
+                    <template>aw_sarp/product/price.phtml</template>
+                </action>
+                <block type="sarp/product_view_type_downloadable" name="product.info.sarp.subscription.selector"
+                       as="subscription_selector"></block>
+
+                <block type="core/html_calendar" name="sarp_html_calendar" as="sarp_html_calendar"
+                       template="page/js/calendar.phtml"/>
+                <block type="sarp/product_view_type_downloadable" name="sarp_html_calendar_init"
+                       as="sarp_html_calendar_init"
+                       template="aw_sarp/product/view/subscription/js/calendar_init.phtml"/>
+
+                <block type="downloadable/catalog_product_samples" name="product.info.downloadable.samples" as="samples"
+                       template="downloadable/catalog/product/samples.phtml"/>
+                <block type="downloadable/catalog_product_view_type" name="product.info.downloadable"
+                       as="product_type_data" template="downloadable/catalog/product/type.phtml"/>
+            </block>
+
+            <reference name="product.info.options.wrapper">
+                <block type="downloadable/catalog_product_links" name="product.info.downloadable.options"
+                       as="type_downloadable_options" before="-" template="downloadable/catalog/product/links.phtml"/>
+                <action method="insert">
+                    <block>product.info.downloadable.options</block>
+                </action>
+            </reference>
+            <!--block type="sarp/product_view_addto" name="product.info.addtocart" as="addtocart">
+                <block type="catalog/product_view" name="product.info.addto.core" as="addto_core" template="catalog/product/view/addto.phtml"/>
+                <block type="core/template" name="product.info.sarp.addto.disabled" as="addto_disabled" template="aw_sarp/product/view/addto_disabled.phtml"/>
+            </block-->
+        </reference>
+    </PRODUCT_TYPE_subscription_downloadable>
+    <PRODUCT_TYPE_subscription_configurable>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>aw_sarp/css/main.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="product.info">
+            <block type="sarp/product_view_type_configurable" name="product.info.sarp" as="product_type_data"
+                   template="aw_sarp/product/view/type/configurable.phtml">
+                <action method="addPriceBlockType">
+                    <type>subscription_configurable</type>
+                    <block>sarp/product_price</block>
+                    <template>aw_sarp/product/price.phtml</template>
+                </action>
+                <block type="sarp/product_view_type_configurable" name="product.info.sarp.subscription.selector"
+                       as="subscription_selector"></block>
+
+                <block type="core/html_calendar" name="sarp_html_calendar" as="sarp_html_calendar"
+                       template="page/js/calendar.phtml"/>
+                <block type="sarp/product_view_type_configurable" name="sarp_html_calendar_init"
+                       as="sarp_html_calendar_init"
+                       template="aw_sarp/product/view/subscription/js/calendar_init.phtml"/>
+
+                <block type="configurable/catalog_product_samples" name="product.info.configurable.samples" as="samples"
+                       template="configurable/catalog/product/samples.phtml"/>
+                <block type="configurable/catalog_product_view_type" name="product.info.configurable"
+                       as="product_type_data" template="configurable/catalog/product/type.phtml"/>
+
+                <reference name="product.info.options.wrapper">
+                    <block type="catalog/product_view_type_configurable" name="product.info.options.configurable"
+                           as="options_configurable" before="-"
+                           template="catalog/product/view/type/options/configurable.phtml"/>
+                </reference>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_subscription_configurable>
+    <PRODUCT_TYPE_subscription_grouped>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>aw_sarp/css/main.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="product.info">
+            <block type="sarp/product_view_type_grouped" name="product.info.sarp" as="product_type_data"
+                   template="aw_sarp/product/view/type/grouped.phtml">
+                <action method="addPriceBlockType">
+                    <type>subscription_grouped</type>
+                    <block>sarp/product_price</block>
+                    <template>aw_sarp/product/price.phtml</template>
+                </action>
+                <block type="sarp/product_view_type_grouped" name="product.info.sarp.subscription.selector"
+                       as="subscription_selector"></block>
+
+                <block type="core/html_calendar" name="sarp_html_calendar" as="sarp_html_calendar"
+                       template="page/js/calendar.phtml"/>
+                <block type="sarp/product_view_type_grouped" name="sarp_html_calendar_init" as="sarp_html_calendar_init"
+                       template="aw_sarp/product/view/subscription/js/calendar_init.phtml"/>
+
+            </block>
+        </reference>
+    </PRODUCT_TYPE_subscription_grouped>
+
+    <!-- Cart and checkout -->
+
+    <checkout_cart_index>
+        <reference name="checkout.cart">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/checkout_cart_item_renderer_simple</block>
+                <template>checkout/cart/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/checkout_cart_item_renderer_configurable</block>
+                <template>checkout/cart/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/checkout_cart_item_renderer_downloadable</block>
+                <template>downloadable/checkout/cart/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/checkout_cart_item_renderer_grouped</block>
+                <template>checkout/cart/item/default.phtml</template>
+            </action>
+        </reference>
+    </checkout_cart_index>
+
+    <checkout_onepage_review>
+        <reference name="root">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/checkout_cart_item_renderer_simple</block>
+                <template>checkout/onepage/review/item.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/checkout_cart_item_renderer_configurable</block>
+                <template>checkout/onepage/review/item.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/checkout_cart_item_renderer_downloadable</block>
+                <template>downloadable/checkout/onepage/review/item.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/checkout_cart_item_renderer_grouped</block>
+                <template>checkout/onepage/review/item.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_review>
+
+    <checkout_multishipping_addresses>
+        <reference name="checkout_addresses">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/checkout_cart_item_renderer_simple</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/checkout_cart_item_renderer_configurable</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/checkout_cart_item_renderer_downloadable</block>
+                <template>downloadable/checkout/multishipping/item/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/checkout_cart_item_renderer_grouped</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+        </reference>
+    </checkout_multishipping_addresses>
+
+    <checkout_multishipping_shipping>
+        <reference name="checkout_shipping">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/checkout_cart_item_renderer_simple</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/checkout_cart_item_renderer_configurable</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/checkout_cart_item_renderer_downloadable</block>
+                <template>downloadable/checkout/multishipping/item/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/checkout_cart_item_renderer_grouped</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout_billing_items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/checkout_cart_item_renderer_simple</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/checkout_cart_item_renderer_configurable</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/checkout_cart_item_renderer_downloadable</block>
+                <template>downloadable/checkout/multishipping/item/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/checkout_cart_item_renderer_grouped</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+        </reference>
+    </checkout_multishipping_shipping>
+
+    <checkout_multishipping_overview>
+        <reference name="checkout_overview">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/checkout_cart_item_renderer_simple</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/checkout_cart_item_renderer_configurable</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/checkout_cart_item_renderer_downloadable</block>
+                <template>downloadable/checkout/multishipping/item/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/checkout_cart_item_renderer_grouped</block>
+                <template>checkout/multishipping/item/default.phtml</template>
+            </action>
+        </reference>
+    </checkout_multishipping_overview>
+
+    <checkout_onepage_shippingmethod>
+        <remove name="right"/>
+        <remove name="left"/>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="checkout/onepage_shipping_method_available" name="checkout.onepage.shipping_method_available"
+                   template="checkout/onepage/shipping_method/available.phtml"/>
+            <block type="core/template" name="adjdeliverydate.container"
+                   template="aw_sarp/checkout/onepage/shipping_method/postman_notice.phtml"/>
+        </block>
+    </checkout_onepage_shippingmethod>
+
+
+    <!-- Customer page -->
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="sarp">
+                <name>sarp</name>
+                <path>sarp/customer</path>
+                <label>My Subscriptions</label>
+            </action>
+        </reference>
+    </customer_account>
+    <sarp_customer_index>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="sarp/customer_subscription_list" name="sarp_subscription_list"
+                   template="aw_sarp/customer/subscription/list.phtml">
+                <action method="setTitle" translate="title" module="sarp">
+                    <title>My Subscriptions</title>
+                </action>
+            </block>
+        </reference>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="sarp">
+                <title>My Subscriptions</title>
+            </action>
+        </reference>
+    </sarp_customer_index>
+    <sarp_customer_history>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="sarp/customer_subscription_payments_history" name="sarp_subscription_payments_history"
+                   template="aw_sarp/customer/subscription/payments/history.phtml">
+                <action method="setTitle" translate="title" module="sarp">
+                    <title>My Subscriptions - Payments History</title>
+                </action>
+                <block type="sarp/customer_subscription_payments_pending" name="sarp_subscription_payments_pending"
+                       template="aw_sarp/customer/subscription/payments/pending.phtml"/>
+            </block>
+        </reference>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="sarp">
+                <title>My Subscriptions - Payments History</title>
+            </action>
+        </reference>
+    </sarp_customer_history>
+    <sarp_customer_view>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="sarp/customer_subscription_summary" name="sarp_subscription_summary"
+                   template="aw_sarp/customer/subscription/summary.phtml">
+                <action method="setTitle" translate="title" module="sarp">
+                    <title>My Subscriptions - Subscription Details</title>
+                </action>
+                <block type="sarp/customer_subscription_payments_pending" name="sarp_subscription_payments_pending"
+                       template="aw_sarp/customer/subscription/payments/pending.phtml"/>
+            </block>
+        </reference>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="sarp">
+                <title>My Subscriptions - Subscription Details</title>
+            </action>
+        </reference>
+    </sarp_customer_view>
+    <sarp_customer_change>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="sarp/customer_subscription_edit" name="sarp_subscription_edit"
+                   template="aw_sarp/customer/subscription/edit.phtml"></block>
+        </reference>
+        <reference name="head">
+            <action method="setTitle" translate="title" module="sarp">
+                <title>My Subscriptions - Subscription Details</title>
+            </action>
+        </reference>
+    </sarp_customer_change>
+
+    <!-- Orders details at customer area -->
+    <sales_order_view>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>aw_sarp/sales/order/items/renderer.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>aw_sarp/sales/order/items/renderer.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>downloadable/sales/order/items/renderer/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>aw_sarp/sales/order/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_view>
+    <sales_order_invoice>
+        <reference name="invoice_items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>aw_sarp/sales/order/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_invoice>
+    <sales_order_shipment>
+        <reference name="shipment_items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/shipment/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/shipment/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>sales/order/shipment/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>aw_sarp/sales/order/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_shipment>
+    <sales_order_creditmemo>
+        <reference name="creditmemo_items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>aw_sarp/sales/order/items/renderer.phtml</template>
+            </action>
+        </reference>
+    </sales_order_creditmemo>
+
+
+    <!-- Orders details via email -->
+    <sales_email_order_items>
+        <reference name="items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/order/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/order/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_email_items_order_downloadable</block>
+                <template>downloadable/email/order/items/order/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/order/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_items>
+
+    <sales_email_order_invoice_items>
+        <reference name="items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/invoice/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/invoice/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>downloadable/email/order/items/invoice/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/order/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_invoice_items>
+
+    <sales_email_order_shipment_items>
+        <reference name="items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/shipment/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/shipment/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/order/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_shipment_items>
+
+    <sales_email_order_creditmemo_items>
+        <reference name="items">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/creditmemo/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/creditmemo/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>downloadable/email/order/items/credimemo/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>email/order/items/order/default.phtml</template>
+            </action>
+        </reference>
+    </sales_email_order_creditmemo_items>
+
+    <!-- Orders details at customer area - print section -->
+    <sales_order_printinvoice>
+        <reference name="sales.order.print.invoice">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>downloadable/sales/order/invoice/items/renderer/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+        </reference>
+    </sales_order_printinvoice>
+    <sales_order_printcreditmemo>
+        <reference name="sales.order.print.creditmemo">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/creditmemo/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>downloadable/sales/order/creditmemo/items/renderer/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+        </reference>
+    </sales_order_printcreditmemo>
+    <sales_order_printshipment>
+        <reference name="sales.order.print.shipment">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/shipment/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/shipment/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+        </reference>
+    </sales_order_printshipment>
+    <sales_order_print>
+        <reference name="sales.order.print">
+            <action method="addItemRender">
+                <type>subscription_simple</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_configurable</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/items/renderer/default.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_downloadable</type>
+                <block>sarp/sales_order_items_renderer_downloadable</block>
+                <template>downloadable/sales/order/items/renderer/downloadable.phtml</template>
+            </action>
+            <action method="addItemRender">
+                <type>subscription_grouped</type>
+                <block>sarp/sales_order_items_renderer_simple</block>
+                <template>sales/order/invoice/items/renderer/default.phtml</template>
+            </action>
+        </reference>
+    </sales_order_print>
+
+
+    <catalog_product_view>
+        <reference name="catalog.product.related">
+            <action method="addPriceBlockType">
+                <type>subscription_simple</type>
+                <block>sarp/product_price</block>
+                <template>aw_sarp/product/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>subscription_configurable</type>
+                <block>sarp/product_price</block>
+                <template>aw_sarp/product/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>subscription_downloadable</type>
+                <block>sarp/product_price</block>
+                <template>aw_sarp/product/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>subscription_grouped</type>
+                <block>sarp/product_price</block>
+                <template>aw_sarp/product/price.phtml</template>
+            </action>
+        </reference>
+    </catalog_product_view>
+
+
+    <review_product_list>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>calendar/calendar-win2k-1.css</name>
+                <params/>
+                <!--<if/><condition>can_load_calendar_js</condition>-->
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>calendar/calendar.js</name>
+                <!--<params/><if/><condition>can_load_calendar_js</condition>-->
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>calendar/calendar-setup.js</name>
+                <!--<params/><if/><condition>can_load_calendar_js</condition>-->
+            </action>
+        </reference>
+    </review_product_list>
+
+</layout> 

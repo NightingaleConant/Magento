@@ -1,0 +1,17 @@
+<style>
+#amorderattr .required
+{
+    color: #EB340A;
+}
+</style>
+            
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-attributes"><?php echo $this->__('Custom Attributes'); ?></h4>
+    </div>
+    <div class="hor-scroll">
+        <?php foreach ($this->getFormElements() as $element): ?>
+            <?php echo $element->toHtml(); ?>
+        <?php endforeach; ?>
+    </div>
+</div>

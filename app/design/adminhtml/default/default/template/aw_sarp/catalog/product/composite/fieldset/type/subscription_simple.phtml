@@ -1,0 +1,38 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2009-2010 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+
+<?php $subscription = $this->getSubscription() ?>
+<?php $_product = $subscription->getProduct() ?>
+
+<div class="product_composite_configure_fields_options">
+    <div class="product-options">
+        <?php if ($subscription->hasSubscriptionOptions() && $subscription->getProduct()->getAwSarpEnabled()): ?>
+        <?php echo $this->getChildHtml('subscription_selector') ?>
+        <?php if ($_product->getAwSarpHasShipping()): ?>
+            <?php echo $subscription->getDateHtml(); ?>
+            <?php else: ?>
+            <input type="hidden" name="<?php echo AW_Sarp_Block_Product_View_Type_Subscription::DATE_FIELD_NAME;?>"
+                   value="<?php echo $this->formatDate($subscription->getDefaultPeriod()->getNearestAvailableDay())?>"/>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+
+

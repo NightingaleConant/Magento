@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!-- Remove this file if your module does not have profide an api -->
+<config>
+    <api>
+        <resources>
+            <installment_master translate="title" module="installment">
+                <title>Installment Master</title>
+                <model>installment/master_api</model>
+                <methods>
+                    <list translate="title" module="installment">
+                        <title>Retrieve installment master sequences</title>
+                        <acl>installment_master/list</acl>
+                        <method>items</method>
+                    </list>
+                    <create translate="title" module="installment">
+                        <title>Create an installment master sequence</title>
+                        <acl>installment_master/create</acl>
+                        <method>create</method>
+                    </create>
+                    <info translate="title" module="installment">
+                        <title>Retrieve installment master sequence data</title>
+                        <acl>installment_master/info</acl>
+                        <method>info</method>
+                    </info>
+                    <update translate="title" module="installment">
+                        <title>Update an installment master sequence</title>
+                        <acl>installment_master/update</acl>
+                        <method>update</method>
+                    </update>
+                    <delete translate="title" module="installment">
+                        <title>Delete an installment master sequence</title>
+                        <acl>installment_master/delete</acl>
+                        <method>delete</method>
+                    </delete>
+                </methods>
+                <faults module="installment">
+                    <data_invalid> <!-- if we get invalid input data for customers -->
+                        <code>100</code >
+                        <!-- we cannot know all the errors that can appear, their details can be found in error message for call -->
+                        <message>Invalid installment master sequence data. Details in error message.</message>
+                    </data_invalid>
+                    <filters_invalid>
+                        <code>101</code >
+                        <message>Invalid filters specified. Details in error message.</message>
+                    </filters_invalid>
+                    <not_exists>
+                        <code>102</code >
+                        <message>Installment master sequence does not exist.</message>
+                    </not_exists>
+                    <not_deleted>
+                        <code>103</code >
+                        <message>Installment master sequence was not deleted. Details in error message.</message>
+                    </not_deleted>
+                </faults>
+            </installment_master>
+            <installment_transaction translate="title" module="installment">
+                <title>Installment Transactions</title>
+                <model>installment/transaction_api</model>
+                <methods>
+                    <list translate="title" module="installment">
+                        <title>Retrieve installment transactions</title>
+                        <acl>installment_transaction/list</acl>
+                        <method>items</method>
+                    </list>
+                    <create translate="title" module="installment">
+                        <title>Create an installment transaction</title>
+                        <acl>installment_transaction/create</acl>
+                        <method>create</method>
+                    </create>
+                    <info translate="title" module="installment">
+                        <title>Retrieve installment transaction data</title>
+                        <acl>installment_transaction/info</acl>
+                        <method>info</method>
+                    </info>
+                    <update translate="title" module="installment">
+                        <title>Update an installment transaction</title>
+                        <acl>installment_transaction/update</acl>
+                        <method>update</method>
+                    </update>
+                    <delete translate="title" module="installment">
+                        <title>Delete an installment transaction</title>
+                        <acl>installment_transaction/delete</acl>
+                        <method>delete</method>
+                    </delete>
+                </methods>
+                <faults module="installment">
+                    <data_invalid> <!-- if we get invalid input data for customers -->
+                        <code>100</code >
+                        <!-- we cannot know all the errors that can appear, their details can be found in error message for call -->
+                        <message>Invalid installment master sequence data. Details in error message.</message>
+                    </data_invalid>
+                    <filters_invalid>
+                        <code>101</code >
+                        <message>Invalid filters specified. Details in error message.</message>
+                    </filters_invalid>
+                    <not_exists>
+                        <code>102</code >
+                        <message>Installment master sequence does not exist.</message>
+                    </not_exists>
+                    <not_deleted>
+                        <code>103</code >
+                        <message>Installment master sequence was not deleted. Details in error message.</message>
+                    </not_deleted>
+                </faults>
+            </installment_transaction>
+        </resources>
+        <v2>
+        </v2>
+        <acl>
+            <resources>
+                <installment_master translate="title" module="installment">
+                    <title>Installment Master</title>
+
+                    <list translate="title" module="installment">
+                        <title>View all</title>
+                    </list>
+                    <create translate="title" module="installment">
+                        <title>Create</title>
+                    </create>
+                    <info translate="title" module="installment">
+                        <title>Get info</title>
+                    </info>
+                    <update translate="title" module="installment">
+                        <title>Update</title>
+                    </update>
+                    <delete translate="title" module="installment">
+                        <title>Delete</title>
+                    </delete>
+                </installment_master>
+
+                <installment_transaction translate="title" module="installment">
+                    <title>Installment Transactions</title>
+
+                    <list translate="title" module="installment">
+                        <title>View all</title>
+                    </list>
+                    <create translate="title" module="installment">
+                        <title>Create</title>
+                    </create>
+                    <info translate="title" module="installment">
+                        <title>Get info</title>
+                    </info>
+                    <update translate="title" module="installment">
+                        <title>Update</title>
+                    </update>
+                    <delete translate="title" module="installment">
+                        <title>Delete</title>
+                    </delete>
+                </installment_transaction>
+            </resources>
+        </acl>
+    </api>
+</config>

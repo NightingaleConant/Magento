@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+					<system>
+		              <children>
+		                <config>
+		                  <children>
+		                    <pickpack_options>
+		                      <title>Moogento pickPack</title>
+								<sort_order>301</sort_order>
+		                    </pickpack_options>
+		                  </children>
+		                </config>
+		              </children>
+		            </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <events>
+            <core_block_abstract_prepare_layout_before>
+    			<observers>
+                    <reward>
+                        <class>pickpack/observer</class>
+                        <method>applyLimitToGrid</method>
+                    </reward>
+                </observers>
+    		</core_block_abstract_prepare_layout_before>
+   </events>
+</config>

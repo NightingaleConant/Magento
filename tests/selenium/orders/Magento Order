@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://vagrant-magento.localdomain:8080/index.php/admin/sales_order/index/key/610fa8d65a2f172a51b1d2c7c1329f43/" />
+<title>Magento Order</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Magento Order</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/index.php/admin/sales_order/index/key/610fa8d65a2f172a51b1d2c7c1329f43/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=/html/body/div/div[2]/div/div[2]/table/tbody/tr/td[2]/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//table[@id='sales_order_create_customer_grid_table']/tbody/tr[2]/td[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=order-store-selector</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=store_1</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=/html/body/div/div[2]/div/form/div[5]/div/div/table/tbody/tr/td[2]/div[2]/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a[name=&quot;price&quot;] &gt; span.sort-title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a[name=&quot;price&quot;] &gt; span.sort-title</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name=''])[9]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=/html/body/div/div[2]/div/form/div[5]/div/div/table/tbody/tr/td[2]/div/div/div/div/button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=promo_code</td>
+	<td>111111</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=p_method_authorizecimsoap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=authorizecimsoap_installment_type_id</td>
+	<td>label=S1P ($1 Offer (Balance in 30 Days))</td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=Get shipping methods and rates</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=s_method_freeshipping_freeshipping</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForNotVisible</td>
+	<td>//*[@id=&quot;loading-mask&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=/html/body/div[2]/div[2]/div/form/div[5]/div/div/table/tbody/tr/td[2]/div[12]/div[2]/div/div[2]/p[3]/button</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

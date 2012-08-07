@@ -1,0 +1,44 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2008-2009 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+<?php 
+$subscription = $this->getSubscription();
+$_product = $subscription->getProduct();
+$preconfiguredValues = $_product->getPreconfiguredValues();
+?>
+
+<?php if ($_product->getAwSarpEnabled()): ?>
+
+<p class="sarp-subscription">
+    <?php echo $this->__('Subscription type') ?>:
+
+    <?php if (($types = $subscription->getSubscriptionTypes()) && (sizeof($types) > 1)): ?>
+
+    <select name="aw_sarp_subscription_type" style="width:200px;">
+        <?php foreach ($types as $item): ?>
+        <option <?php if ($preconfiguredValues && $preconfiguredValues->getData('aw_sarp_subscription_type') == $item['value']): ?>selected="selected"<?php endif; ?>
+                value="<?php echo $item['value']?>"><?php echo $item['label']?></option>
+        <?php endforeach; ?>
+    </select>
+    <?php elseif ($types && (count($types) == 1)): ?>
+    <span><input type="hidden" name="aw_sarp_subscription_type"
+                 value="<?php echo $types[0]['value']?>"/><?php echo $types[0]['label']?></span>
+    <?php endif;?>
+</p>
+
+<?php endif; ?>

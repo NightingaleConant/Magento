@@ -1,0 +1,153 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ *
+ * @category   AW
+ * @package    AW_Sarp
+ * @version    1.0
+ * @copyright  Copyright (c) 2008-2009 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/LICENSE-M1.txt
+ */
+?>
+
+<?php
+    $_taxHelper = Mage::helper('tax');
+?>
+
+<div class="page-head">
+    <h3><?php echo $this->getTitle()?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php if ($this->getCollection()->count()): ?>
+<?php echo $this->getToolbarHtml(); ?>
+<table class="data-table box-table" id="customer-subscriptions-table" cellspacing="0">
+    <col width="200"/>
+    <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_ORDER_AMOUNT)): ?>
+    <col width="10"/>
+    <?php endif;?>
+    <col width="10"/>
+    <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_EXPIRE_DATE)): ?>
+    <col width="10"/>
+    <?php endif;?>
+    <col width="100"/>
+    <col width="30"/>
+    <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_NEXT_PAYMENT)): ?>
+    <col width="50"/>
+    <?php endif;?>
+    <col/>
+    <col width="150"/>
+    <thead>
+    <tr>
+        <th><?php echo $this->__('Product(s)') ?></th>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_ORDER_AMOUNT)): ?>
+        <th><?php echo $this->__('Last order amount') ?></th>
+        <?php endif;?>
+        <th><?php echo $this->__('Price') ?></th>
+        <th><?php echo $this->__('Start') ?></th>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_EXPIRE_DATE)): ?>
+        <th><?php echo $this->__('Expires') ?></th>
+        <?php endif;?>
+        <th><?php echo $this->__('Period') ?></th>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_NEXT_PAYMENT)): ?>
+        <th><?php echo $this->__('Next payment') ?></th>
+        <?php endif;?>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_NEXT_DELIVERY)): ?>
+        <th><?php echo $this->__('Next delivery') ?></th>
+        <?php endif;?>
+        <th><?php echo $this->__('Status') ?></th>
+        <th class="last a-center"></th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->getCollection() as $Subscription): ?>
+    <tr>
+        <td>
+            <ul>
+                <?php foreach ($Subscription->getItems() as $Item): ?>
+                <li>
+                    <a href="<?php echo Mage::getUrl('catalog/product/view', array('id' => $Item->getOrderItem()->getProductId()))?>"><?php echo $Item->getOrderItem()->getName()?></a>
+                    (<?php echo (int)$Item->getOrderItem()->getQtyOrdered()?>)
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </td>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_ORDER_AMOUNT)): ?>
+        <td>
+							<span class="price-incl-tax">
+								<div class="cart-price">
+                                    <span class="price"><?php echo $Subscription->getLastOrder()->formatPrice($Subscription->getFlatLastOrderAmount()) ?></span>
+                                </div>
+							</span>
+        </td>
+        <?php endif;?>
+        <td>
+            <ul>
+                <?php if ($Subscription->getLastOrder()->getId() == $Subscription->getOrder()->getId()): ?>
+                <?php foreach ($Subscription->getItems() as $SubItem): ?>
+                    <?php $Item = $SubItem->getOrderItem() ?>
+                    <li>
+                        <?php include('list/price.phtml')?>
+                    </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                <?php foreach ($Subscription->getLastOrder()->getItemsCollection() as $Item): ?>
+                    <?php if ($Item->getParentItemId()) continue; ?>
+                    <li>
+                        <?php include('list/price.phtml')?>
+                    </li>
+                    <?php endforeach; ?>
+                <?php endif ?>
+            </ul>
+        </td>
+        <td><?php echo $this->formatDate($Subscription->getDateStart()) ?></td>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_EXPIRE_DATE)): ?>
+        <td><?php if ($Subscription->isInfinite()) {
+            echo $this->__('Never');
+        } else {
+            echo $this->formatDate($Subscription->getDateExpire());
+        }  ?></td>
+        <?php endif;?>
+        <td><?php echo $Subscription->getPeriod()->getName() ?></td>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_NEXT_PAYMENT)): ?>
+        <td>
+            <?php
+                                            if ($Subscription->isActive())
+            echo $this->formatDate($this->getPendingPaymentBlock()->setSubscription($Subscription)->getNextPaymentDate())
+            ?>
+        </td>
+        <?php endif;?>
+        <?php if (Mage::getStoreConfig(AW_Sarp_Helper_Config::XML_PATH_APPEARANCE_SHOW_NEXT_DELIVERY)): ?>
+        <td><?php
+            if ($Subscription->getFlatNextDeliveryDate())
+            echo $this->formatDate($Subscription->getFlatNextDeliveryDate())
+            ?></td>
+        <?php endif;?>
+        <td><?php echo $this->getSubscriptionStatusLabel($Subscription) ?></td>
+
+
+        <td class="last a-center">
+            <a href="<?php echo Mage::getUrl('*/*/view', array('id' => $Subscription->getId()))?>"><?php echo $this->__('Edit') ?></a>
+            <br/>
+            <a href="<?php echo Mage::getUrl('*/*/history', array('id' => $Subscription->getId()))?>"><?php echo $this->__('Payments History') ?></a>
+        </td>
+    </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('customer-subscriptions-table')</script>
+<?php echo $this->getToolbarHtml() ?>
+<?php else: ?>
+<?php echo $this->__("You have no subscriptions") ?>
+<?php endif; ?>
+
+<div class="buttons-set">
+    <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>">
+        <small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+</div>

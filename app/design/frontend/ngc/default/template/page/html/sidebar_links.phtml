@@ -1,0 +1,13 @@
+<div class="content clearfix">
+  <h2>Featured Programs</h2>
+  <ul id="featured-programs-list">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('sidebar-featured-programs')->toHtml() ?>
+  </ul>
+
+  <hr />
+
+  <h2>Authors</h2>
+  <ul id="authors-list">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('sidebar-authors-list')->toHtml() ?>
+  </ul>
+</div>

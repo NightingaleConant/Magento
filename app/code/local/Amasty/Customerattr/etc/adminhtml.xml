@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <menu>
+        <customer>
+            <children>
+                <amcustomerattr translate="title">
+                    <title>Manage Attributes</title>
+                    <action>amcustomerattr/adminhtml_manage</action>
+                    <sort_order>1</sort_order>
+                </amcustomerattr>
+            </children>
+        </customer>
+    </menu>
+    
+    <translate>
+        <modules>
+            <Amasty_Customerattr>
+                <files>
+                    <default>Amasty_Customerattr.csv</default>
+                </files>
+            </Amasty_Customerattr>
+        </modules>
+    </translate>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <customer>
+                        <children>
+                            <amcustomerattr translate="title" module="amcustomerattr">
+                                <title>Manage Customer Attributes</title>
+                                <sort_order>16</sort_order>
+                            </amcustomerattr>
+                        </children>
+                    </customer>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <amcustomerattr translate="title" module="amcustomerattr">
+                                        <title>Customer Attributes</title>
+                                    </amcustomerattr>
+                                </children>
+                            </config>
+                        </children>
+                    </system> 
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

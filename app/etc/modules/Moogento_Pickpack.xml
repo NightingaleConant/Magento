@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Moogento_Pickpack>
+            <active>true</active>
+            <codePool>local</codePool>            
+        </Moogento_Pickpack>
+    </modules>
+</config>

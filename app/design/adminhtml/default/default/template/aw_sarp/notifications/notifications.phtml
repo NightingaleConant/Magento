@@ -1,0 +1,9 @@
+<?php echo $this->getChildHtml('real_notification_toolbar') ?>
+<?php if (Mage::getModel('sarp/subscription')->issetSuspendedSubscription() && Mage::app()->getRequest()->getControllerName() != 'subscriptions'): ?>
+<div class="notification-global-notice notification-global">
+    <strong><?php echo Mage::helper('sarp')->__('You have suspended subscriptions!')?></strong>
+    Click <a
+        href="<?php echo Mage::helper("adminhtml")->getUrl("sarp_admin/subscriptions/index", array("only_suspended" => 1))?>">here</a>
+    to see more.
+</div>
+<?php endif; ?>

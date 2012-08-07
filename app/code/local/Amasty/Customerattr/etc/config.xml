@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Amasty_Customerattr>
+            <version>2.2.0</version>
+        </Amasty_Customerattr>
+    </modules>
+    
+    
+    <admin>
+        <routers>
+            <amcustomerattr>
+                <use>admin</use>
+                <args>
+                    <module>Amasty_Customerattr</module>
+                    <frontName>amcustomerattr</frontName>
+                </args>
+            </amcustomerattr>
+        </routers>
+    </admin>
+    
+    
+    <frontend>
+        <translate>
+            <modules>
+                <Amasty_Customerattr>
+                    <files>
+                        <default>Amasty_Customerattr.csv</default>
+                    </files>
+                </Amasty_Customerattr>
+            </modules>
+        </translate>
+        
+        <layout>
+            <updates>
+                <amcustomerattr>
+                    <file>amcustomerattr.xml</file>
+                </amcustomerattr>
+            </updates>
+        </layout>
+    </frontend>
+    
+    
+    
+    
+    <adminhtml>
+        <menu>
+            <customer>
+                <children>
+                    <amcustomerattr translate="title">
+                        <title>Manage Attributes</title>
+                        <action>amcustomerattr/adminhtml_manage</action>
+                        <sort_order>1</sort_order>
+                    </amcustomerattr>
+                </children>
+            </customer>
+        </menu>
+        
+        <translate>
+            <modules>
+                <Amasty_Customerattr>
+                    <files>
+                        <default>Amasty_Customerattr.csv</default>
+                    </files>
+                </Amasty_Customerattr>
+            </modules>
+        </translate>
+    
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <customer>
+                            <children>
+                                <amcustomerattr translate="title" module="amcustomerattr">
+                                    <title>Manage Customer Attributes</title>
+                                    <sort_order>16</sort_order>
+                                </amcustomerattr>
+                            </children>
+                        </customer>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <amcustomerattr translate="title" module="amcustomerattr">
+                                            <title>Customer Attributes</title>
+                                        </amcustomerattr>
+                                    </children>
+                                </config>
+                            </children>
+                        </system> 
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    
+    
+    
+    
+    <global>
+    
+        <models>
+            <amcustomerattr>
+                <class>Amasty_Customerattr_Model</class>
+                <resourceModel>amcustomerattr_mysql4</resourceModel>
+            </amcustomerattr>
+            
+            <customer>
+                <rewrite>
+                    <customer>Amasty_Customerattr_Model_Rewrite_Customer</customer>
+                    <form>Amasty_Customerattr_Model_Rewrite_Customer_Form</form>
+                </rewrite>
+            </customer>
+            
+            <customer_entity>
+                <rewrite>
+                    <attribute>Amasty_Customerattr_Model_Rewrite_Customer_Entity_Attribute</attribute>
+                    <customer>Amasty_Customerattr_Model_Rewrite_Customer_Entity_Customer</customer>
+                </rewrite>
+            </customer_entity>
+            
+            <!-- this block is used for 1.6 version -->
+            <customer_resource>
+                <rewrite>
+                    <attribute>Amasty_Customerattr_Model_Rewrite_Customer_Resource_Attribute</attribute>
+                    <customer>Amasty_Customerattr_Model_Rewrite_Customer_Resource_Customer</customer>
+                </rewrite>
+            </customer_resource>
+            
+            <checkout>
+                <rewrite>
+                    <type_onepage>Amasty_Customerattr_Model_Rewrite_Checkout_Type_Onepage</type_onepage>
+                </rewrite>
+            </checkout>
+
+            <catalog>
+                <rewrite>
+                    <product_flat_indexer>Amasty_Customerattr_Model_Rewrite_Catalog_Product_Flat_Indexer</product_flat_indexer>
+                </rewrite>
+            </catalog>
+            
+            <core>
+                <rewrite>
+                    <email_template>Amasty_Customerattr_Model_Rewrite_Core_Email_Template</email_template>
+                </rewrite>
+            </core>
+        </models>
+        
+		<resources>
+             <amcustomerattr_setup>
+                <setup>
+                    <module>Amasty_Customerattr</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </amcustomerattr_setup>
+		    <amcustomerattr_write>
+		        <connection><use>core_write</use></connection>
+		    </amcustomerattr_write>
+		    <amcustomerattr_read>
+		        <connection><use>core_read</use></connection>
+		    </amcustomerattr_read>
+		</resources>
+		  
+        <blocks>
+            <amcustomerattr>
+                <class>Amasty_Customerattr_Block</class>
+            </amcustomerattr>
+            
+            <adminhtml>
+                <rewrite>
+                    <customer_grid>Amasty_Customerattr_Block_Rewrite_Customer_Grid</customer_grid>
+                    <sales_order_create_customer_grid>Amasty_Customerattr_Block_Rewrite_Sales_Order_Create_Customer_Grid</sales_order_create_customer_grid>
+                </rewrite>
+            </adminhtml>
+            <customer>
+                <rewrite>
+                    <form_login>Amasty_Customerattr_Block_Customer_Form_Login</form_login>
+                </rewrite>
+            </customer>
+        </blocks>
+        
+        <helpers>
+            <amcustomerattr>
+                <class>Amasty_Customerattr_Helper</class>
+            </amcustomerattr>
+        </helpers>
+        
+    </global>
+    
+    <default>
+        <amcustomerattr>
+        	<general>
+        		<select_grid>1</select_grid>
+        	</general>
+            <login>
+                <login_field></login_field>
+                <disable_email>0</disable_email>
+                <modify_title>1</modify_title>
+            </login>
+        </amcustomerattr>
+    </default>
+    
+</config>

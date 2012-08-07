@@ -1,0 +1,3999 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<moogento translate="label" module="pickpack">
+			<label>Moogento</label>
+			<sort_order>300</sort_order>
+		</moogento>
+	</tabs>
+	<sections>
+		<pickpack_options translate="label" module="pickpack">
+			<label>pickPack</label>
+			<tab>moogento</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<messages translate="label">
+					<label>Order-combined Pick List Options</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<pickpack_name_yn_combined>
+							<label>Show product name?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_name_yn_combined>
+						<pickpack_namenudge_combined>
+							<label>Product name position</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/nudgename</frontend_model>					
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_name_yn_combined>1</pickpack_name_yn_combined></depends>
+							<comment>Default : 250</comment>
+						</pickpack_namenudge_combined>
+						<pickpack_configname_combined>
+							<label>Show which value for configurable product names?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/configurablenamecustom</source_model>			
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_name_yn_combined>1</pickpack_name_yn_combined></depends>
+							<comment>Default : Simple product name</comment>                            
+						</pickpack_configname_combined>
+						<pickpack_configname_attribute_combined>
+							<label>Attribute to use as product name</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/longtext</frontend_model>		
+							<sort_order>28</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_name_yn_combined>1</pickpack_name_yn_combined></depends>
+	                    	<depends><pickpack_configname_combined>custom</pickpack_configname_combined></depends>
+						</pickpack_configname_attribute_combined>
+						<pickpack_shelving_yn>
+							<label>Show shelving info?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_shelving_yn>
+						<pickpack_shelving>
+							<label>Shelving attribute</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/blank</frontend_model>					
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_shelving_yn>1</pickpack_shelving_yn></depends>
+							<comment>Attribute code for shelving info; eg. shelf</comment>                            
+						</pickpack_shelving>
+						<pickpack_shelving_nudge translate="label">
+							<label>Shelving position</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default : 200</comment>
+	                    	<depends><pickpack_shelving_yn>1</pickpack_shelving_yn></depends>
+						</pickpack_shelving_nudge>
+						<pickpack_extra_yn>
+							<label>Show extra attribute?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>52</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_extra_yn>
+						<pickpack_extra>
+							<label>Extra attribute code</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/blank</frontend_model>					
+							<sort_order>53</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_extra_yn>1</pickpack_extra_yn></depends>
+						</pickpack_extra>
+						<pickpack_extra_nudge translate="label">
+							<label>Extra attribute position</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>54</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default : 250</comment>
+	                    	<depends><pickpack_extra_yn>1</pickpack_extra_yn></depends>
+						</pickpack_extra_nudge>
+						<pickpack_sku_nudge translate="label">
+							<label>SKU position</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default : 50</comment>
+						</pickpack_sku_nudge>
+						<pickpack_options_yn>
+							<label>Show product options?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/optionschoice</source_model>
+							<sort_order>62</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_options_yn>
+						<pickpack_options_filter_yn>
+							<label>Filter out some options?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>64</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_options_yn>newskuparent</pickpack_options_yn></depends>
+						</pickpack_options_filter_yn>
+						<pickpack_options_filter>
+							<label>Filter out these custom option SKUs :</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/longtext</frontend_model>		
+							<sort_order>66</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_options_yn>newskuparent</pickpack_options_yn></depends>
+	                    	<depends><pickpack_options_filter_yn>1</pickpack_options_filter_yn></depends>
+							<comment>Comma-separated list of SKUs to *not* show</comment>
+						</pickpack_options_filter>
+						<pickpack_options_count_filter>
+							<label>Don't count these custom option SKUs :</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/longtext</frontend_model>		
+							<sort_order>67</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_options_yn>newskuparent</pickpack_options_yn></depends>
+	                    	<depends><pickpack_options_filter_yn>1</pickpack_options_filter_yn></depends>
+							<comment>Comma-separated list of SKUs to *not* show a count for</comment>
+						</pickpack_options_count_filter>
+						<pickpack_showstock_yn_combined>
+							<label>Show stock alerts?</label>							
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>68</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_showstock_yn_combined>
+						<pickpack_stock_combined>
+							<label>Show stock alert below...</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/stockalert</frontend_model>					
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_showstock_yn_combined>1</pickpack_showstock_yn_combined></depends>
+							<comment>Shows SKU in red if stock below this number</comment>                            
+						</pickpack_stock_combined>
+						<pickpack_cost>
+							<label>Show cost subtotal?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_cost>
+						<pickpack_currency>
+							<label>Set the currency symbol</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_currency</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_cost>1</pickpack_cost></depends>
+						</pickpack_currency>
+						<pickpack_count>
+							<label>Show count subtotal?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_count>
+						<pickpack_packprint>
+							<label>Show date printed?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/yesno</source_model>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_packprint>
+					</fields>
+				</messages>
+				
+				<wonder translate="label">
+					<label>Packing Sheet Options</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+					<pickpack_packlogo>
+						<label>Add header logo?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>10</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_packlogo>
+					<pack_logo translate="label">
+                         <label>Header logo</label>
+                         <frontend_type>image</frontend_type>
+                         <backend_model>pickpack/image</backend_model>
+                         <upload_dir config="system/filesystem/media" scope_info="1">sales/store/logo_pack</upload_dir>
+                         <base_url type="media" scope_info="1">sales/store/logo_pack</base_url>
+                         <sort_order>20</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>   
+                         <comment>Dimensions 269pt x 41pt @ 300dpi : .png works best</comment>                            
+                         <depends><pickpack_packlogo>1</pickpack_packlogo></depends>                                                     
+                     </pack_logo>
+					<pickpack_company_address_yn>
+						<label>Add company address to header?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>25</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_company_address_yn>
+					<pickpack_company_address>
+						<label>Company address</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>26</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes on the right of the header logo</comment>                            
+                    	<depends><pickpack_company_address_yn>1</pickpack_company_address_yn></depends>
+					</pickpack_company_address>
+					<pickpack_title_yn>
+						<label>Add a page title?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>28</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_title_yn>
+					<pickpack_title>
+						<label>Custom page title</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>						
+						<sort_order>29</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes next to the order number; eg. 'Order' or 'Packing Sheet'</comment>                            
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+					</pickpack_title>
+					<pickpack_title_2_yn>
+						<label>Add a 2nd page title?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>30</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+					</pickpack_title_2_yn>
+					<pickpack_title_2>
+						<label>2nd Custom page title</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>						
+						<sort_order>31</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes top-right; eg. 'Packing Sheet'</comment>                            
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+                    	<depends><pickpack_title_2_yn>1</pickpack_title_2_yn></depends>
+					</pickpack_title_2>
+					<pickpack_nudge_title>
+						<label>Nudge 2nd custom title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/nudge</frontend_model>
+						<sort_order>32</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+                    	<depends><pickpack_title_2_yn>1</pickpack_title_2_yn></depends>
+					</pickpack_nudge_title>	
+					<shipping_title>
+						<label>'Shipping address' display title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>33</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Suggested : [blank] or 'shipping details'</comment>                            
+					</shipping_title>
+					<billing_title>
+						<label>'Billing address' display title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>34</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Suggested : [blank] or 'billing details'</comment>   
+						<depends><billing_details_yn>1</billing_details_yn></depends>
+					</billing_title>
+					
+					<pickpack_return_address_yn>
+						<label>Add return address?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>35</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes at page base - good for integrated labels</comment> 
+					</pickpack_return_address_yn>
+					<pickpack_return_address>
+						<label>Return address</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>40</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>                           
+                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+					</pickpack_return_address>
+						<pickpack_returnfont>
+							<label>Font size (Return address)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 9pt</comment>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+						</pickpack_returnfont>
+					
+						<pickpack_returnaddress translate="label">
+							<label>Nudge return address</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Position the addresses exactly - for integrated labels</comment>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+						</pickpack_returnaddress>
+						<pickpack_returnlogo>
+							<label>Add logo above return address?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+						</pickpack_returnlogo>						
+						<pickpack_logo translate="label">
+                            <label>Logo above return address</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>pickpack/image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">sales/store/logo_third</upload_dir>
+                            <base_url type="media" scope_info="1">sales/store/logo_third</base_url>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>   
+                            <comment>Dimensions 180pt x 120pt @ 150dpi : .png works best</comment>
+	                    	<depends><pickpack_returnlogo>1</pickpack_returnlogo></depends>
+							<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+                        </pickpack_logo>
+                        <pickpack_nudgelogo translate="label">
+							<label>Nudge return address logo</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+							<depends><pickpack_returnlogo>1</pickpack_returnlogo></depends>
+						</pickpack_nudgelogo>	                        
+						<pickpack_bottom_shipping_address_yn>
+							<label>Add shipping address at bottom?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/yesno</source_model>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Goes at page base - good for integrated labels</comment>                            
+						</pickpack_bottom_shipping_address_yn>
+							<pickpack_shipfont>
+								<label>Font size (Shipping address)</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsizeship</source_model>
+								<sort_order>120</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 15pt</comment>
+								<depends><pickpack_bottom_shipping_address_yn>1</pickpack_bottom_shipping_address_yn></depends>
+							</pickpack_shipfont>
+							<pickpack_shipaddress translate="label">
+								<label>Nudge shipping address</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/nudge</frontend_model>
+								<sort_order>130</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_bottom_shipping_address_yn>1</pickpack_bottom_shipping_address_yn></depends>
+							</pickpack_shipaddress>
+					<custom_message_yn>
+						<label>Custom text under product list?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/custommessage</source_model>
+						<sort_order>140</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</custom_message_yn>	
+					<custom_message>
+						<label>Under product-list message</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>145</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Good for tax numbers, return instructions</comment> 
+					    <depends><custom_message_yn>yes</custom_message_yn></depends>
+					</custom_message>
+					<custom_messageA>
+						<label>Under product-list Message A</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>146</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>For all customer group types</comment> 
+					    <depends><custom_message_yn>yes2</custom_message_yn></depends>
+					</custom_messageA>
+					<custom_message_filter>
+								<label>Show 'Message B' for this group :</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/longtext</frontend_model>						
+								<sort_order>147</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							    <comment>eg. put 'wholesale', then only wholesale customers will see 'Message B'</comment>                            
+					    		<depends><custom_message_yn>yes2</custom_message_yn></depends>
+					</custom_message_filter>
+					<custom_messageB>
+						<label>Under product-list Message B</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>148</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>For any customer group containing filter word</comment> 
+					    <depends><custom_message_yn>yes2</custom_message_yn></depends>
+					</custom_messageB>
+					<gift_message_yn>
+						<label>Show gift message?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/giftmessage</source_model>
+						<sort_order>150</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</gift_message_yn>				
+					<gift_message_nudge translate="label">
+							<label>Nudge gift message</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>152</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Position the message box exactly</comment>
+	                    	<depends><gift_message_yn>yesbox</gift_message_yn></depends>
+					</gift_message_nudge>
+					<notes_yn_pre>
+						<label>Include order notes?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>154</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</notes_yn_pre>
+					<notes_yn>
+						<label>Position of notes :</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/notesmessage</source_model>
+						<sort_order>156</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><notes_yn_pre>1</notes_yn_pre></depends>
+					</notes_yn>
+					<notes_filter_options>
+						<label>Filter order notes?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/notesfilter</source_model>	
+						<sort_order>158</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><notes_yn_pre>1</notes_yn_pre></depends>
+					</notes_filter_options>
+					<notes_filter>
+						<label>Filter text (don't show notes containg this text)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>	
+						<sort_order>160</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Eg. enter 'Captured amount' to not show authorize.net payments</comment>
+						<depends><notes_yn_pre>1</notes_yn_pre></depends>
+						<depends><notes_filter_options>yestext</notes_filter_options></depends>
+					</notes_filter>
+					<notes_nudge translate="label">
+							<label>Nudge order notes</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>162</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Position the order notes box exactly</comment>
+	                    <depends><notes_yn_pre>1</notes_yn_pre></depends>
+						<depends><notes_yn>yesbox</notes_yn></depends>
+					</notes_nudge>
+					<packed_by_yn>
+						<label>Show 'Packed by' note?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>164</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes at page base - handy for QC</comment> 
+					</packed_by_yn>				
+					<packed_by_nudge translate="label">
+							<label>Nudge 'Packed by' note</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>166</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><packed_by_yn>1</packed_by_yn></depends>
+					</packed_by_nudge>
+					<pickpack_packbarcode>
+						<label>Show Order ID barcode?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>168</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_packbarcode>
+					<shipment_details_yn>
+						<label>Show extra shipping details?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>170</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Puts in total weight, shipping carrier, payment method</comment>                            
+					</shipment_details_yn>
+					<shipment_details_weight>
+						<label>Show total weight?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>172</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_weight>
+					<shipment_details_weight_unit>
+						<label>Weight unit:</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/weightunit</source_model>
+						<sort_order>174</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_weight>1</shipment_details_weight></depends>
+					</shipment_details_weight_unit>
+					<shipment_details_count>
+						<label>Show items count?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>175</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_count>
+					<shipment_details_carrier>
+						<label>Show shipping carrier?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>176</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_carrier>
+					<shipment_details_payment>
+						<label>Show payment method?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>177</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_payment>
+					<shipment_details_custgroup>
+						<label>Show customer group?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>178</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_custgroup>
+					<shipment_details_custgroup_filter>
+						<label>Hide these groups :</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>	
+						<sort_order>179</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Comma-separated list of customer group names where you don't want the group name shown</comment>                            
+<depends><shipment_details_custgroup>1</shipment_details_custgroup></depends>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_custgroup_filter>
+					<shipment_details_customer_id>
+						<label>Show customer ID?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>180</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_customer_id>
+					<shipment_details_custom_attribute_yn>
+						<label>Show order custom attribute?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>181</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_custom_attribute_yn>
+					<shipment_details_custom_attribute>
+						<label>Order attribute code</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>182</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_custom_attribute_yn>1</shipment_details_custom_attribute_yn></depends>
+					</shipment_details_custom_attribute>
+					<shipment_details_custom_attribute_2_yn>
+						<label>Show 2nd order custom attribute?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>183</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_custom_attribute_yn>1</shipment_details_custom_attribute_yn></depends>
+					</shipment_details_custom_attribute_2_yn>
+					<shipment_details_custom_attribute_2>
+						<label>2nd Order attribute code</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>184</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_custom_attribute_yn>1</shipment_details_custom_attribute_yn></depends>
+						<depends><shipment_details_custom_attribute_2_yn>1</shipment_details_custom_attribute_2_yn></depends>
+					</shipment_details_custom_attribute_2>
+					<billing_details_yn>
+						<label>Show billing address?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>186</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Default : No</comment>                            
+					</billing_details_yn>
+					<billing_details_position>
+						<label>Billing address posiiton</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/billingposition</source_model>
+						<sort_order>187</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Default : No</comment>  
+						<depends><billing_details_yn>1</billing_details_yn></depends>
+					</billing_details_position>
+					
+					<pack_configname>
+						<label>Show which value for configurable product names?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/configurablename</source_model>			
+						<sort_order>189</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default : Simple product name</comment>                            
+					</pack_configname>
+					
+					<shelving_real_yn>
+						<label>Show shelving info?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>190</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</shelving_real_yn>
+					<shelving_real>
+						<label>Shelving attribute</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>191</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Attribute code for shelving info; eg. shelf</comment>                            
+					</shelving_real>
+					<shelving_real_title>
+						<label>Shelving column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>192</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Default : shelf</comment>                            
+					</shelving_real_title>
+					<shelving_yn>
+						<label>Show other attribute details?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>193</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</shelving_yn>
+					<shelving>
+						<label>Attribute name</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>194</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+					</shelving>
+					<shelving_title>
+						<label>Attribute column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>195</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default: [blank]</comment>                            
+					</shelving_title>
+					<shelving_2_yn>
+						<label>Show 3rd attribute details?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>196</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+					</shelving_2_yn>
+					<shelving_2>
+						<label>3rd attribute name</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>197</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<depends><shelving_2_yn>1</shelving_2_yn></depends>
+					</shelving_2>
+					<shelving_2_title>
+						<label>3rd attribute column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>198</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<depends><shelving_2_yn>1</shelving_2_yn></depends>
+						<comment>Default: [blank]</comment>                            
+					</shelving_2_title>
+					<product_options_yn>
+						<label>Show custom product options?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/customoptions</source_model>
+						<sort_order>200</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</product_options_yn>
+					<product_options_title>
+						<label>Custom options column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>210</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+						<comment>Default: options</comment>                            
+					</product_options_title>
+					<qty_title>
+						<label>Qty column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>212</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default: qty</comment>                            
+					</qty_title>
+					<sku_title>
+						<label>SKU column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>214</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default: codes</comment>                            
+					</sku_title>
+					<items_title>
+						<label>Items column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>216</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default: items</comment>                            
+					</items_title>
+					<price_title>
+						<label>Price column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>218</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Default: price</comment>                            
+					</price_title>
+					<tax_title>
+						<label>Tax column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>219</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default: tax</comment>                            
+					</tax_title>
+					<total_title>
+						<label>Total price column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>220</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Default: total</comment>                            
+					</total_title>
+					<prices_yn>
+						<label>Show prices?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>222</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default : No (standard for packing sheets)</comment>                            
+					</prices_yn>
+					<tax_yn>
+						<label>Show tax?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>224</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Default : No</comment>                            
+					</tax_yn>
+					<tax_col_yn>
+						<label>Show tax for each product (tax column)?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>225</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<comment>Default : No</comment>                            
+					</tax_col_yn>
+					<tax_line_or_subtotal>
+						<label>Add tax to line subtotal or order subtotal?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/taxlineorsubtotal</source_model>
+						<sort_order>228</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+					</tax_line_or_subtotal>
+					<tax_label>
+						<label>What is your word for 'tax'?</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>
+						<sort_order>230</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<comment>Default : VAT</comment>                            
+					</tax_label>
+					<discount_line_or_subtotal>
+						<label>Show discounted prices on line item or order subtotal?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/discountlineorsubtotal</source_model>
+						<sort_order>240</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Show on line item can help reduce customs fees</comment>                            
+					</discount_line_or_subtotal>
+					
+					
+					<pricesY_productX translate="label">
+						<label>X-Pos. item name (prices shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>271</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<comment>Default : 40</comment>
+					</pricesY_productX>
+					<pricesY_skuX translate="label">
+						<label>X-Pos. sku (prices shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>272</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<comment>Default : 230</comment>
+					</pricesY_skuX>
+					<pricesY_qty_priceX translate="label">
+						<label>X-Pos. qty (prices shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>274</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<comment>Default : 410</comment>
+					</pricesY_qty_priceX>
+					<pricesY_item_priceX translate="label">
+						<label>X-Pos. unit price</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>276</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<comment>Default : 460</comment>
+					</pricesY_item_priceX> 
+					<pricesY_priceX translate="label">
+						<label>X-Pos. total price</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<comment>Default : 520</comment>
+					</pricesY_priceX>
+					<pricesY_shelfX translate="label">
+						<label>X-Pos. shelf (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>279</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesY_shelfX>
+					<pricesY_shelf2X translate="label">
+						<label>X-Pos. attribute 2 (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default : 370</comment>
+					</pricesY_shelf2X>
+					<pricesY_shelf3X translate="label">
+						<label>X-Pos. attribute 3 (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>281</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesY_shelf3X>
+					<pricesY_optionsX translate="label">
+						<label>X-Pos. custom product options (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>282</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+						<depends><tax_col_yn>0</tax_col_yn></depends>
+					</pricesY_optionsX>
+					
+					
+					<pricesT_productX translate="label">
+						<label>X-Pos. name (prices,tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>271</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 40</comment>
+					</pricesT_productX>
+					<pricesT_skuX translate="label">
+						<label>X-Pos. sku (prices,tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>272</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 230</comment>
+					</pricesT_skuX>
+					<pricesT_qty_priceX translate="label">
+						<label>X-Pos. qty (prices,tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>274</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesT_qty_priceX>
+					<pricesT_item_priceX translate="label">
+						<label>X-Pos. unit price (tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>276</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 404</comment>
+					</pricesT_item_priceX> 
+					<pricesT_item_taxX translate="label">
+						<label>X-Pos. unit tax</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>277</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>						
+						<comment>Default : 475</comment>
+					</pricesT_item_taxX> 
+					<pricesT_priceX translate="label">
+						<label>X-Pos. total price (tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 530</comment>
+					</pricesT_priceX>
+					<pricesT_shelfX translate="label">
+						<label>X-Pos. shelf (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>279</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesT_shelfX>
+					<pricesT_shelf2X translate="label">
+						<label>X-Pos. attribute 2 (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default : 370</comment>
+					</pricesT_shelf2X>
+					<pricesT_shelf3X translate="label">
+						<label>X-Pos. attribute 3 (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>281</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesT_shelf3X>
+					<pricesT_optionsX translate="label">
+						<label>X-Pos. custom product options (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>282</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+					</pricesT_optionsX>
+					
+					
+					<pricesN_productX translate="label">
+						<label>X-Pos. item name</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>270</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 80</comment>
+					</pricesN_productX>
+					<pricesN_skuX translate="label">
+						<label>X-Pos. sku</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>272</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 300</comment>
+					</pricesN_skuX>
+					<pricesN_qty_priceX translate="label">
+						<label>X-Pos. qty</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>274</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 40</comment>
+					</pricesN_qty_priceX>
+					<pricesN_shelfX translate="label">
+						<label>X-Pos. shelf</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>276</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Default : 434</comment>
+					</pricesN_shelfX>
+					<pricesN_shelf2X translate="label">
+						<label>X-Pos. attribute 2</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default : 454</comment>
+					</pricesN_shelf2X>
+					<pricesN_shelf3X translate="label">
+						<label>X-Pos. attribute 3</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>279</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default : 444</comment>
+					</pricesN_shelf3X>
+					<pricesN_optionsX translate="label">
+						<label>X-Pos. custom product options</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+					</pricesN_optionsX>
+					
+                        <page_template>
+							<label>Page template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/template</source_model>
+							<sort_order>300</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</page_template>	
+						<pickpack_fontsizeoverall>
+								<label>Font size (Overall)</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>340</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 10pt</comment>
+								<depends><page_template>1</page_template></depends>
+						</pickpack_fontsizeoverall>
+                        <pickpack_fontsizeproductline>
+							<label>Font size (Product Lines)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>350</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 10pt</comment>
+							<depends><page_template>1</page_template></depends>
+						</pickpack_fontsizeproductline>
+						<pack_column translate="label">
+							<label>Columns Y-nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgey</frontend_model>
+							<sort_order>360</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_column>
+						<pack_qty translate="label">
+							<label>Qty nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>370</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_qty>
+						<pack_sku translate="label">
+							<label>SKU nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>380</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_sku>
+						<pack_color translate="label">
+							<label>Color nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>390</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_color>
+						<color_attribute_name translate="label">
+							<label>Color attribute</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>400</sort_order>
+							<comment>Color attribute code (default: color)</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</color_attribute_name>
+						<pack_size translate="label">
+							<label>Size nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>410</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_size>
+						<size_attribute_name translate="label">
+							<label>Size attribute</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>420</sort_order>
+							<comment>Size attribute code (default: size)</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</size_attribute_name>
+						<pack_price translate="label">
+							<label>Price nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>430</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_price>
+                        <pack_product translate="label">
+							<label>Product name nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>440</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_product>	
+                        <pack_customeraddress translate="label">
+							<label>Customer Address nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>450</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_customeraddress>
+                        <pack_customer translate="label">
+							<label>Customer name nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>460</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_customer>
+						<pack_order translate="label">
+							<label>Order date nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>470</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_order>
+						<pack_oid translate="label">
+							<label>Order ID nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>480</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_oid>
+						<pack_cid translate="label">
+							<label>Customer ID nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>490</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_cid>
+						<pack_barcode translate="label">
+							<label>Barcode nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>500</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_barcode>
+                        <footer_customer_id translate="label">
+							<label>Customer ID (Footer) nudge</label>
+							<frontend_type>text</frontend_type>	
+                            <frontend_model>pickpack/nudge</frontend_model>						
+							<sort_order>510</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</footer_customer_id>
+                        <footer_order_id translate="label">
+							<label>Order ID (Footer) nudge</label>
+							<frontend_type>text</frontend_type>	
+                            <frontend_model>pickpack/nudge</frontend_model>						
+							<sort_order>520</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</footer_order_id>
+						<pack_noofitems translate="label">
+							<label>No of Items per page</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>530</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_noofitems>
+   					</fields>
+				</wonder>
+				
+				<wonder_invoice translate="label">
+					<label>Invoice Options</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+					<pickpack_packlogo>
+						<label>Add header logo?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>10</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_packlogo>
+					<pack_logo translate="label">
+                         <label>Header logo</label>
+                         <frontend_type>image</frontend_type>
+                         <backend_model>pickpack/image</backend_model>
+                         <upload_dir config="system/filesystem/media" scope_info="1">sales/store/logo_invoice</upload_dir>
+                         <base_url type="media" scope_info="1">sales/store/logo_invoice</base_url>
+                         <sort_order>20</sort_order>
+                         <show_in_default>1</show_in_default>
+                         <show_in_website>1</show_in_website>
+                         <show_in_store>1</show_in_store>   
+                         <comment>Dimensions 269pt x 41pt @ 300dpi : .png works best</comment>                            
+                         <depends><pickpack_packlogo>1</pickpack_packlogo></depends>                                                     
+                     </pack_logo>
+					<pickpack_company_address_yn>
+						<label>Add company address to header?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>25</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_company_address_yn>
+					<pickpack_company_address>
+						<label>Company address</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>26</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes on the right of the header logo</comment>                            
+                    	<depends><pickpack_company_address_yn>1</pickpack_company_address_yn></depends>
+					</pickpack_company_address>
+					<pickpack_title_yn>
+						<label>Add a page title?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>28</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_title_yn>
+					<pickpack_title>
+						<label>Custom page title</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>						
+						<sort_order>29</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes next to the order number; eg. 'Order' or 'Invoice'</comment>                            
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+					</pickpack_title>
+					<pickpack_title_2_yn>
+						<label>Add a 2nd page title?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>30</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+					</pickpack_title_2_yn>
+					<pickpack_title_2>
+						<label>2nd Custom page title</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>						
+						<sort_order>31</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes top-right; eg. 'Invoice'</comment>                            
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+                    	<depends><pickpack_title_2_yn>1</pickpack_title_2_yn></depends>
+					</pickpack_title_2>
+					<pickpack_nudge_title>
+						<label>Nudge 2nd custom title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/nudge</frontend_model>
+						<sort_order>32</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+                    	<depends><pickpack_title_yn>1</pickpack_title_yn></depends>
+                    	<depends><pickpack_title_2_yn>1</pickpack_title_2_yn></depends>
+					</pickpack_nudge_title>	
+					<shipping_title>
+						<label>'Shipping address' display title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>33</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Suggested : [blank] or 'shipping details'</comment>                            
+					</shipping_title>
+					<billing_title>
+						<label>'Billing address' display title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>34</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Suggested : [blank] or 'billing details'</comment>  
+						<depends><billing_details_yn>1</billing_details_yn></depends>
+					</billing_title>
+					
+					<pickpack_return_address_yn>
+						<label>Add return address?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>35</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes at page base - good for integrated labels</comment> 
+					</pickpack_return_address_yn>
+					<pickpack_return_address>
+						<label>Return address</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>40</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>                           
+                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+					</pickpack_return_address>
+						<pickpack_returnfont>
+							<label>Font size (Return address)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 9pt</comment>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+						</pickpack_returnfont>
+					
+						<pickpack_returnaddress translate="label">
+							<label>Nudge return address</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Position the addresses exactly - for integrated labels</comment>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+						</pickpack_returnaddress>
+						<pickpack_returnlogo>
+							<label>Add logo above return address?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+						</pickpack_returnlogo>						
+						<pickpack_logo translate="label">
+                            <label>Logo above return address</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>pickpack/image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">sales/store/logo_third</upload_dir>
+                            <base_url type="media" scope_info="1">sales/store/logo_third</base_url>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>   
+                            <comment>Dimensions 180pt x 120pt @ 150dpi : .png works best</comment>
+	                    	<depends><pickpack_returnlogo>1</pickpack_returnlogo></depends>
+							<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+                        </pickpack_logo>
+                        <pickpack_nudgelogo translate="label">
+							<label>Nudge return address logo</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><pickpack_return_address_yn>1</pickpack_return_address_yn></depends>
+							<depends><pickpack_returnlogo>1</pickpack_returnlogo></depends>
+						</pickpack_nudgelogo>	                        
+						<pickpack_bottom_shipping_address_yn>
+							<label>Add shipping address at bottom?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/yesno</source_model>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Goes at page base - good for integrated labels</comment>                            
+						</pickpack_bottom_shipping_address_yn>
+							<pickpack_shipfont>
+								<label>Font size (Shipping address)</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsizeship</source_model>
+								<sort_order>120</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 15pt</comment>
+								<depends><pickpack_bottom_shipping_address_yn>1</pickpack_bottom_shipping_address_yn></depends>
+							</pickpack_shipfont>
+							<pickpack_shipaddress translate="label">
+								<label>Nudge shipping address</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/nudge</frontend_model>
+								<sort_order>130</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_bottom_shipping_address_yn>1</pickpack_bottom_shipping_address_yn></depends>
+							</pickpack_shipaddress>
+					<custom_message_yn>
+						<label>Custom text under product list?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/custommessage</source_model>
+						<sort_order>140</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</custom_message_yn>	
+					<custom_message>
+						<label>Under product-list message</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>145</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Good for tax numbers, return instructions</comment> 
+					    <depends><custom_message_yn>yes</custom_message_yn></depends>
+					</custom_message>
+					<custom_messageA>
+						<label>Under product-list Message A</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>146</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>For all customer group types</comment> 
+					    <depends><custom_message_yn>yes2</custom_message_yn></depends>
+					</custom_messageA>
+					<custom_message_filter>
+								<label>Show 'Message B' for this group :</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/longtext</frontend_model>						
+								<sort_order>147</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							    <comment>eg. put 'wholesale', then only wholesale customers will see 'Message B'</comment>                            
+					    		<depends><custom_message_yn>yes2</custom_message_yn></depends>
+					</custom_message_filter>
+					<custom_messageB>
+						<label>Under product-list Message B</label>
+						<frontend_type>textarea</frontend_type>		
+						<frontend_model>pickpack/textarea</frontend_model>					
+						<sort_order>148</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>For any customer group containing filter word</comment> 
+					    <depends><custom_message_yn>yes2</custom_message_yn></depends>
+					</custom_messageB>
+					<gift_message_yn>
+						<label>Show gift message?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/giftmessage</source_model>
+						<sort_order>150</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</gift_message_yn>				
+					<gift_message_nudge translate="label">
+							<label>Nudge gift message</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>152</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Position the message box exactly</comment>
+	                    	<depends><gift_message_yn>yesbox</gift_message_yn></depends>
+					</gift_message_nudge>
+					<notes_yn_pre>
+						<label>Include order notes?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>154</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</notes_yn_pre>
+					<notes_yn>
+						<label>Position of notes :</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/notesmessage</source_model>
+						<sort_order>156</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><notes_yn_pre>1</notes_yn_pre></depends>
+					</notes_yn>
+					<notes_filter_options>
+						<label>Filter order notes?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/notesfilter</source_model>	
+						<sort_order>158</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><notes_yn_pre>1</notes_yn_pre></depends>
+					</notes_filter_options>
+					<notes_filter>
+						<label>Filter text (don't show notes containg this text)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>	
+						<sort_order>160</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Eg. enter 'Captured amount' to not show authorize.net payments</comment>
+						<depends><notes_yn_pre>1</notes_yn_pre></depends>
+						<depends><notes_filter_options>yestext</notes_filter_options></depends>
+					</notes_filter>
+					<notes_nudge translate="label">
+							<label>Nudge order notes</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>162</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Position the order notes box exactly</comment>
+	                    <depends><notes_yn_pre>1</notes_yn_pre></depends>
+						<depends><notes_yn>yesbox</notes_yn></depends>
+					</notes_nudge>
+					<packed_by_yn>
+						<label>Show 'Packed by' note?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>164</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Goes at page base - handy for QC</comment> 
+					</packed_by_yn>				
+					<packed_by_nudge translate="label">
+							<label>Nudge 'Packed by' note</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>166</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><packed_by_yn>1</packed_by_yn></depends>
+					</packed_by_nudge>
+					<pickpack_packbarcode>
+						<label>Show Order ID barcode?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>168</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</pickpack_packbarcode>
+					<shipment_details_yn>
+						<label>Show extra shipping details?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>170</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Puts in total weight, shipping carrier, payment method</comment>                            
+					</shipment_details_yn>
+					<shipment_details_weight>
+						<label>Show total weight?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>172</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_weight>					
+					<shipment_details_weight_unit>
+						<label>Weight unit:</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/weightunit</source_model>
+						<sort_order>174</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_weight>1</shipment_details_weight></depends>
+					</shipment_details_weight_unit>
+					<shipment_details_count>
+						<label>Show items count?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>175</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_count>
+					<shipment_details_carrier>
+						<label>Show shipping carrier?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>176</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_carrier>
+					<shipment_details_payment>
+						<label>Show payment method?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>177</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_payment>
+					<shipment_details_custgroup>
+						<label>Show customer group?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>178</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_custgroup>
+					<shipment_details_custgroup_filter>
+						<label>Hide these groups :</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/longtext</frontend_model>	
+						<sort_order>179</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Comma-separated list of customer group names where you don't want the group name shown</comment>                            
+<depends><shipment_details_custgroup>1</shipment_details_custgroup></depends>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_custgroup_filter>
+					<shipment_details_customer_id>
+						<label>Show customer ID?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>180</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_customer_id>
+					<shipment_details_custom_attribute_yn>
+						<label>Show order custom attribute?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>181</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+					</shipment_details_custom_attribute_yn>
+					<shipment_details_custom_attribute>
+						<label>Order attribute code</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>182</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_custom_attribute_yn>1</shipment_details_custom_attribute_yn></depends>
+					</shipment_details_custom_attribute>
+					<shipment_details_custom_attribute_2_yn>
+						<label>Show 2nd order custom attribute?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>183</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_custom_attribute_yn>1</shipment_details_custom_attribute_yn></depends>
+					</shipment_details_custom_attribute_2_yn>
+					<shipment_details_custom_attribute_2>
+						<label>2nd Order attribute code</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>184</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shipment_details_yn>1</shipment_details_yn></depends>
+						<depends><shipment_details_custom_attribute_yn>1</shipment_details_custom_attribute_yn></depends>
+						<depends><shipment_details_custom_attribute_2_yn>1</shipment_details_custom_attribute_2_yn></depends>
+					</shipment_details_custom_attribute_2>
+					<billing_details_yn>
+						<label>Show billing address?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>186</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Default : No</comment>                            
+					</billing_details_yn>
+					<billing_details_position>
+						<label>Billing address posiiton</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/billingposition</source_model>
+						<sort_order>187</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					    <comment>Default : No</comment>  
+						<depends><billing_details_yn>1</billing_details_yn></depends>
+					</billing_details_position>
+					
+					<pack_configname>
+						<label>Show which value for configurable product names?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/configurablename</source_model>			
+						<sort_order>188</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default : Simple product name</comment>                            
+					</pack_configname>
+					
+					<shelving_real_yn>
+						<label>Show shelving info?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>189</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</shelving_real_yn>
+					<shelving_real>
+						<label>Shelving attribute</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>190</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Attribute code for shelving info; eg. shelf</comment>                            
+					</shelving_real>
+					<shelving_real_title>
+						<label>Shelving column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>200</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Default: shelf</comment>                            
+					</shelving_real_title>
+					<shelving_yn>
+						<label>Show other attribute details?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>202</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</shelving_yn>
+					<shelving>
+						<label>Attribute name</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>203</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+					</shelving>
+					<shelving_title>
+						<label>Attribute column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>204</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<comment>Default: [blank]</comment>                            
+					</shelving_title>
+					<shelving_2_yn>
+						<label>Show 3rd attribute details?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/noyes</source_model>
+						<sort_order>205</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+					</shelving_2_yn>
+					<shelving_2>
+						<label>3rd attribute name</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/shelving</frontend_model>					
+						<sort_order>206</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<depends><shelving_2_yn>1</shelving_2_yn></depends>
+					</shelving_2>
+					<shelving_2_title>
+						<label>3rd attribute column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>207</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><shelving_yn>1</shelving_yn></depends>
+						<depends><shelving_2_yn>1</shelving_2_yn></depends>
+						<comment>Default: [blank]</comment>                            
+					</shelving_2_title>
+					<product_options_yn>
+						<label>Show custom product options?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/customoptions</source_model>
+						<sort_order>208</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</product_options_yn>
+					<product_options_title>
+						<label>Custom options column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>210</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+						<comment>Default: options</comment>                            
+					</product_options_title>
+					<qty_title>
+						<label>Qty column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>220</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default: qty</comment>                            
+					</qty_title>
+					<sku_title>
+						<label>SKU column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>222</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default: codes</comment>                            
+					</sku_title>
+					<items_title>
+						<label>Items column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>224</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default: items</comment>                            
+					</items_title>
+					<price_title>
+						<label>Price column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>226</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Default: price</comment>                            
+					</price_title>
+					<tax_title>
+						<label>Tax column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>227</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default: tax</comment>                            
+					</tax_title>
+					<total_title>
+						<label>Total price column title</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>				
+						<sort_order>228</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Default: total</comment>                            
+					</total_title>
+					<prices_yn>
+						<label>Show prices?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>230</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Default : No (standard for packing sheets)</comment>                            
+					</prices_yn>
+					<tax_yn>
+						<label>Show tax?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>232</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>Default : No</comment>                            
+					</tax_yn>
+					<tax_col_yn>
+						<label>Show tax for each product?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/yesno</source_model>
+						<sort_order>236</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<comment>Default : No</comment>                            
+					</tax_col_yn>
+					<tax_line_or_subtotal>
+						<label>Add tax to line subtotal or order subtotal?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/taxlineorsubtotal</source_model>
+						<sort_order>238</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+					</tax_line_or_subtotal>
+					<tax_label>
+						<label>What is your word for 'tax'?</label>
+						<frontend_type>text</frontend_type>
+						<frontend_model>pickpack/blank</frontend_model>
+						<sort_order>240</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<comment>Default : VAT</comment>                            
+					</tax_label>
+					<discount_line_or_subtotal>
+						<label>Show discounted prices on line item or order subtotal?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/discountlineorsubtotal</source_model>
+						<sort_order>250</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<comment>'Show on line item' can help reduce customs fees</comment>                            
+					</discount_line_or_subtotal>
+					<pricesY_productX translate="label">
+						<label>X-Pos. item name (prices shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>271</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 40</comment>
+					</pricesY_productX>
+					<pricesY_skuX translate="label">
+						<label>X-Pos. sku (prices shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>272</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 230</comment>
+					</pricesY_skuX>
+					<pricesY_qty_priceX translate="label">
+						<label>X-Pos. qty (prices shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>274</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 410</comment>
+					</pricesY_qty_priceX>
+					<pricesY_item_priceX translate="label">
+						<label>X-Pos. unit price</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>276</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 460</comment>
+					</pricesY_item_priceX> 
+					<pricesY_priceX translate="label">
+						<label>X-Pos. total price</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 520</comment>
+					</pricesY_priceX>
+					<pricesY_shelfX translate="label">
+						<label>X-Pos. shelf (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>279</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesY_shelfX>
+					<pricesY_shelf2X translate="label">
+						<label>X-Pos. attribute 2 (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 370</comment>
+					</pricesY_shelf2X>
+					<pricesY_shelf3X translate="label">
+						<label>X-Pos. attribute 3 (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesY_shelf3X>
+					<pricesY_optionsX translate="label">
+						<label>X-Pos. custom product options (prices shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>281</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+						<depends><tax_yn>0</tax_yn></depends>
+					</pricesY_optionsX>
+					
+					<pricesT_productX translate="label">
+						<label>X-Pos. name (prices,tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>271</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 40</comment>
+					</pricesT_productX>
+					<pricesT_skuX translate="label">
+						<label>X-Pos. sku (prices,tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>272</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 230</comment>
+					</pricesT_skuX>
+					<pricesT_qty_priceX translate="label">
+						<label>X-Pos. qty (prices,tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>274</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesT_qty_priceX>
+					<pricesT_item_priceX translate="label">
+						<label>X-Pos. unit price (tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>276</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 404</comment>
+					</pricesT_item_priceX> 
+					<pricesT_item_taxX translate="label">
+						<label>X-Pos. unit tax</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>277</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 475</comment>
+					</pricesT_item_taxX> 
+					<pricesT_priceX translate="label">
+						<label>X-Pos. total price (tax shown)</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 530</comment>
+					</pricesT_priceX>
+					<pricesT_shelfX translate="label">
+						<label>X-Pos. shelf (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>279</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesT_shelfX>
+					<pricesT_shelf2X translate="label">
+						<label>X-Pos. attribute 2 (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 370</comment>
+					</pricesT_shelf2X>
+					<pricesT_shelf3X translate="label">
+						<label>X-Pos. attribute 3 (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>280</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<comment>Default : 350</comment>
+					</pricesT_shelf3X>
+					<pricesT_optionsX translate="label">
+						<label>X-Pos. custom product options (prices,tax shown)</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>281</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>1</prices_yn></depends>
+						<depends><tax_yn>1</tax_yn></depends>
+						<depends><tax_col_yn>1</tax_col_yn></depends>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+					</pricesT_optionsX>
+					
+					<pricesN_productX translate="label">
+						<label>X-Pos. item name</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>270</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 80</comment>
+					</pricesN_productX>
+					<pricesN_skuX translate="label">
+						<label>X-Pos. sku</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>272</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 300</comment>
+					</pricesN_skuX>
+					<pricesN_qty_priceX translate="label">
+						<label>X-Pos. qty</label> 
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>274</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 40</comment>
+					</pricesN_qty_priceX>
+					<pricesN_shelfX translate="label">
+						<label>X-Pos. shelf</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>276</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<depends><shelving_real_yn>1</shelving_real_yn></depends>
+						<comment>Default : 434</comment>
+					</pricesN_shelfX>
+					<pricesN_shelf2X translate="label">
+						<label>X-Pos. attribute 2</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 454</comment>
+					</pricesN_shelf2X>
+					<pricesN_shelf3X translate="label">
+						<label>X-Pos. attribute 3</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>278</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<comment>Default : 444</comment>
+					</pricesN_shelf3X>
+					<pricesN_optionsX translate="label">
+						<label>X-Pos. custom product options</label>
+						<frontend_type>text</frontend_type>		
+						<frontend_model>pickpack/nudgename</frontend_model>
+						<sort_order>279</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<depends><prices_yn>0</prices_yn></depends>
+						<depends><product_options_yn>yescol</product_options_yn></depends>
+					</pricesN_optionsX>
+					
+					<sort_packing>
+						<label>Sort items by :</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/sortitems</source_model>
+						<sort_order>285</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</sort_packing>
+					<sortorder_packing>
+						<label>Sort direction :</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/sortorder</source_model>
+						<sort_order>290</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</sortorder_packing>
+                        <page_template>
+							<label>Page template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/template</source_model>
+							<sort_order>300</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</page_template>	
+						<pickpack_fontsizeoverall>
+								<label>Font size (Overall)</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>340</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 10pt</comment>
+								<depends><page_template>1</page_template></depends>
+						</pickpack_fontsizeoverall>
+                        <pickpack_fontsizeproductline>
+							<label>Font size (Product Lines)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>350</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 10pt</comment>
+							<depends><page_template>1</page_template></depends>
+						</pickpack_fontsizeproductline>
+						<pack_column translate="label">
+							<label>Columns Y-nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgey</frontend_model>
+							<sort_order>360</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_column>
+						<pack_qty translate="label">
+							<label>Qty nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>370</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_qty>
+						<pack_sku translate="label">
+							<label>SKU nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>380</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_sku>
+						<pack_color translate="label">
+							<label>Color nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>390</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_color>
+						<color_attribute_name translate="label">
+							<label>Color attribute</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>400</sort_order>
+							<comment>Color attribute code (default: color)</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</color_attribute_name>
+						<pack_size translate="label">
+							<label>Size nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>410</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_size>
+						<size_attribute_name translate="label">
+							<label>Size attribute</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>420</sort_order>
+							<comment>Size attribute code (default: size)</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</size_attribute_name>
+						<pack_price translate="label">
+							<label>Price nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>430</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_price>
+                        <pack_product translate="label">
+							<label>Product name nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudgename</frontend_model>
+							<sort_order>440</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_product>	
+                        <pack_customeraddress translate="label">
+							<label>Customer Address nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>450</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_customeraddress>
+                        <pack_customer translate="label">
+							<label>Customer name nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>460</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_customer>
+						<pack_order translate="label">
+							<label>Order date nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>470</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_order>
+						<pack_oid translate="label">
+							<label>Order ID nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>480</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_oid>
+						<pack_cid translate="label">
+							<label>Customer ID nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>490</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_cid>
+						<pack_barcode translate="label">
+							<label>Barcode nudge</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>500</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_barcode>
+                        <footer_customer_id translate="label">
+							<label>Customer ID (Footer) nudge</label>
+							<frontend_type>text</frontend_type>	
+                            <frontend_model>pickpack/nudge</frontend_model>						
+							<sort_order>510</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</footer_customer_id>
+                        <footer_order_id translate="label">
+							<label>Order ID (Footer) nudge</label>
+							<frontend_type>text</frontend_type>	
+                            <frontend_model>pickpack/nudge</frontend_model>						
+							<sort_order>520</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</footer_order_id>
+						<pack_noofitems translate="label">
+							<label>No of Items per page</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>530</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><page_template>1</page_template></depends>
+						</pack_noofitems>
+   					</fields>
+				</wonder_invoice>
+				<picks translate="label">
+					<label>Order-separated Pick List Options</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>30</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<pickpack_pickbarcode>
+							<label>Show order ID barcodes?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_pickbarcode>
+						<pickpack_shipmethod>
+							<label>Show shipping method?</label>							
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_shipmethod>
+						<pickpack_order_address_yn>
+							<label>Show shipping address?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_order_address_yn>
+						<pickpack_name_yn_separated>
+							<label>Show product names?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_name_yn_separated>
+						<pickpack_namenudge_separated>
+							<label>Product name position</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/nudgename</frontend_model>					
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_name_yn_separated>1</pickpack_name_yn_separated></depends>
+							<comment>Default : 250</comment>
+						</pickpack_namenudge_separated>
+						<pickpack_configname_separated>
+							<label>Show which value for product names?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/configurablenamecustom</source_model>			
+							<sort_order>45</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_name_yn_separated>1</pickpack_name_yn_separated></depends>
+							<comment>Default : Simple product name</comment>                            
+						</pickpack_configname_separated>
+						<pickpack_configname_attribute_separated>
+							<label>Attribute to use as product name</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/longtext</frontend_model>		
+							<sort_order>48</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_name_yn_separated>1</pickpack_name_yn_separated></depends>
+	                    	<depends><pickpack_configname_separated>custom</pickpack_configname_separated></depends>
+						</pickpack_configname_attribute_separated>
+						<pickpack_shelving_yn_separated>
+							<label>Show shelving info?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_shelving_yn_separated>
+						<pickpack_shelving_separated>
+							<label>Shelving attribute</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/shelving</frontend_model>					
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_shelving_yn_separated>1</pickpack_shelving_yn_separated></depends>
+							<comment>Attribute code for shelving info; eg. shelf</comment>                            
+						</pickpack_shelving_separated>
+						<separated_options_yn_base>
+							<label>Show product options?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>62</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</separated_options_yn_base>
+						<separated_options_yn>
+							<label>Format product options?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/optionschoiceseparated</source_model>
+							<sort_order>63</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><separated_options_yn_base>1</separated_options_yn_base></depends>
+						</separated_options_yn>
+						<separated_options_filter_yn>
+							<label>Filter out some options?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>64</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><separated_options_yn_base>1</separated_options_yn_base></depends>
+						</separated_options_filter_yn>
+						<separated_options_filter>
+							<label>Filter out these custom option SKUs :</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/longtext</frontend_model>		
+							<sort_order>66</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><separated_options_yn_base>1</separated_options_yn_base></depends>
+	                    	<depends><separated_options_filter_yn>1</separated_options_filter_yn></depends>
+							<comment>Comma-separated list of SKUs to *not* show</comment>
+						</separated_options_filter>
+						<separated_options_count_filter>
+							<label>Don't count these custom option SKUs :</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/longtext</frontend_model>		
+							<sort_order>67</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+	                    	<depends><separated_options_yn_base>1</separated_options_yn_base></depends>
+	                    	<depends><separated_options_filter_yn>1</separated_options_filter_yn></depends>
+							<comment>Comma-separated list of SKUs to *not* show a count for</comment>
+						</separated_options_count_filter>
+						<pickpack_stock_yn_separated>
+							<label>Show stock alerts?</label>							
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/noyes</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_stock_yn_separated>
+						<pickpack_stock_separated>
+							<label>Show stock alert below...</label>
+							<frontend_type>text</frontend_type>		
+							<frontend_model>pickpack/stockalert</frontend_model>					
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><pickpack_stock_yn_separated>1</pickpack_stock_yn_separated></depends>
+							<comment>Shows SKU in red if stock below this number</comment>                            
+						</pickpack_stock_separated>
+						<pickpack_pickprint>
+							<label>Show date printed?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/yesno</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</pickpack_pickprint>
+					</fields>
+				</picks>
+				
+					<stock translate="label">
+						<label>Order-combined Out-of-stock Pick List Options</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>50</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<fields>
+							<stock_stock>
+								<label>Show stock alert below...</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/stockalert</frontend_model>					
+								<sort_order>6</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Shows item if stock below this; default = 1</comment>                            
+							</stock_stock>
+							<pickpack_shelving_yn_stock>
+								<label>Show shelving info?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/noyes</source_model>
+								<sort_order>10</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</pickpack_shelving_yn_stock>
+							<pickpack_shelving_stock>
+								<label>Shelving attribute</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/shelving</frontend_model>					
+								<sort_order>12</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_shelving_yn_stock>1</pickpack_shelving_yn_stock></depends>
+								<comment>Attribute code for shelving info; eg. shelf</comment>                            
+							</pickpack_shelving_stock>
+						</fields>
+					</stock>
+					
+					<label translate="label">
+						<label>Address-label Sheet Options</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>60</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<fields>
+							<label_paper_width>
+								<label>Paper width</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/blank</frontend_model>					
+								<sort_order>10</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>A4 = 595pt (default), Letter-US = 612pt</comment>                            
+							</label_paper_width>
+							<label_paper_height>
+								<label>Paper height</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/blank</frontend_model>					
+								<sort_order>20</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>A4 = 842pt (default), Letter-US = 792pt</comment>                            
+							</label_paper_height>
+							<label_width>
+								<label>Label width</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/blank</frontend_model>					
+								<sort_order>30</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Full width of each label (default 190pt)</comment>                            
+							</label_width>
+							<label_height>
+								<label>Label height</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/blank</frontend_model>					
+								<sort_order>40</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Full height of each label (default 168pt)</comment>                            
+							</label_height>
+							<paper_margin>
+								<label>Paper margins</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/papernudge</frontend_model>
+								<sort_order>43</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Blank = 22pt (top/bottom), 30pt (left/right)</comment>                            
+							</paper_margin>
+							<label_padding>
+								<label>Label padding</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/papernudge</frontend_model>
+								<sort_order>44</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Blank = 5pt (top/bottom), 5pt (left/right)</comment>                            
+							</label_padding>
+							<label_show_order_id_yn>
+								<label>Show Order IDs?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/yesno</source_model>
+								<sort_order>45</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</label_show_order_id_yn>
+							<!--<label_show_phone_yn>
+								<label>Show phone numbers?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/yesno</source_model>
+								<sort_order>50</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</label_show_phone_yn>
+							-->
+							<font_family_label>
+								<label>Address label : Font</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/font</source_model>
+								<sort_order>60</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</font_family_label>
+							<font_style_label>
+								<label>Address label : Style</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontstyle</source_model>
+								<sort_order>70</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Recommended : Regular</comment>                            
+							</font_style_label>
+							<font_size_label>
+								<label>Address label : Size</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>80</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 15pt</comment>                            
+							</font_size_label>
+							<font_color_label>
+								<label>Address label : Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>90</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Blank = Black (enter any HTML color name)</comment>                            
+							</font_color_label>
+						<label_logo_yn2>
+							<label>Add logo image behind address?</label>
+							<frontend_type>select</frontend_type>
+              				<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>92</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Put your logo behind the address</comment>
+						</label_logo_yn2>
+						<label_logo translate="label">
+                            <label>Logo image behind address label</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>pickpack/image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">sales/store/logo_label</upload_dir>
+                            <base_url type="media" scope_info="1">sales/store/logo_label</base_url>
+                            <sort_order>94</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>   
+                            <comment>Dimensions : save this image as 'Label width' x 'Label height' @ 150dpi : .png works best</comment>
+	                    	<depends><label_logo_yn2>1</label_logo_yn2></depends>
+                        </label_logo>
+                        <label_nudgelogo translate="label">
+							<label>Nudge label logo image</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>96</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>This will move the image on each label</comment>
+	                    	<depends><label_logo_yn2>1</label_logo_yn2></depends>
+						</label_nudgelogo>	
+						<label_nudgelogo_text translate="label">
+							<label>Nudge address text</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/nudge</frontend_model>
+							<sort_order>98</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>This will move the address text : eg. put your image left-side of the address with an X-nudge</comment>
+	                    	<depends><label_logo_yn2>1</label_logo_yn2></depends>
+						</label_nudgelogo_text>	
+							<label_return_address_yn>
+								<label>Add return address?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/yesno</source_model>
+								<sort_order>100</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							    <comment>Adds one per order, for separate return address label</comment>                            
+							</label_return_address_yn>
+							<label_return_address>
+								<label>Return address</label>
+								<frontend_type>textarea</frontend_type>		
+								<frontend_model>pickpack/textarea</frontend_model>					
+								<sort_order>110</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><label_return_address_yn>1</label_return_address_yn></depends>
+							</label_return_address>
+							<font_family_return_label>
+								<label>Return Address Label : Font</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/font</source_model>
+								<sort_order>120</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><label_return_address_yn>1</label_return_address_yn></depends>
+							</font_family_return_label>
+							<font_style_return_label>
+								<label>Return Address Label : Style</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontstyle</source_model>
+								<sort_order>130</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Recommended : Regular</comment>                            
+								<depends><label_return_address_yn>1</label_return_address_yn></depends>
+							</font_style_return_label>
+							<font_size_return_label>
+								<label>Return Address Label : Size</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>140</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 9pt</comment>                            
+								<depends><label_return_address_yn>1</label_return_address_yn></depends>
+							</font_size_return_label>
+							<font_color_return_label>
+								<label>Return Address Label : Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>150</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Blank = Black (enter any HTML color name)</comment>                            
+								<depends><label_return_address_yn>1</label_return_address_yn></depends>
+							</font_color_return_label>
+						</fields>
+					</label>
+					
+					<general translate="label">
+						<label>General Options</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>70</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<fields>
+							<!-- <pickpack_key>
+												<label>pickPack Validation Key</label>
+												<frontend_type>text</frontend_type>
+												<frontend_model>pickpack/blank</frontend_model>
+												<sort_order>100</sort_order>
+												<show_in_default>1</show_in_default>
+												<show_in_website>1</show_in_website>
+												<show_in_store>1</show_in_store>
+												<comment>Enter the Validation Key for this Magento installation</comment>                            
+											</pickpack_key> -->
+							<simple_design_yn>
+								<label>Expand detailed design options?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/noyes</source_model>
+								<sort_order>100</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Change fonts, sizes, colors</comment>                            
+							</simple_design_yn>
+							<page_size>
+								<label>Page size</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/pagesize</source_model>
+								<sort_order>104</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</page_size>
+							<pickpack_tickbox>
+								<label>'Tick boxes' next to item SKUs?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/tickbox</source_model>
+								<sort_order>106</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>This can help your packers item-pick and box-pack</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</pickpack_tickbox>
+							<sort_packing_yn>
+								<label>Sort product lists?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/noyes</source_model>
+								<sort_order>107</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							</sort_packing_yn>
+							<sort_packing>
+								<label>Sort product lists by :</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/sortitems</source_model>
+								<sort_order>108</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><sort_packing_yn>1</sort_packing_yn></depends>
+							</sort_packing>
+							<sort_packing_attribute>
+								<label>Attribute to sort by :</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>109</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>(Attribute must exist)</comment>                            
+								<depends><sort_packing_yn>1</sort_packing_yn></depends>
+								<depends><sort_packing>attribute</sort_packing></depends>
+							</sort_packing_attribute>
+							<sort_packing_order>
+								<label>Sort direction of product list :</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/sortorder</source_model>
+								<sort_order>110</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><sort_packing_yn>1</sort_packing_yn></depends>
+							</sort_packing_order>
+							<shelvingpos>
+								<label>Position of shelving info</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/shelvingpos</source_model>
+								<sort_order>112</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Where to show the shelving attribute on the pick lists</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</shelvingpos>
+							<shelving_nudge translate="label">
+								<label>Nudge shelving</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/nudgename</frontend_model>					
+								<sort_order>113</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>(Used if 'Position of shelving info' set to 'Columns')</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+								<depends><shelvingpos>col</shelvingpos></depends>
+							</shelving_nudge>
+							<!--<override_address_format_yn>
+								<label>Override default address formatting?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/noyes</source_model>
+								<sort_order>114</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Change the layout of shipping addresses</comment>
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</override_address_format_yn>-->
+							<!-- <address_country_yn>
+															<label>Include shipping country in addresses?</label>
+															<frontend_type>select</frontend_type>
+															<source_model>pickpack/yesno</source_model>
+															<sort_order>115</sort_order>
+															<show_in_default>1</show_in_default>
+															<show_in_website>1</show_in_website>
+															<show_in_store>1</show_in_store>
+															<comment>(Used if 'Override default address' set to 'No')</comment>                            
+															<depends><simple_design_yn>1</simple_design_yn></depends>
+														</address_country_yn>
+														<show_phone_yn>
+															<label>Include customer phone in addresses?</label>
+															<frontend_type>select</frontend_type>
+															<source_model>pickpack/yesno</source_model>
+															<sort_order>116</sort_order>
+															<show_in_default>1</show_in_default>
+															<show_in_website>1</show_in_website>
+															<show_in_store>1</show_in_store>
+															<comment>(Used if 'Override default address' set to 'No')</comment>                            
+															<depends><simple_design_yn>1</simple_design_yn></depends>
+														</show_phone_yn> -->
+							<address_format>
+								<label>Address format</label>
+								<frontend_type>textarea</frontend_type>		
+								<frontend_model>pickpack/addresstextarea</frontend_model>					
+								<sort_order>115</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							    <comment><![CDATA[Structure: {if X}{X},|{/if X}<br />Can use: <br />{prefix}{name}{suffix}{company}{street}{city}<br />
+{region} - uses state abbreviation if available, else full name<br />
+{region_full} - uses full state name<br />
+{region_code} - uses state abbreviation only<br />
+{postcode}{country}<br />(| = line break)]]></comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+								<!--<depends><override_address_format_yn>1</override_address_format_yn></depends>-->
+							</address_format>
+							<address_countryskip>
+								<label>Hide 'country name' for this country :</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/longtext</frontend_model>						
+								<sort_order>116</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							    <comment>eg. put your country, then only overseas orders will have country added</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+								<!--<depends><override_address_format_yn>1</override_address_format_yn></depends>-->
+							</address_countryskip>
+					<capitalize_label_yn>
+						<label>Capitalise shipping labels?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/capitaladdress</source_model>
+						<sort_order>122</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>According to the USPS all addresses should be capitalised to improve delivery time and accuracy</comment>                            
+						<depends><simple_design_yn>1</simple_design_yn></depends>
+					</capitalize_label_yn>
+					<customer_phone_yn>
+						<label>Show customer phone?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/custemail</source_model>
+						<sort_order>124</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<!--<depends><override_address_format_yn>1</override_address_format_yn></depends>-->
+					</customer_phone_yn>
+					<customer_email_yn>
+						<label>Show customer email?</label>
+						<frontend_type>select</frontend_type>
+						<source_model>pickpack/custemail</source_model>
+						<sort_order>126</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<!--<depends><override_address_format_yn>1</override_address_format_yn></depends>-->
+					</customer_email_yn>
+							<pickpack_picklogo>
+								<label>Show logo on Pick Lists?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/yesno</source_model>
+								<sort_order>128</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Uses header logo from Packing Sheet</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</pickpack_picklogo>
+						
+							<font_family_header>
+								<label>Header titles : Font</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/font</source_model>
+								<sort_order>130</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>For pick lists</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_family_header>
+							<font_style_header>
+								<label>Header titles : Style</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontstyle</source_model>
+								<sort_order>140</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Recommended : Bold Italic</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_style_header>
+							<font_size_header>
+								<label>Header titles : Size</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>150</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 16pt</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_size_header>
+							<font_color_header>
+								<label>Header titles : Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>160</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Blank = darkOliveGreen (enter any HTML color name)</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_color_header>
+					<font_family_subtitles>
+							<label>Subtitles : Font</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/font</source_model>
+							<sort_order>170</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: Helvetica</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_family_subtitles>
+						<font_style_subtitles>
+							<label>Subtitles : Style</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontstyle</source_model>
+							<sort_order>180</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Recommended : Regular</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_style_subtitles>
+						<font_size_subtitles>
+							<label>Subtitles : Size</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>190</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 15pt</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_size_subtitles>
+						<font_color_subtitles>
+							<label>Subtitles : Color</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/blank</frontend_model>
+							<sort_order>200</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default = #222222 (enter any HTML color name)</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_color_subtitles>
+						<background_color_subtitles>
+							<label>Subtitles : Background Color</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/blank</frontend_model>
+							<sort_order>210</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default = #5BA638 (enter any HTML color name)</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</background_color_subtitles>
+
+						<font_family_body>
+							<label>Page Body : Font</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/font</source_model>
+							<sort_order>220</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: Helvetica</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_family_body>
+						<font_style_body>
+							<label>Page Body : Style</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontstyle</source_model>
+							<sort_order>230</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Recommended : Regular</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_style_body>
+						<font_size_body>
+							<label>Page Body : Size</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>240</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 10pt</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_size_body>
+						<font_color_body>
+							<label>Page Body : Color</label>
+							<frontend_type>text</frontend_type>
+							<frontend_model>pickpack/blank</frontend_model>
+							<sort_order>250</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default = Black (enter any HTML color name)</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_color_body>
+						<font_size_options>
+							<label>Packing Sheet Product Options : Size</label>
+							<frontend_type>select</frontend_type>
+							<source_model>pickpack/fontsize</source_model>
+							<sort_order>251</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Default: 8pt</comment>                            
+							<depends><simple_design_yn>1</simple_design_yn></depends>
+						</font_size_options>
+						<font_family_message>
+								<label>Packing Sheet Message : Font</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/font</source_model>
+								<sort_order>252</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: Helvetica</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_family_message>
+							<font_style_message>
+								<label>Packing Sheet Message : Style</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontstyle</source_model>
+								<sort_order>253</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Recommended : Italic</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_style_message>
+							<font_size_message>
+								<label>Packing Sheet Message : Size</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>254</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 12pt</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_size_message>
+							<font_color_message>
+								<label>Packing Sheet Message : Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>255</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default = #222222 (enter any HTML color name)</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_color_message>
+							<background_color_message>
+								<label>Packing Sheet Message : Background Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>256</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default = #5BA638 (enter any HTML color name)</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</background_color_message>
+							<font_family_gift_message>
+								<label>Gift Message : Font</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/font</source_model>
+								<sort_order>260</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: Helvetica</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_family_gift_message>
+							<font_style_gift_message>
+								<label>Gift Message : Style</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontstyle</source_model>
+								<sort_order>265</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Recommended : Italic</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_style_gift_message>
+							<font_size_gift_message>
+								<label>Gift Message : Size</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/fontsize</source_model>
+								<sort_order>270</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default: 12pt</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_size_gift_message>
+							<font_color_gift_message>
+								<label>Gift Message : Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>275</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Blank = #222222 (enter any HTML color name)</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</font_color_gift_message>
+							<background_color_gift_message>
+								<label>Gift Message : Background Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>280</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default = #5BA638 (enter any HTML color name)</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</background_color_gift_message>
+							<background_color_product>
+								<label>Packing Sheet Products : Separating Line Color</label>
+								<frontend_type>text</frontend_type>
+								<frontend_model>pickpack/blank</frontend_model>
+								<sort_order>285</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>Default = #FFFFFF (enter any HTML color name)</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+							</background_color_product>
+							<non_standard_characters>
+								<label>Product names or attributes contain non-roman characters?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/noyes</source_model>
+								<sort_order>290</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>This will load an extra font file to show these characters correctly - this will result in a much larger PDF file, so if you don't need to see these characters then leave set to 'No'.</comment>                            
+							</non_standard_characters>
+							<pickpack_split_supplier_yn>
+								<label>Filter by supplier?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/noyes</source_model>
+								<sort_order>300</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment>This will create different pick lists per supplier</comment>                            
+							</pickpack_split_supplier_yn>
+							<pickpack_split_supplier_options>
+								<label>Filter/Split which PDFs?</label>
+								<frontend_type>select</frontend_type>
+								<source_model>pickpack/supplierfilter</source_model>
+								<sort_order>310</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_split_supplier_yn>1</pickpack_split_supplier_yn></depends>
+							</pickpack_split_supplier_options>
+							<pickpack_supplier_attribute>
+								<label>Supplier attribute</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/supplier</frontend_model>					
+								<sort_order>320</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_split_supplier_yn>1</pickpack_split_supplier_yn></depends>
+								<comment>Attribute code for supplier data; default : supplier</comment>                            
+							</pickpack_supplier_attribute>
+							<!--<pickpack_supplier_login>
+								<label>Supplier 'login'</label>
+								<frontend_type>text</frontend_type>		
+								<frontend_model>pickpack/blank</frontend_model>					
+								<sort_order>330</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_split_supplier_yn>1</pickpack_split_supplier_yn></depends>
+								<comment>Output only this supplier (Hide/Grey-out others) . . . Leave blank to auto-split all suppliers</comment>                            
+							</pickpack_supplier_login>-->
+							<pickpack_supplier_login>
+								<label>Supplier username:suppliername</label>
+								<frontend_type>textarea</frontend_type>		
+								<frontend_model>pickpack/addresstextarea</frontend_model>					
+								<sort_order>330</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+							    <comment>Output only these suppliers (Hide/Grey-out others) . . . Leave blank to auto-split all suppliers . . . enter magento-username:supplier-attribute;magento-usernameB:supplier-attributeB;admin(your-username):all;</comment>                            
+								<depends><simple_design_yn>1</simple_design_yn></depends>
+								<depends><pickpack_split_supplier_yn>1</pickpack_split_supplier_yn></depends>
+							</pickpack_supplier_login>
+							<pickpack_supplier_options>
+								<label>Supplier options</label>
+								<frontend_type>select</frontend_type>		
+								<source_model>pickpack/supplieroptions</source_model>					
+								<sort_order>340</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<depends><pickpack_split_supplier_yn>1</pickpack_split_supplier_yn></depends>
+								<comment>If supplier 'logged in', do what with other suppliers products?</comment>                            
+							</pickpack_supplier_options>
+						</fields>
+					</general>
+					
+					<csvpick translate="label">
+						<label>CSV Picklist Options</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>65</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<fields>
+							<column_mapping>
+								<label>Column mapping</label>
+								<frontend_type>textarea</frontend_type>		
+								<frontend_model>pickpack/textareahigh</frontend_model>					
+								<sort_order>20</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+								<comment><![CDATA[Follow this format:<br />column-name:magento-attribute-a;<br />column-name-2:[fixed text here];<br />column-name-3:%%special_attribute_here%%;<br />
+								--------------------<br />
+								You can use these:<br />%%order_id%%, %%sku%%, %%qty%%, %%product_name%%, %%unit_price%%, %%shipping_address%%, %%description%%]]></comment>                            
+							</column_mapping>
+						</fields>
+					</csvpick>
+					
+					
+					
+					
+			</groups>
+		</pickpack_options>
+	</sections>
+</config>

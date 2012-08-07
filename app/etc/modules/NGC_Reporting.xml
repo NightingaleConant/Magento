@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <NGC_Reporting>
+             <active>true</active>
+             <codePool>local</codePool>
+             <depends>
+             </depends>
+        </NGC_Reporting>
+    </modules>
+</config>

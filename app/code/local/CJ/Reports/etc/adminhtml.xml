@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <report>
+            <children>
+                <accounts_receivable>
+                    <title>Accounts Receivable</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/artransactions/index</action>
+                </accounts_receivable>
+                <qb>
+                    <title>Inventory Transactions</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/qborders/index</action>
+                </qb>
+            </children>
+        </report>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <report>
+                        <children>
+                            <accounts_receivable>
+                                <title>Accounts Receivable</title>
+                                <sort_order>100</sort_order>
+                            </accounts_receivable>
+                            <qb>
+                                <title>QuickBooks</title>
+                                <sort_order>110</sort_order>
+                            </qb>
+                        </children>
+                    </report>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <menu>
+        <sales>
+            <children>
+                <orderattr translate="title">
+                    <title>Manage Order Attributes</title>
+                    <action>orderattr/adminhtml_manage</action>
+                    <sort_order>2000</sort_order>
+                </orderattr>
+            </children>
+        </sales>
+    </menu>
+    
+    <translate>
+        <modules>
+            <Amasty_Orderattr>
+                <files>
+                    <default>Amasty_Orderattr.csv</default>
+                </files>
+            </Amasty_Orderattr>
+        </modules>
+    </translate>
+    
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <orderattr translate="title" module="amorderattr">
+                                <title>Manage Order Attributes</title>
+                            </orderattr>
+                        </children>
+                    </sales>                
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <amorderattr translate="title" module="amorderattr">
+                                        <title>Order Attributes</title>
+                                    </amorderattr>
+                                </children>
+                            </config>
+                        </children>
+                    </system> 
+                 </children>
+            </admin> 
+        </resources>
+    </acl>
+</config>

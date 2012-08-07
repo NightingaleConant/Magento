@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- Remove this file if your module does not have an admin interface -->
+<config>
+    <menu>
+        <system>
+            <children>
+                <installment translate="title" module="installment">
+                    <title>Installment Management</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <installment_type translate="title" module="installment">
+                            <title>Installment Types</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/type</action>
+                        </installment_type>
+                    </children>
+                </installment>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <installment>
+                                        <title>Installment Configuration Options</title>
+                                    </installment>
+                                </children>
+                            </config>
+
+                            <installment>
+                                <title>Installment Management</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <installment_type>
+                                        <title>Installment Types</title>
+                                    </installment_type>
+                                </children>
+                            </installment>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

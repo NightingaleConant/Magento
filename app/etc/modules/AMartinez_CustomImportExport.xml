@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <AMartinez_CustomImportExport>
+            <active>true</active>
+            <codePool>community</codePool>
+        </AMartinez_CustomImportExport>
+    </modules>
+</config>

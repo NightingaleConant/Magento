@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Amasty_Orderattr>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Amasty_Orderattr>
+    </modules>
+</config>

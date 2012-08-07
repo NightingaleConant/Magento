@@ -1,0 +1,7 @@
+<?php $_attributes = $this->getAttributes(); ?>
+<?php if (is_array($_attributes) && !empty($_attributes)): ?>
+    <br />
+    <?php foreach($_attributes as $label => $value): ?>
+        <?php echo $label; ?>: <?php echo $value; ?><br />
+    <?php endforeach; ?>
+<?php endif; ?>

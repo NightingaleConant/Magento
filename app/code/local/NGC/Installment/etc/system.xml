@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!-- Remove this file if your module does not have a system configuration interface -->
+<config>
+    <tabs>
+        <nightingale translate="label" module="installment">
+            <label>Nightingale Conant</label>
+            <sort_order>99999</sort_order>
+        </nightingale>
+    </tabs>
+    <sections>
+        <installment translate="label" module="installment">
+            <label>Installment Options</label>
+            <tab>nightingale</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <grace_period_options translate="label">
+                    <label>Grace Period Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <grace_period_days translate="label">
+                            <label>Number of Days</label>
+                            <frontend_type>text</frontend_type>
+                            <default>7</default>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </grace_period_days>
+                        <grace_period_attempts translate="label">
+                            <label>Number of Attempts</label>
+                            <frontend_type>text</frontend_type>
+                            <default>3</default>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </grace_period_attempts>
+                    </fields>
+                </grace_period_options>
+            </groups>
+        </installment>
+    </sections>
+</config>

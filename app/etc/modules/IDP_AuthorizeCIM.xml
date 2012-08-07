@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <IDP_AuthorizeCIM>
+            <active>true</active>
+            <codePool>local</codePool>
+    	</IDP_AuthorizeCIM>
+    </modules>
+</config> 
