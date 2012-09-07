@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+	    <Exinent_Invoicestatus>
+	        <version>0.1.0</version>
+	    </Exinent_Invoicestatus>
+	</modules>
+	<frontend>
+        <routers>
+            <invoicestatus>
+                <use>standard</use>
+                <args>
+                    <module>Exinent_Invoicestatus</module>
+                    <frontName>invoicestatus</frontName>
+                </args>
+            </invoicestatus>
+        </routers>
+    </frontend>
+	<admin>
+        <routers>
+            <invoicestatus>
+                <use>admin</use>
+                <args>
+                    <module>Exinent_Invoicestatus</module>
+                    <frontName>invoicestatus</frontName>
+                </args>
+            </invoicestatus>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Exinent_Invoicestatus before="Mage_Adminhtml">Exinent_Invoicestatus</Exinent_Invoicestatus>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+    	<menu>
+            <Exinent translate="title" module="invoicestatus">
+                <title>Exinent</title>
+                <sort_order>12</sort_order>
+                <children>
+                    <changestatus module="invoicestatus">
+	                    <title>Change status of Unleashed invoices</title>
+	                    <sort_order>0</sort_order>
+	                    <action>invoicestatus/adminhtml_invoicestatus</action>
+                    </changestatus>
+                </children>
+            </Exinent>
+        </menu>
+    	<acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Exinent_Invoicestatus>
+                            <title>Change Invoice Status Module</title>
+                            <sort_order>12</sort_order>
+                        </Exinent_Invoicestatus>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <global>
+    	<models>
+    		<invoicestatus>
+                <class>Exinent_Invoicestatus_Model</class>
+            </invoicestatus>
+            <sales>
+            	<rewrite>
+            		<order_invoice>Exinent_Invoicestatus_Model_Sales_Order_Invoice</order_invoice>
+            	</rewrite>
+            </sales>
+        </models>
+    	<helpers>
+            <invoicestatus>
+                <class>Exinent_Invoicestatus_Helper</class>
+            </invoicestatus>
+        </helpers>
+    </global>
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Exinent
+ * @package    Exinent_Invoicestatus
+ * @author     Exinent
+ */
+ -->
+<config>
+    <modules>
+        <Exinent_Invoicestatus>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Exinent_Invoicestatus>
+    </modules>
+</config>
