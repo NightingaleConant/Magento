@@ -10,17 +10,23 @@ class Exinent_Invoicestatus_Adminhtml_InvoicestatusController extends Mage_Admin
         $response = $this->_sendRequest();
         
         $invoicesList = $response['Items'];
-
+        $session = Mage::getSingleton('adminhtml/session');
         if (sizeof($invoicesList) > 0) {
             foreach ($invoicesList as $invoiceItem) {
                 if ('completed' == strtolower($invoiceItem['OrderStatus'])) {
                     // load the invoice
-                    $mageInvoice = Mage::getModel('sales/order_invoice')->loadByIncrementId($invoiceItem['OrderNumber']);
-                    $mageInvoice->setState(4);
-                    $mageInvoice->save();
+                    $mageOrder = Mage::getModel('sales/order')->loadByIncrementId($invoiceItem['OrderNumber']);
+                    $mageOrder->setState('ready_to_print');
+                    $mageOrder->setStatus('ready_to_print');
+                    $mageOrder->save();
                 }
             }
+            $session->addSuccess(Mage::helper('invoicestatus')->__('Status of invoices where successfully change to \'Ready To Print\''));
+        } else {
+            $session->addError(Mage::helper('invoicestatus')->__('There was no invoice item to change the status'));
         }
+
+        $this->_redirectUrl(Mage::getBaseUrl(). 'admin');
         
     }
     

@@ -45,8 +45,19 @@ class Moogento_Pickpack_Sales_ShipmentController extends Mage_Adminhtml_Sales_Sh
 		$flag = false;
 		if (!empty($orderIds)) 
 		{
-			
-				// if(Mage::getStoreConfig('pickpack_options/wonder/page_template') == 1)
+			// Exinent: change order status to 'printed' of 'ready to print' orders during shipment form generation
+			foreach ($orderIds as $orderId) 
+ 			{
+ 				$order = Mage::getModel('sales/order')->load($orderId);
+ 				$state = $order->getState();
+ 				if ('ready_to_print' == $state) {
+                    $order->setState('printed');
+                    $order->setStatus('printed');
+                    $order->save(); 				    
+ 				}
+ 			}
+				
+		        // if(Mage::getStoreConfig('pickpack_options/wonder/page_template') == 1)
 				// {       
 				// 			foreach ($orderIds as $orderId) 
 				// 			{

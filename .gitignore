@@ -1,0 +1,15 @@
+/media
+media-*
+var
+var/*
+.git
+.settings
+.buildpath
+.project
+.idea
+.DS_Store
+*.cfg
+robots.txt
+app/etc/local.xml
+Thumbs.db
+test/

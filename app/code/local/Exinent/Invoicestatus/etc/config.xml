@@ -65,16 +65,33 @@
         </acl>
     </adminhtml>
     <global>
+    	<!--
     	<models>
     		<invoicestatus>
                 <class>Exinent_Invoicestatus_Model</class>
             </invoicestatus>
-            <sales>
-            	<rewrite>
-            		<order_invoice>Exinent_Invoicestatus_Model_Sales_Order_Invoice</order_invoice>
-            	</rewrite>
-            </sales>
         </models>
+        -->
+        <resources>
+            <invoicestatus_setup>
+                <setup>
+                    <module>Exinent_Invoicestatus</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </invoicestatus_setup>
+            <invoicestatus_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </invoicestatus_write>
+            <invoicestatus_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </invoicestatus_read>
+        </resources>
     	<helpers>
             <invoicestatus>
                 <class>Exinent_Invoicestatus_Helper</class>
