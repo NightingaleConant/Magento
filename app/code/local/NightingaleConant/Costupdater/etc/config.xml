@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<config>    
+    <modules>
+        <NightingaleConant_Costupdater>
+            <version>0.1.0</version>
+        </NightingaleConant_Costupdater>
+    </modules>
+    
+    <global>
+        
+        <models>
+            <costupdater>
+                <class>NightingaleConant_Costupdater_Model</class>
+                <resourceModel>costupdater_mysql4</resourceModel>
+            </costupdater>
+            <costupdater_mysql4>
+                <class>NightingaleConant_Costupdater_Model_Mysql4</class>
+                <entities>
+                    <dailycost>
+                        <table>custom_dailycost</table>
+                    </dailycost>
+                </entities>
+            </costupdater_mysql4>
+        </models>
+        
+        <resources>
+            <costupdater_setup>
+                <setup>
+                    <module>NightingaleConant_Costupdater</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </costupdater_setup>
+            <costupdater_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </costupdater_write>
+            <costupdater_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </costupdater_read>
+        </resources>
+
+    </global>
+
+    <!--<crontab>
+       <jobs>
+            <costupdater_unleashed_dailycosts>
+                <schedule>-->
+                    <!-- This runs cron job daily at 12am mid-night --><!--
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>costupdater/unleashed::dailyCosts</model>
+                </run>
+            </costupdater_unleashed_dailycosts>
+        </jobs>
+    </crontab>-->
+</config>

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+@author - Kalpesh Mehta
+@desc - Configuration file for FreeTrial Payment Method
+-->
+<config>
+    <modules>
+        <NightingaleConant_FreeTrial>
+            <version>0.1.0</version>
+        </NightingaleConant_FreeTrial>
+    </modules>
+    
+    <global>
+   
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_invoice_view>NightingaleConant_FreeTrial_Block_View</sales_order_invoice_view>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        
+        <models>
+            <freetrial>
+                <class>NightingaleConant_FreeTrial_Model</class>
+            </freetrial>
+        </models>
+
+        <!-- Event fired after shipment is saved, when observed will update status to "freetrial" -->
+        <events>
+
+            <sales_order_shipment_save_after>
+                <observers>
+                    <freetrial>
+                        <type>singleton</type>
+                        <class>freetrial/observer</class>
+                        <method>changeOrderStatusAfterShip</method>
+                    </freetrial>
+                </observers>
+            </sales_order_shipment_save_after>
+
+        </events>
+
+        <helpers>
+            <freetrial>
+                <class>NightingaleConant_FreeTrial_Helper</class>
+            </freetrial>
+        </helpers>
+
+        <!-- Need the database connection to insert new order status -->
+        <resources>
+            <freetrial_setup>
+                <setup>
+                    <module>NightingaleConant_FreeTrial</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </freetrial_setup>
+            <freetrial_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </freetrial_write>
+            <freetrial_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </freetrial_read>
+        </resources>
+
+
+    </global>
+
+    <!-- Default payment settings, please change it at System->Configuration->Payment Methods->FREE TRIAL -->
+    <default>
+        <payment>
+            <freetrial>
+                <active>1</active>
+                <model>freetrial/payment</model>
+                <order_status>pending</order_status>
+                <title>Free Trial</title>
+                <allowspecific>0</allowspecific>
+                <sort_order>10</sort_order>
+            </freetrial>
+        </payment>
+    </default>
+
+</config>

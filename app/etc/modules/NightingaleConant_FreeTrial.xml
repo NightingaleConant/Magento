@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+@author - Kalpesh Mehta
+@desc - FreeTrial module registration file
+-->
+<config>
+    <modules>
+        <NightingaleConant_FreeTrial>
+            <active>true</active>
+            <codePool>community</codePool>
+        </NightingaleConant_FreeTrial>
+    </modules>
+</config>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NightingaleConant_Promocodes>
+            <version>0.1.0</version>
+        </NightingaleConant_Promocodes>
+    </modules>
+    
+    <admin>
+        <routers>
+            <promocodes>
+                <use>admin</use>
+                <args>
+                    <module>NightingaleConant_Promocodes</module>
+                    <frontName>promocodes</frontName>
+                </args>
+            </promocodes>
+        </routers>        
+        
+    </admin>
+    <adminhtml>
+        <menu>		
+            <promo>                
+                <children>
+                    <promocodes module="promocodes">
+                        <title>Promo Codes</title>
+                        <sort_order>10</sort_order>
+                        <action>promocodes/adminhtml_promocodes</action>
+                    </promocodes>
+                </children>
+            </promo>		
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <promo>
+                            <children>
+                                <promocodes module="promocodes">
+                                    <title>Promo Codes</title>
+                                    <sort_order>10</sort_order>
+                                    <action>promocodes/adminhtml_promocodes</action>
+                                </promocodes>
+                            </children>
+                        </promo>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <promocodes>
+                    <file>promocodes.xml</file>
+                </promocodes>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <promocodes>
+                <class>NightingaleConant_Promocodes_Block</class>
+            </promocodes>
+        </blocks>
+        <helpers>
+            <promocodes>
+                <class>NightingaleConant_Promocodes_Helper</class>
+            </promocodes>
+        </helpers>
+        <models>
+            <promocodes>
+                <class>NightingaleConant_Promocodes_Model</class>
+                <resourceModel>promocodes_mysql4</resourceModel>
+            </promocodes>
+            <promocodes_mysql4>
+                <class>NightingaleConant_Promocodes_Model_Mysql4</class>
+                <entities>
+                    <promocodes>
+                        <table>custom_key_code</table>
+                    </promocodes>
+                </entities>
+            </promocodes_mysql4>
+        </models>
+        <resources>
+            <promocodes_setup>
+                <setup>
+                    <module>NightingaleConant_Promocodes</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </promocodes_setup>
+            <promocodes_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </promocodes_write>
+            <promocodes_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </promocodes_read>
+        </resources>
+    </global>
+</config>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NightingaleConant_Authors>
+            <version>0.1.0</version>
+        </NightingaleConant_Authors>
+    </modules>
+    
+    <admin>
+        <routers>
+            <authors>
+                <use>admin</use>
+                <args>
+                    <module>NightingaleConant_Authors</module>
+                    <frontName>authors</frontName>
+                </args>
+            </authors>
+        </routers>        
+    </admin>
+    <adminhtml>
+        <menu>		
+            <catalog>                
+                <children>
+                    <authors module="authors">
+                        <title>Manage Authors</title>
+                        <sort_order>10</sort_order>
+                        <action>authors/adminhtml_authors</action>
+                    </authors>
+                </children>
+            </catalog>		
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <catalog>
+                            <children>
+                                <authors module="authors">
+                                    <title>Manage Authors</title>
+                                    <sort_order>10</sort_order>
+                                    <action>authors/adminhtml_authors</action>
+                                </authors>
+                            </children>
+                        </catalog>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <authors>
+                    <file>authors.xml</file>
+                </authors>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <authors>
+                <class>NightingaleConant_Authors_Block</class>
+            </authors>
+        </blocks>
+        <helpers>
+            <authors>
+                <class>NightingaleConant_Authors_Helper</class>
+            </authors>
+        </helpers>
+        <models>
+            <authors>
+                <class>NightingaleConant_Authors_Model</class>
+                <resourceModel>authors_mysql4</resourceModel>
+            </authors>
+            <authors_mysql4>
+                <class>NightingaleConant_Authors_Model_Mysql4</class>
+                <entities>
+                    <authors>
+                        <table>custom_authors</table>
+                    </authors>
+                </entities>
+            </authors_mysql4>
+        </models>
+        <resources>
+            <authors_setup>
+                <setup>
+                    <module>NightingaleConant_Authors</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </authors_setup>
+            <authors_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </authors_write>
+            <authors_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </authors_read>
+        </resources>
+    </global>
+</config>
