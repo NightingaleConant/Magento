@@ -1,0 +1,21 @@
+<script type="text/javascript">
+function fetchData(kcode, kname) {
+    //alert(kcode +"="+ kname);
+    var ajaxurl = "<?php echo Mage::getBaseUrl();?>promocodelookup/adminhtml_lookup/lookup";
+    new Ajax.Request(ajaxurl, {
+        method: 'post',
+        parameters: {code: kcode, name: kname},
+        onSuccess: function(transport) {
+            document.getElementById('putData').innerHTML = transport.responseText;
+        }
+    });
+}
+</script>
+<div>
+    <div><a href="javascript:void(0);" onclick="window.close();" style="padding-left:315px;">Close</a></div>
+    <span style="float:left">Code <input type="text" id="kcode" name="kcode" style="width:60px" /></span> &nbsp; 
+    <span>Description <input type="text" id="kdesc" name="kdesc" style="width:100px" /></span> &nbsp; 
+    <input type="button" name="submit" value="Search" class="form-button" onclick="fetchData(document.getElementById('kcode').value, document.getElementById('kdesc').value);" />    
+    <div id="putData" style="padding-top:20px;padding-bottom:20px"></div>
+    <div><a href="javascript:void(0);" onclick="window.close();">Close</a></div>
+</div>
