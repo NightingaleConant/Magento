@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <report translate="title" module="reports">
+            <title>Reports</title>
+            <sort_order>80</sort_order>
+            <children>
+                <panelreport translate="title" module="panelreport">
+			<title>Market Panel Reports</title>
+			<sort_order>40</sort_order>
+			<action>adminhtml/report_panelreport/market</action>
+		</panelreport>
+                
+            </children>
+        </report>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <panelreport translate="title" module="panelreport">
+                        <title>Market Panel Reports</title>
+                        <sort_order>80</sort_order>
+                    </panelreport>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Exinent
+ * @package    Exinent_Invoicestatus
+ * @author     Exinent
+ */
+ -->
+<config>
+    <modules>
+        <Exinent_Panelreport>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Amasty_Orderattr/>
+            </depends>
+        </Exinent_Panelreport>
+    </modules>
+</config>
