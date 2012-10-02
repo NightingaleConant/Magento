@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <heldorders_adminhtml_heldorders_index>
+        <reference name="content">
+            <block type="heldorders/adminhtml_heldorders" name="heldorders" />
+        </reference>
+    </heldorders_adminhtml_heldorders_index>
+    
+    <heldorders_adminhtml_heldorders_sales>        
+        <reference name="content">
+            <block type="heldorders/adminhtml_heldorders" template="heldorders/grid/container.phtml" name="sales.report.grid.container">
+                <block type="adminhtml/store_switcher" template="heldorders/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>
+                <block type="heldorders/adminhtml_heldorders_form" name="grid.filter.form" />
+            </block>
+        </reference>
+    </heldorders_adminhtml_heldorders_sales>
+
+</layout>
