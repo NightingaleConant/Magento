@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <promocodelookup_adminhtml_lookup_index>
+        <remove name="header"/>        
+        <remove name="menu"/>
+        <remove name="notifications"/>
+        <reference name="content">
+            <block type="promocodes/adminhtml_promocodes" name="promocode.lookup" template="promocodelookup/lookup.phtml" />
+        </reference>
+        <remove name="footer"/>
+    </promocodelookup_adminhtml_lookup_index>
+</layout>

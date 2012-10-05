@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <NightingaleConant_PromocodeLookup>
+            <active>true</active>
+            <codePool>local</codePool>
+        </NightingaleConant_PromocodeLookup>
+    </modules>
+</config>

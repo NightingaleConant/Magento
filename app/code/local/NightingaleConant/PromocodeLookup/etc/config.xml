@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NightingaleConant_PromocodeLookup>
+            <version>0.1.0</version>
+        </NightingaleConant_PromocodeLookup>
+    </modules>
+    
+    
+    <admin>
+        <routers>
+            <promocodelookup>
+                <use>admin</use>
+                <args>
+                    <module>NightingaleConant_PromocodeLookup</module>
+                    <frontName>promocodelookup</frontName>
+                </args>
+            </promocodelookup>
+        </routers>        
+    </admin>
+    
+    <adminhtml>
+        <layout>
+            <updates>
+                <promocodelookup>
+                    <file>promocodelookup.xml</file>
+                </promocodelookup>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <global>
+        <models>
+            <promocodelookup>
+                <class>NightingaleConant_PromocodeLookup_Model</class>
+            </promocodelookup>
+        </models>
+    </global>
+</config>
