@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <harvey_tab module="harvey" translate="label">
+            <label>Harvey</label>
+            <sort_order>205</sort_order>
+        </harvey_tab>
+    </tabs>
+    <sections>
+        <harvey module="harvey" translate="label">
+            <label>Harvey Path Configuration</label>
+            <sort_order>205</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>harvey_tab</tab>
+            <groups>
+                <configuration translate="label">
+                    <label>Harvey Path Configuration</label>
+                    <comment><![CDATA[<span style="color:red">Note:</span> If the <i>hs_import.dat</i> file is not there at the path specified below, it
+                    will be created. If the file is already there, it will get replaced.]]></comment>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        <import translate="Import Path">
+                            <label>Import Path with Filename</label>
+                            <comment>case-sensitive. /path/to/EXPORT.DAT</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>text</frontend_type>
+                        </import>
+                        <export translate="Export Path">
+                            <label>Export Path with Filename</label>
+                            <comment>case-sensitive. /path/to/hs_import.dat</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>text</frontend_type>
+                        </export>
+                        
+                    </fields>
+                </configuration>
+            </groups>
+        </harvey>
+    </sections>
+</config>

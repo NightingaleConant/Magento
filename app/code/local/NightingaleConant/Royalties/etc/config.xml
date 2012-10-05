@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NightingaleConant_Royalties>
+            <version>0.1.0</version>
+        </NightingaleConant_Royalties>
+    </modules>
+    
+    <admin>
+        <routers>
+            <royalties>
+                <use>admin</use>
+                <args>
+                    <module>NightingaleConant_Royalties</module>
+                    <frontName>royalties</frontName>
+                </args>
+            </royalties>
+        </routers>        
+    </admin>
+    <adminhtml>
+        <menu>		
+            <sales>                
+                <children>
+                    <royalties module="royalties">
+                        <title>Royalties</title>
+                        <sort_order>10</sort_order>
+                        <children>
+                            <author_rates module="royalties">
+                                <title>Author Rates</title>
+                                <sort_order>10</sort_order>
+                                <action>royalties/adminhtml_royalties</action>
+                            </author_rates>
+                        </children>
+                    </royalties>
+                </children>
+            </sales>		
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <sales>                
+                            <children>
+                                <royalties module="royalties">
+                                    <title>Royalties</title>
+                                    <sort_order>10</sort_order>
+                                    <children>
+                                        <author_rates module="royalties">
+                                            <title>Author Rates</title>
+                                            <sort_order>10</sort_order>
+                                            <action>royalties/adminhtml_royalties</action>
+                                        </author_rates>
+                                    </children>
+                                </royalties>
+                            </children>
+                        </sales>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <royalties>
+                    <file>royalties.xml</file>
+                </royalties>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <royalties>
+                <class>NightingaleConant_Royalties_Block</class>
+            </royalties>
+        </blocks>
+        <helpers>
+            <royalties>
+                <class>NightingaleConant_Royalties_Helper</class>
+            </royalties>
+        </helpers>
+        <models>
+            <royalties>
+                <class>NightingaleConant_Royalties_Model</class>
+                <resourceModel>royalties_mysql4</resourceModel>
+            </royalties>
+            <royalties_mysql4>
+                <class>NightingaleConant_Royalties_Model_Mysql4</class>
+                <entities>
+                    <rate>
+                        <table>custom_royalty_rates</table>
+                    </rate>
+                </entities>
+            </royalties_mysql4>
+        </models>
+        <resources>
+            <royalties_setup>
+                <setup>
+                    <module>NightingaleConant_Royalties</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </royalties_setup>
+            <royalties_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </royalties_write>
+            <royalties_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </royalties_read>
+        </resources>
+    </global>
+</config>

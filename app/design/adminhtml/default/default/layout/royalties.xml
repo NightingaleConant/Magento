@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <royalties_adminhtml_royalties_index>
+        <reference name="content">
+            <block type="royalties/adminhtml_royalties" name="royalties" />
+        </reference>
+    </royalties_adminhtml_royalties_index>
+</layout>

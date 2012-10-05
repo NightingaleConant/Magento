@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <promocodes_adminhtml_promocodes_index>
+        <reference name="content">
+            <block type="promocodes/adminhtml_promocodes" name="promocodes" />
+        </reference>
+    </promocodes_adminhtml_promocodes_index>
+</layout>

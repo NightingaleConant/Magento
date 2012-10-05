@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NightingaleConant_Harvey>
+            <version>0.1.0</version>
+        </NightingaleConant_Harvey>
+    </modules>
+    
+    <admin>
+        <routers>
+            <harvey>
+                <use>admin</use>
+                <args>
+                    <module>NightingaleConant_Harvey</module>
+                    <frontName>harvey</frontName>
+                </args>
+            </harvey>
+        </routers>        
+    </admin>
+    
+    <adminhtml>
+        <menu>		
+            <harveymenu module="harvey">
+                <title>Harvey</title>
+                <sort_order>20</sort_order>                
+                <children>                    
+                    <harvey module="harvey">
+                        <title>Configuration</title>
+                        <sort_order>1</sort_order>
+                        <action>adminhtml/system_config/edit/section/harvey</action>
+                    </harvey>
+                    <harvey_import_export>
+                        <title>Import / Export</title>
+                        <sort_order>2</sort_order>
+                        <action>harvey/adminhtml_ship</action>
+                    </harvey_import_export>
+                </children>
+            </harveymenu>
+                        
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <harvey module="harvey">
+                            <title>Configuration</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/system_config/edit/section/harvey</action>
+                        </harvey>
+                        <harvey_import_export module="harvey">
+                            <title>Import / Export</title>
+                            <sort_order>2</sort_order>
+                            <action>harvey/adminhtml_ship</action>
+                        </harvey_import_export>
+                        
+
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <harvey translate="title" module="harvey">
+                                            <title>Harvey Path Configuration</title>
+                                            <sort_order>205</sort_order>
+                                          </harvey>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                        
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <harvey>
+                    <file>harvey.xml</file>
+                </harvey>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+    <global>
+        <helpers>
+            <harvey>
+                <class>NightingaleConant_Harvey_Helper</class>
+            </harvey>
+        </helpers>
+            
+        <models>
+            <harvey>
+                <class>NightingaleConant_Harvey_Model</class>
+            </harvey>
+        </models>
+    </global>
+    
+    <!--<crontab>
+        <jobs>
+            <nightingaleconant_harvey_import>
+                <schedule>
+                    <cron_expr>*/2 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>harvey/import::toMagento</model>
+                </run>
+            </nightingaleconant_harvey_import>
+            <nightingaleconant_harvey_export>
+                <schedule>
+                    <cron_expr>*/2 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>harvey/export::fromMagento</model>
+                </run>
+            </nightingaleconant_harvey_export>
+        </jobs>
+    </crontab>-->
+</config>

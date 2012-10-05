@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <authors_adminhtml_authors_index>
+        <reference name="content">
+            <block type="authors/adminhtml_authors" name="authors" />
+        </reference>
+    </authors_adminhtml_authors_index>
+</layout>
