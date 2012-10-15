@@ -32,6 +32,15 @@ class Amasty_Orderattr_Block_Adminhtml_Order_Attribute_View_List extends Mage_Ad
         
         $orderAttributes = Mage::getModel('amorderattr/attribute')->load($order->getId(), 'order_id');
         
+	$orderholdValue = false;
+	$attributeHold = Mage::getModel('eav/config')->getAttribute('customer','hold_code');
+	$attributeOptions = $attributeHold->getSource()->getAllOptions();
+	foreach($attributeOptions as $_attributeOption){
+	    if($_attributeOption['value'] == $orderAttributes->getOrderHoldCode()){
+		$orderholdValue = $_attributeOption['label'];
+	    }
+	}
+	
         if ($attributes->getSize())
         {
             foreach ($attributes as $attribute)
@@ -48,8 +57,16 @@ class Amasty_Orderattr_Block_Adminhtml_Order_Attribute_View_List extends Mage_Ad
                 {
                     case 'select':
                         $options = $attribute->getSource()->getAllOptions(true, true);
-                        foreach ($options as $option)
+			
+			foreach ($options as $option)
                         {
+			    if($attribute->getAttributeCode() == "order_hold_code"){
+				if($option['label'] == $orderholdValue){
+				    $value = $option['label'];
+				    break;
+				}
+			    }
+			    
                             if ($option['value'] == $orderAttributes->getData($attribute->getAttributeCode()))
                             {
                                 $value = $option['label'];

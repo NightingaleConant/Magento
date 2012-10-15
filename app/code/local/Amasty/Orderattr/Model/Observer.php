@@ -33,6 +33,12 @@ class Amasty_Orderattr_Model_Observer
             $attributes = Mage::getModel('amorderattr/attribute');
             $attributes->addData($orderAttributes);
             $attributes->setData('order_id', $order->getId());
+            
+            /* check if the customer has a hold code and save it here */
+            if(Mage::getSingleton('customer/session')->getCustomer()->getHoldCode()){
+                $attributes->setData('order_hold_code', Mage::getSingleton('customer/session')->getCustomer()->getHoldCode());
+            }
+            
             $this->_applyDefaultValues($order, $attributes);
             $attributes->save();
             $session->setAmastyOrderAttributes(array());
@@ -46,7 +52,6 @@ class Amasty_Orderattr_Model_Observer
         {
             $order = $observer->getOrder();
             $orderAttributes = Mage::app()->getRequest()->getPost('amorderattr');
-            Mage::log($orderAttributes);
             if (is_array($orderAttributes) && !empty($orderAttributes))
             {
                 $attributes = Mage::getModel('amorderattr/attribute');
