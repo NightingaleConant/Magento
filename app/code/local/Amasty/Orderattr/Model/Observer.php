@@ -37,6 +37,7 @@ class Amasty_Orderattr_Model_Observer
             /* check if the customer has a hold code and save it here */
             if(Mage::getSingleton('customer/session')->getCustomer()->getHoldCode()){
                 $attributes->setData('order_hold_code', Mage::getSingleton('customer/session')->getCustomer()->getHoldCode());
+                $order->hold()->save();
             }
             
             $this->_applyDefaultValues($order, $attributes);
