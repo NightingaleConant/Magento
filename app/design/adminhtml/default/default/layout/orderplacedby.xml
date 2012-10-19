@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <orderplacedby_adminhtml_orderplacedby_index>
+        <reference name="content">
+            <block type="orderplacedby/adminhtml_orderplacedby" name="orderplacedby" />
+        </reference>
+    </orderplacedby_adminhtml_orderplacedby_index>
+    
+    <orderplacedby_adminhtml_orderplacedby_sales>        
+        <reference name="content">
+            <block type="orderplacedby/adminhtml_orderplacedby" template="orderplacedby/grid/container.phtml" name="sales.report.grid.container">
+                <block type="adminhtml/store_switcher" template="orderplacedby/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>
+                <block type="orderplacedby/adminhtml_orderplacedby_form" name="grid.filter.form" />
+            </block>
+        </reference>
+    </orderplacedby_adminhtml_orderplacedby_sales>
+
+</layout>
