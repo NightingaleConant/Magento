@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <salestaxreport_adminhtml_salestaxreport_index>
+        <reference name="content">
+            <block type="salestaxreport/adminhtml_salestaxreport" name="salestaxreport" />
+        </reference>
+    </salestaxreport_adminhtml_salestaxreport_index>
+    
+    <salestaxreport_adminhtml_salestaxreport_sales>        
+        <reference name="content">
+            <block type="salestaxreport/adminhtml_salestaxreport" template="salestaxreport/grid/container.phtml" name="sales.report.grid.container">
+                <block type="adminhtml/store_switcher" template="salestaxreport/store/switcher/enhanced.phtml" name="store.switcher">
+                    <action method="setStoreVarName"><var_name>store_ids</var_name></action>
+                </block>
+                <block type="salestaxreport/adminhtml_salestaxreport_form" name="grid.filter.form" />
+            </block>
+        </reference>
+    </salestaxreport_adminhtml_salestaxreport_sales>
+
+</layout>

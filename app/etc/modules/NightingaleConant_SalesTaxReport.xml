@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <NightingaleConant_SalesTaxReport>
+            <active>true</active>
+            <codePool>local</codePool>
+        </NightingaleConant_SalesTaxReport>
+    </modules>
+</config>
